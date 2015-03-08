@@ -40,13 +40,17 @@ Homestead 目前是构建且测试于 Vagrant 1.6 版本。
 <a name="installation-and-setup"></a>
 ## 安装与配置
 
-### 安装 VirtualBox 与 Vagrant
+### 安装 VirtualBox / VMWare 与 Vagrant
 
 在启动你的 Homestead 环境之前，你必须先安装 [VirtualBox](https://www.virtualbox.org/wiki/Downloads) 和 [Vagrant](http://www.vagrantup.com/downloads.html). 两套软件在各平台都有提供易用的可视化安装程序。
 
+#### VMware
+
+除了 VirtualBox 之外, Homestead 也支持 VMware. 如果使用 VMware 作为 provider, 你需要购买 VMware Fusion / Desktop 以及 [VMware Vagrant plug-in](http://www.vagrantup.com/vmware). VMware 提供了更快、性能更好的共享文件夹。
+
 ### 增加 Vagrant 封装包
 
-当 VirtualBox 和 Vagrant 安装完成后，你可以在终端机以下列命令将 'laravel/homestead' 封装包安装进你的 Vagrant 安装程序中。下载封装包会花你一点时间，时间长短将依据你的网络速度决定:
+当 VirtualBox / VMware 和 Vagrant 安装完成后，你可以在终端机以下列命令将 'laravel/homestead' 封装包安装进你的 Vagrant 安装程序中。下载封装包会花你一点时间，时间长短将依据你的网络速度决定:
 
 	vagrant box add laravel/homestead
 
@@ -83,6 +87,12 @@ Homestead 目前是构建且测试于 Vagrant 1.6 版本。
 此 `Homestead.yaml` 将会被放置在你的 `~/.homestead` 文件夹中。如果你是使用 Mac 或 Linux，你可以直接在终端机执行 `homestead edit` 命令来编辑 `Homestead.yaml` :
 
 	homestead edit
+
+### 配置你的 Provider
+
+在 `Homestead.yaml` 文件中的 `provider` 键表明需要使用的 Vagrant prodiver：`virtualbox` 或者 `vmware_fusion` ，你可以根据自己的喜好设定 provider 。
+
+	provider: virtualbox
 
 ### 配置你的 SSH 密钥
 
