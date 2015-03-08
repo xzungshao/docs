@@ -151,7 +151,9 @@ Artisan 是 Laravel 内置的命令行接口。它提供了一些有用的命令
 
 #### 将预定工作的输出发送到指定的 E-mail
 
-	$schedule->command('foo')->emailOutputTo('foo@example.com');
+	$schedule->command('foo')->sendOutputTo($filePath)->emailOutputTo('foo@example.com');
+
+> **注意:** 你必须先把输出存到文件中才可以发送 email。
 
 #### 将预定工作的输出发送到指定的路径
 
