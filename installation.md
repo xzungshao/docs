@@ -45,6 +45,7 @@ Laravel 框架有一些系统上的需求：
 - Mcrypt PHP 扩展
 - OpenSSL PHP 扩展
 - Mbstring PHP 扩展
+- Tokenizer PHP 扩展
 
 在 PHP 5.5 之后， 有些操作系统需要手动安装 PHP JSON 扩展包。如果你是使用 Ubuntu，可以通过 `apt-get install php5-json` 来进行安装。
 
