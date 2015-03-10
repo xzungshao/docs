@@ -457,7 +457,7 @@
 
 ### view
 
-Get a View instance for the given view path.
+用給定的视图路径取得一个视图实例。
 
 	return view('auth.login');
 
