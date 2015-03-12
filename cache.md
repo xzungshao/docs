@@ -4,6 +4,7 @@
 - [缓存用法](#cache-usage)
 - [递增与递减](#increments-and-decrements)
 - [缓存标签](#cache-tags)
+- [缓存事件](#cache-events)
 - [数据库缓存](#database-cache)
 
 <a name="configuration"></a>
@@ -136,6 +137,27 @@ Laravel 为各种不同的缓存系统提供一致的 API 。缓存配置文件�
 对照来看，以下例子将只会移除带有 `authors` 的标签，所以「John」会被移除，但是「Anne」不会。
 
 	Cache::tags('authors')->flush();
+
+<a name="cache-events"></a>
+## 缓存事件
+
+你可以通过监听缓存操作时对应的事件来执行特定的代码：
+
+	Event::listen('cache.hit', function($key, $value) {
+		//
+	});
+
+	Event::listen('cache.missed', function($key) {
+		//
+	});
+
+	Event::listen('cache.write', function($key, $value, $minutes) {
+		//
+	});
+
+	Event::listen('cache.delete', function($key) {
+		//
+	});
 
 <a name="database-cache"></a>
 ## 数据库缓存
