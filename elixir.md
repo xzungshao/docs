@@ -71,7 +71,7 @@ elixir(function(mix) {
 });
 ```
 
-在上述例子中，Elixir 会假设你的 Sass 文件保存在 `resources/assets/sass` 里。
+在上述例子中，Elixir 会假设你的 Sass 文件保存在 `resources/assets/sass` 里。`sass` 方法只能被调用一次，如果你想编译多个 Sass 文件，可以向 `sass` 方法传入一个数组。
 
 #### 编译 CoffeeScript
 
