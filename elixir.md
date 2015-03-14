@@ -73,6 +73,26 @@ elixir(function(mix) {
 
 在上述例子中，Elixir 会假设你的 Sass 文件保存在 `resources/assets/sass` 里。`sass` 方法只能被调用一次，如果你想编译多个 Sass 文件，可以向 `sass` 方法传入一个数组。
 
+默认情况下， Elixir 会使用 LibSass 作为编译引擎。 在某些情况下, 使用 Ruby 版本的 Sass 编译可能更有优势，虽然运行不是很快但是有更多的特性。假设你已经安装了 Ruby 和 Sass gem (`gem install sass`), 你可以使用 Ruby 模式，比如像这样：
+
+```javascript
+elixir(function(mix) {
+    mix.rubySass("app.sass");
+});
+```
+
+#### 无 Source Maps 编译
+
+```javascript
+elixir.config.sourcemaps = false;
+
+elixir(function(mix) {
+    mix.sass("app.scss");
+});
+```
+
+Source maps 默认情况下是开启的。因此, 每当一个文件被编译，你都会在当前目录下看到 `*.css.map` 文件。这个映射文件允许你在进行 debugging 的时候，追溯编译后的样式选择器到原有的 Sass 或者 Less 文件！如果你想要关闭这个功能，可以使用上面的代码。
+
 #### 编译 CoffeeScript
 
 ```javascript
