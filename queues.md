@@ -27,7 +27,7 @@ Laravel 队列组件提供一个统一的 API 集成了许多不同的队列服�
 
 - Amazon SQS: `aws/aws-sdk-php`
 - Beanstalkd: `pda/pheanstalk ~3.0`
-- IronMQ: `iron-io/iron_mq`
+- IronMQ: `iron-io/iron_mq ~1.5`
 - Redis: `predis/predis ~1.0`
 
 <a name="basic-usage"></a>
