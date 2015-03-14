@@ -53,7 +53,14 @@ Laravel Cashier 提供语义化，流畅的接口和 [Stripe](https://stripe.com
 
 #### Stripe Key
 
-最后，在初始化文件或服务注册里（如 `AppServiceProvider` ）加入 Stripe key：
+最后, 在 `services.php` 配置文件中设置你的 Stripe key：
+
+	'stripe' => [
+		'model'  => 'User',
+		'secret' => env('STRIPE_API_SECRET'),
+	],
+
+或者，也可以在初始化文件或服务注册里（如 `AppServiceProvider` ）加入 Stripe key：
 
 	User::setStripeKey('stripe-key');
 
