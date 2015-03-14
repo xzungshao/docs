@@ -26,7 +26,8 @@ Laravel Cashier 提供语义化，流畅的接口和 [Stripe](https://stripe.com
 
 首先，把 Cashier 扩展包加到 `composer.json`：
 
-	"laravel/cashier": "~3.0"
+	"laravel/cashier": "~4.0" (For Stripe APIs on 2015-02-18 version and later)
+	"laravel/cashier": "~3.0" (For Stripe APIs up to and including 2015-02-16 version)
 
 #### 注册服务
 
