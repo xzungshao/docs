@@ -1,10 +1,19 @@
 # 升级向导
 
+- [升级到 5.0.16](#upgrade-5.0.16)
 - [从 4.2 升级到 5.0](#upgrade-5.0)
 - [从 4.1 升级到 4.2](#upgrade-4.2)
 - [从 4.1.x 升级到 4.1.29](#upgrade-4.1.29)
 - [从 4.1.25 升级到 4.1.26](#upgrade-4.1.26)
 - [从 4.0 升级到 4.1](#upgrade-4.1)
+
+<a name="upgrade-5.0.16"></a>
+## 升级到 5.0.16
+
+在 `bootstrap/autoload.php` 文件中, 把 `$compiledPath` 变量更新为：
+
+   $compiledPath = __DIR__.'/../vendor/compiled.php';
+
 
 <a name="upgrade-5.0"></a>
 ## 从 4.2 升级到 5.0
