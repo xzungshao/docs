@@ -293,7 +293,7 @@ elixir(function(mix) {
 <a name="extensions"></a>
 ## 功能扩充
 
-你甚至能够建立自己的 Gulp 任务至 Elixir 里。想像一下，你想加入一个有趣的任务，使用终端机后会打打印一些消息。看起来可能会如下：
+你甚至能够建立自己的 Gulp 任务至 Elixir 里。想像一下，你想加入一个有趣的任务，使用终端机后会打印一些消息。看起来可能会如下：
 
 ```javascript
  var gulp = require("gulp");
