@@ -14,7 +14,7 @@ Facades 提供一个静态接口给在应用程序的 [服务容器](/docs/5.0/c
 
 有时，你或许会希望为应用程序和扩展包建立自己的 facades，所以让我们来探索这些类的概念、开发和用法。
 
-> **注意：** 在深入了解 facades 之前，强烈建议你先熟悉 Laravel [IoC 容器](/docs/5.0/container).
+> **注意：** 在深入了解 facades 之前，强烈建议你先熟悉 Laravel [服务容器](/docs/5.0/container).
 
 <a name="explanation"></a>
 ## 解释
@@ -23,7 +23,7 @@ Facades 提供一个静态接口给在应用程序的 [服务容器](/docs/5.0/c
 
 你的 facade 类只需要去实现一个方法：`getFacadeAccessor`。`getFacadeAccessor` 方法的工作是定义要从容器解析什么。基本的 `Facade` 类利用 `__callStatic()` 魔术方法来从你的 facade 调用到解析出来的对象。
 
-所以当你对 facade 调用，例如 `Cache::get`，Laravel 从 IoC 容器解析缓存管理类出来，并对该类调用 `get` 方法。用专业口吻来说，Laravel Facades 是使用 Laravel IoC 容器作为服务定位器的便捷语法。
+所以当你对 facade 调用，例如 `Cache::get`，Laravel 从服务容器解析缓存管理类出来，并对该类调用 `get` 方法。用专业口吻来说，Laravel Facades 是使用 Laravel 服务容器作为服务定位器的便捷语法。
 
 <a name="practical-usage"></a>
 ## 实际用法
@@ -45,9 +45,9 @@ Facades 提供一个静态接口给在应用程序的 [服务容器](/docs/5.0/c
 
 	}
 
-Cache 类继承基本的 `Facade` 类并定义一个 `getFacadeAccessor()` 方法。记住，这个方法的工作是返回 IoC 绑定的名称。
+Cache 类继承基本的 `Facade` 类并定义一个 `getFacadeAccessor()` 方法。记住，这个方法的工作是返回服务容器绑定的名称。
 
-当用户在 `Cache` 的 facade 上参考任何的静态方法，Laravel 会从 IoC 容器解析被绑定的 `cache` ，并对该对象执行被请求的方法 (在这个例子中， `get`)。
+当用户在 `Cache` 的 facade 上参考任何的静态方法，Laravel 会从服务容器解析被绑定的 `cache` ，并对该对象执行被请求的方法 (在这个例子中， `get`)。
 
 所以我们的 `Cache::get` 调用可以被重写成像这样：
 
@@ -82,7 +82,7 @@ Cache 类继承基本的 `Facade` 类并定义一个 `getFacadeAccessor()` 方�
 
 为你自己的应用程序或扩展包建立 facade 是很简单的。你只需要 3 个东西：
 
-- 一个 IoC 绑定。
+- 一个服务容器绑定。
 - 一个 facade 类。
 - 一个 facade 别名配置。
 
@@ -99,7 +99,7 @@ Cache 类继承基本的 `Facade` 类并定义一个 `getFacadeAccessor()` 方�
 
 	}
 
-我们需要可以从 IoC 容器解析出这个类。所以，让我们来加上一个绑定到服务提供者：
+我们需要可以从服务容器解析出这个类。所以，让我们来加上一个绑定到服务提供者：
 
 	App::bind('payment', function()
 	{
@@ -134,9 +134,9 @@ Cache 类继承基本的 `Facade` 类并定义一个 `getFacadeAccessor()` 方�
 <a name="facade-class-reference"></a>
 ## Facade 类参考
 
-你将会在下面找到每一个 facade 和它的基础类。这是个可以从一个给定的 facade 根源快速地深入 API 文档的有用工具。可应用的 [IoC 绑定](/docs/5.0/container) 关键字也包含在里面。
+你将会在下面找到每一个 facade 和它的基础类。这是个可以从一个给定的 facade 根源快速地深入 API 文档的有用工具。可应用的 [服务容器绑定](/docs/5.0/container) 关键字也包含在里面。
 
-Facade  |  Class  |  IoC Binding
+Facade  |  Class  |  Service Container Binding
 ------------- | ------------- | -------------
 App  |  [Illuminate\Foundation\Application](http://laravel.com/api/5.0/Illuminate/Foundation/Application.html)  | `app`
 Artisan  |  [Illuminate\Console\Application](http://laravel.com/api/5.0/Illuminate/Console/Application.html)  |  `artisan`

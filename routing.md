@@ -66,7 +66,7 @@ Laravel 会自动在每一位用户的 session 中放置随机的 `token` ，这
 
 #### 插入 CSRF Token 到表单
 
-    <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+	<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
 
 当然也可以在 Blade [模板引擎](/docs/5.0/templates)使用：
 
@@ -107,8 +107,8 @@ HTML 表单没有支持 `PUT` 、`PATCH` 或 `DELETE` 请求。所以当定义 `
 
 	<form action="/foo/bar" method="POST">
 		<input type="hidden" name="_method" value="PUT">
-    	<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
-    </form>
+		<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+	</form>
 
 <a name="route-parameters"></a>
 ## 路由参数
@@ -205,7 +205,7 @@ HTML 表单没有支持 `PUT` 、`PATCH` 或 `DELETE` 请求。所以当定义 `
 也可以为控制器动作指定路由名称：
 
 	Route::get('user/profile', [
-        'as' => 'profile', 'uses' => 'UserController@showProfile'
+		'as' => 'profile', 'uses' => 'UserController@showProfile'
 	]);
 
 现在你可以使用路由名称产生 URL 或进行重定向：
@@ -221,29 +221,45 @@ HTML 表单没有支持 `PUT` 、`PATCH` 或 `DELETE` 请求。所以当定义 `
 <a name="route-groups"></a>
 ## 路由群组
 
-有时候您需要嵌套过滤器到群组的路由上。不需要为每个路由去嵌套过滤器，您只需使用路由群组：
+Sometimes many of your routes will share common requirements such as URL segments, middleware, namespaces, etc. Instead of specifying each of these options on every route individually, you may use a route group to apply attributes to many routes.
 
-	Route::group(['middleware' => 'auth'], function()
+Shared attributes are specified in an array format as the first parameter to the `Route::group` method.
+
+<a name="route-group-middleware"></a>
+### Middleware
+
+Middleware is applied to all routes within the group by defining the list of middleware with the `middleware` parameter on the group attribute array. Middleware will be executed in the order you define this array:
+
+	Route::group(['middleware' => 'foo|bar'], function()
 	{
 		Route::get('/', function()
 		{
-			// Has Auth Filter
+			// Has Foo And Bar Middleware
 		});
 
 		Route::get('user/profile', function()
 		{
-			// Has Auth Filter
+			// Has Foo And Bar Middleware
 		});
+
 	});
 
-您一样可以在 `group` 数组中使用 `namespace` 参数，指定在这群组中控制器的命名空间：
+<a name="route-group-namespace"></a>
+### Namespaces
+
+您一样可以在 `group` 属性数组中使用 `namespace` 参数，指定在这群组中控制器的命名空间：
 
 	Route::group(['namespace' => 'Admin'], function()
 	{
-		//
+		// Controllers Within The "App\Http\Controllers\Admin" Namespace
+
+		Route::group(['namespace' => 'User'], function()
+		{
+			// Controllers Within The "App\Http\Controllers\Admin\User" Namespace
+		});
 	});
 
-> **注意：** 在默认情况下，`RouteServiceProvider` 包含内置您命名空间群组的 `routes.php` 文件，让您不须使用完整的命名空间就可以注册控制器路由。
+> **注意：** 在默认情况下，`RouteServiceProvider` 包含内置您命名空间群组的 `routes.php` 文件，让您不须使用完整的 `App\Http\Controllers` 命名空间前缀就可以注册控制器路由。
 
 <a name="sub-domain-routing"></a>
 ### 子域名路由
@@ -269,12 +285,32 @@ Laravel 路由一样可以处理通配符的子域名，并且从域名中传递
 
 	Route::group(['prefix' => 'admin'], function()
 	{
+		Route::get('users', function()
+		{
+			// Matches The "/admin/users" URL
+		});
+	});
 
-		Route::get('user', function()
+You can also utilize the `prefix` parameter to pass common parameters to your routes:
+
+#### Registering a URL parameter in a route prefix
+
+	Route::group(['prefix' => 'accounts/{account_id}'], function()
+	{
+		Route::get('detail', function($account_id)
 		{
 			//
 		});
+	});
 
+You can even define parameter constraints for the named parameters in your prefix:
+
+	Route::group([
+		'prefix' => 'accounts/{account_id}',
+		'where' => ['account_id' => '[0-9]+'],
+	], function() {
+
+		// Define Routes Here
 	});
 
 <a name="route-model-binding"></a>
@@ -311,7 +347,7 @@ Laravel 模型绑定提供方便的方式将模型实体注入到您的路由中
 		throw new NotFoundHttpException;
 	});
 
-如果您想要使用您自己决定的逻辑，您应该使用 `Router::bind`方法。闭包通过 `bind` 方法将传递 URI 区段数值，并应该返回您想要被注入路由的类实体：
+如果您想要使用您自己决定的逻辑，您应该使用 `Route::bind`方法。闭包通过 `bind` 方法将传递 URI 区段数值，并应该返回您想要被注入路由的类实体：
 
 	Route::bind('user', function($value)
 	{

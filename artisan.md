@@ -134,6 +134,14 @@ Artisan 是 Laravel 内置的命令行接口。它提供了一些有用的命令
 	$schedule->command('foo')->saturdays();
 	$schedule->command('foo')->sundays();
 
+#### Prevent Jobs From Overlapping
+
+By default, scheduled jobs will be run even if the previous instance of the job is still running. To prevent this, you may use the `withoutOverlapping` method:
+
+	$schedule->command('foo')->withoutOverlapping();
+
+In this example, the `foo` command will be run every minute if it is not already running.
+
 #### 限制应该执行工作的环境
 
 	$schedule->command('foo')->monthly()->environments('production');

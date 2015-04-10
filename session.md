@@ -90,7 +90,7 @@ Laravel 框架在内部有使用 `flash` 作为 session 的键值，所以应该
 
 #### 只刷新指定快闪数据
 
-	Session::keep(array('username', 'email'));
+	Session::keep(['username', 'email']);
 
 <a name="database-sessions"></a>
 ## 数据库 Sessions

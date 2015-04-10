@@ -69,20 +69,29 @@ Laravel 的 Eloquent ORM 提供了漂亮、简洁的 ActiveRecord 实现来和�
 
 #### 根据主键取出一条数据或抛出异常
 
-有时, 您可能想要在找不到模型数据时抛出异常，通过 `App::error` 捕捉异常处理并显示 404 页面。
+有时, 您可能想要在找不到模型数据时抛出异常，通过 `firstOrFail` 方法。
 
 	$model = User::findOrFail(1);
 
 	$model = User::where('votes', '>', 100)->firstOrFail();
 
-要注册错误处理，可以监听 `ModelNotFoundException`
+Doing this will let you catch the exception so you can log and display an error page as necessary. To catch the `ModelNotFoundException`, add some logic to your `app/Exceptions/Handler.php` file.
 
 	use Illuminate\Database\Eloquent\ModelNotFoundException;
 
-	App::error(function(ModelNotFoundException $e)
-	{
-		return Response::make('Not Found', 404);
-	});
+	class Handler extends ExceptionHandler {
+
+		public function render($request, Exception $e)
+		{
+			if ($e instanceof ModelNotFoundException)
+			{
+				// Custom logic for model not found...
+			}
+
+			return parent::render($request, $e);
+		}
+
+	}
 
 #### Eloquent 模型结合查询语法
 
@@ -101,7 +110,7 @@ Laravel 的 Eloquent ORM 提供了漂亮、简洁的 ActiveRecord 实现来和�
 
 如果没办法使用流畅接口产生出查询语句，也可以使用 `whereRaw` 方法：
 
-	$users = User::whereRaw('age > ? and votes = 100', array(25))->get();
+	$users = User::whereRaw('age > ? and votes = 100', [25])->get();
 
 #### 拆分查询
 
@@ -140,7 +149,7 @@ Laravel 的 Eloquent ORM 提供了漂亮、简洁的 ActiveRecord 实现来和�
 
 	class User extends Model {
 
-		protected $fillable = array('first_name', 'last_name', 'email');
+		protected $fillable = ['first_name', 'last_name', 'email'];
 
 	}
 
@@ -152,7 +161,7 @@ Laravel 的 Eloquent ORM 提供了漂亮、简洁的 ActiveRecord 实现来和�
 
 	class User extends Model {
 
-		protected $guarded = array('id', 'password');
+		protected $guarded = ['id', 'password'];
 
 	}
 
@@ -162,7 +171,7 @@ Laravel 的 Eloquent ORM 提供了漂亮、简洁的 ActiveRecord 实现来和�
 
 上面的例子中， `id` 和 `password` 属性**不会**被批量赋值，而所有其他的属性则允许批量赋值。您也可以使用 guard 属性阻止所有属性被批量赋值：
 
-	protected $guarded = array('*');
+	protected $guarded = ['*'];
 
 <a name="insert-update-delete"></a>
 ## 新增，更新，删除
@@ -189,20 +198,20 @@ Laravel 的 Eloquent ORM 提供了漂亮、简洁的 ActiveRecord 实现来和�
 
 	class User extends Model {
 
-		protected $guarded = array('id', 'account_id');
+		protected $guarded = ['id', 'account_id'];
 
 	}
 
 #### 使用模型的 Create 方法
 
 	// 在数据库中建立一个新的用户...
-	$user = User::create(array('name' => 'John'));
+	$user = User::create(['name' => 'John']);
 
 	// 以属性找用户，若没有则新增并取得新的实例...
-	$user = User::firstOrCreate(array('name' => 'John'));
+	$user = User::firstOrCreate(['name' => 'John']);
 
 	// 以属性找用户，若没有则建立新的实例...
-	$user = User::firstOrNew(array('name' => 'John'));
+	$user = User::firstOrNew(['name' => 'John']);
 
 #### 更新取出的模型
 
@@ -222,7 +231,7 @@ Laravel 的 Eloquent ORM 提供了漂亮、简洁的 ActiveRecord 实现来和�
 
 您可以结合查询语句，批次更新模型：
 
-	$affectedRows = User::where('votes', '>', 100)->update(array('status' => 2));
+	$affectedRows = User::where('votes', '>', 100)->update(['status' => 2]);
 
 > **注意： ** 若使用 Eloquent 查询构造器批次更新模型，则不会触发模型事件。
 
@@ -238,7 +247,7 @@ Laravel 的 Eloquent ORM 提供了漂亮、简洁的 ActiveRecord 实现来和�
 
 	User::destroy(1);
 
-	User::destroy(array(1, 2, 3));
+	User::destroy([1, 2, 3]);
 
 	User::destroy(1, 2, 3);
 
@@ -414,19 +423,21 @@ Laravel 的 Eloquent ORM 提供了漂亮、简洁的 ActiveRecord 实现来和�
 	 * Apply the scope to a given Eloquent query builder.
 	 *
 	 * @param  \Illuminate\Database\Eloquent\Builder  $builder
+	 * @param  \Illuminate\Database\Eloquent\Model  $model
 	 * @return void
 	 */
 	public function apply(Builder $builder, Model $model)
 	{
-		$model = $builder->getModel();
-
 		$builder->whereNull($model->getQualifiedDeletedAtColumn());
+
+		$this->extend($builder);
 	}
 
 	/**
 	 * Remove the scope from the given Eloquent query builder.
 	 *
 	 * @param  \Illuminate\Database\Eloquent\Builder  $builder
+	 * @param  \Illuminate\Database\Eloquent\Model  $model
 	 * @return void
 	 */
 	public function remove(Builder $builder, Model $model)
@@ -633,7 +644,7 @@ SQL 会执行如下语句：
 
 		public function posts()
 		{
-			return $this->hasManyThrough('App\Post', 'User');
+			return $this->hasManyThrough('App\Post', 'App\User');
 		}
 
 	}
@@ -644,7 +655,7 @@ SQL 会执行如下语句：
 
 		public function posts()
 		{
-			return $this->hasManyThrough('App\Post', 'User', 'country_id', 'user_id');
+			return $this->hasManyThrough('App\Post', 'App\User', 'country_id', 'user_id');
 		}
 
 	}
@@ -876,21 +887,21 @@ Eloquent 可以经由动态属性取得关联对象。 Eloquent 会自动进行�
 
 有时您可能想要预载入关联，同时也想要指定载入时的查询限制。下面有一个例子：
 
-	$users = User::with(array('posts' => function($query)
+	$users = User::with(['posts' => function($query)
 	{
 		$query->where('title', 'like', '%first%');
 
-	}))->get();
+	}])->get();
 
 上面的例子里，我们预载入了 user 的 posts 关联，并限制条件为 post 的 title 字段需包含 "first" 。
 
 当然，预载入的闭合函数里不一定只能加上条件限制，也可以加上排序：
 
-	$users = User::with(array('posts' => function($query)
+	$users = User::with(['posts' => function($query)
 	{
 		$query->orderBy('created_at', 'desc');
 
-	}))->get();
+	}])->get();
 
 ### 延迟预载入
 
@@ -907,7 +918,6 @@ Eloquent 可以经由动态属性取得关联对象。 Eloquent 会自动进行�
 		$query->orderBy('published_date', 'asc');
 	}]);
 
-
 <a name="inserting-related-models"></a>
 ## 新增关联模型
 
@@ -915,7 +925,7 @@ Eloquent 可以经由动态属性取得关联对象。 Eloquent 会自动进行�
 
 您常常会需要加入新的关联模型。例如新增一个 comment 到 post 。除了手动设定模型的 `post_id` 外键，也可以从上层的 `Post` 模型新增关联的 comment ：
 
-	$comment = new Comment(array('message' => 'A new comment.'));
+	$comment = new Comment(['message' => 'A new comment.']);
 
 	$post = Post::find(1);
 
@@ -925,11 +935,11 @@ Eloquent 可以经由动态属性取得关联对象。 Eloquent 会自动进行�
 
 如果想要同时新增很多关联模型：
 
-	$comments = array(
-		new Comment(array('message' => 'A new comment.')),
-		new Comment(array('message' => 'Another comment.')),
-		new Comment(array('message' => 'The latest comment.'))
-	);
+	$comments = [
+		new Comment(['message' => 'A new comment.']),
+		new Comment(['message' => 'Another comment.']),
+		new Comment(['message' => 'The latest comment.'])
+	];
 
 	$post = Post::find(1);
 
@@ -957,7 +967,7 @@ Eloquent 可以经由动态属性取得关联对象。 Eloquent 会自动进行�
 
 也可以传入要存在枢纽表中的属性数组：
 
-	$user->roles()->attach(1, array('expires' => $expires));
+	$user->roles()->attach(1, ['expires' => $expires]);
 
 当然，有 `attach` 方法就会有相反的 `detach` 方法：
 
@@ -975,23 +985,23 @@ Eloquent 可以经由动态属性取得关联对象。 Eloquent 会自动进行�
 
 您也可以使用 `sync` 方法附加关联模型。 `sync` 方法会把根据 ID 数组把关联存到枢纽表。附加完关联后，枢纽表里的模型只会关联到 ID 数组里的 id ：
 
-	$user->roles()->sync(array(1, 2, 3));
+	$user->roles()->sync([1, 2, 3]);
 
 #### Sync 时在枢纽表加入额外数据
 
 也可以在把每个 ID 加入枢纽表时，加入其他字段的数据：
 
-	$user->roles()->sync(array(1 => array('expires' => true)));
+	$user->roles()->sync([1 => ['expires' => true]]);
 
 有时您可能想要使用一个命令，在建立新模型数据的同时附加关联。可以使用 `save` 方法达成目的：
 
-	$role = new Role(array('name' => 'Editor'));
+	$role = new Role(['name' => 'Editor']);
 
 	User::find(1)->roles()->save($role);
 
 上面的例子里，新的 `Role` 模型对象会在储存的同时关联到 `user` 模型。也可以传入属性数组把数据加到关联数据库表：
 
-	User::find(1)->roles()->save($role, array('expires' => $expires));
+	User::find(1)->roles()->save($role, ['expires' => $expires]);
 
 <a name="touching-parent-timestamps"></a>
 ## 更新上层时间戳
@@ -1000,7 +1010,7 @@ Eloquent 可以经由动态属性取得关联对象。 Eloquent 会自动进行�
 
 	class Comment extends Model {
 
-		protected $touches = array('post');
+		protected $touches = ['post'];
 
 		public function post()
 		{
@@ -1136,7 +1146,7 @@ Eloquent 集合里包含了一些有用的方法可以进行循环或是进行�
 
 	class User extends Model {
 
-		public function newCollection(array $models = array())
+		public function newCollection(array $models = [])
 		{
 			return new CustomCollection($models);
 		}
@@ -1183,7 +1193,7 @@ Eloquent 提供了一种便利的方法，可以在获取或设定属性时进�
 
 	public function getDates()
 	{
-		return array('created_at');
+		return ['created_at'];
 	}
 
 当字段是表示日期的时候，可以将值设为 UNIX timestamp 、日期字符串（ Y-m-d ）、 日期时间（ date-time ）字符串，当然还有 `DateTime` 或 `Carbon` 实例。
@@ -1192,7 +1202,7 @@ Eloquent 提供了一种便利的方法，可以在获取或设定属性时进�
 
 	public function getDates()
 	{
-		return array();
+		return [];
 	}
 
 <a name="attribute-casting"></a>
@@ -1345,7 +1355,7 @@ Eloquent 模型有很多事件可以触发，让您可以在模型操作的生�
 
 	class User extends Model {
 
-		protected $hidden = array('password');
+		protected $hidden = ['password'];
 
 	}
 
@@ -1353,7 +1363,7 @@ Eloquent 模型有很多事件可以触发，让您可以在模型操作的生�
 
 此外，可以使用 `visible` 属性定义白名单：
 
-	protected $visible = array('first_name', 'last_name');
+	protected $visible = ['first_name', 'last_name'];
 
 <a name="array-appends"></a>
 有时候您可能想要增加不存在数据库字段的属性数据。这时候只要定义一个获取器即可：
@@ -1365,6 +1375,6 @@ Eloquent 模型有很多事件可以触发，让您可以在模型操作的生�
 
 定义好获取器之后，再把对应的属性名称加到模型里的 `appends` 属性：
 
-	protected $appends = array('is_admin');
+	protected $appends = ['is_admin'];
 
 把属性加到 `appends` 数组之后，在模型数据转换成数组或 JSON 格式时就会有对应的值。在 `appends` 数组中定义的值同样遵循模型中 `visible` 和 `hidden` 的设定。

@@ -14,6 +14,9 @@ Blade 是 Laravel 所提供的一个简单却又非常强大的模板引擎。�
 	<!-- Stored in resources/views/layouts/master.blade.php -->
 
 	<html>
+		<head>
+			<title>App Name - @yield('title')</title>
+		</head>
 		<body>
 			@section('sidebar')
 				This is the master sidebar.
@@ -28,6 +31,8 @@ Blade 是 Laravel 所提供的一个简单却又非常强大的模板引擎。�
 #### 在视图模板中使用 Blade 页面布局
 
 	@extends('layouts.master')
+	
+	@section('title', 'Page Title')
 
 	@section('sidebar')
 		@@parent
@@ -101,9 +106,9 @@ Blade 是 Laravel 所提供的一个简单却又非常强大的模板引擎。�
 	@endforeach
 
 	@forelse($users as $user)
-	  	<li>{{ $user->name }}</li>
+		<li>{{ $user->name }}</li>
 	@empty
-	  	<p>No users</p>
+		<p>No users</p>
 	@endforelse
 
 	@while (true)

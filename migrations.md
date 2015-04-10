@@ -20,10 +20,6 @@
 
 迁移文件会建立在 `database/migrations` 目录下，文件名会包含时间戳记，在执行迁移时用来决定顺序。
 
-你也可以在建立迁移命令加上 `--path` 参数。路径要相对于应用程序所在的根目录。
-
-    php artisan make:migration foo --path=app/migrations
-
 `--table` 和 `--create` 参数可以用来指定数据表名称，以及迁移文件是否要建立新的数据表。
 
     php artisan make:migration add_votes_to_users_table --table=users
@@ -86,8 +82,8 @@ Laravel 可以简单的使用 seed 类，填充测试数据到数据库。所有
         {
             DB::table('users')->delete();
 
-            User::create(array('email' => 'foo@bar.com'));
-        }
+			User::create(['email' => 'foo@bar.com']);
+		}
 
     }
 

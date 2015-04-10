@@ -71,10 +71,10 @@ Laravel 已经预设了两个认证相关的控制器。 `AuthController` 处理
 
 在认证过程中，你可能会想要加入额外的认证条件：
 
-    if (Auth::attempt(['email' => $email, 'password' => $password, 'active' => 1]))
-    {
-        // The user is active, not suspended, and exists.
-    }
+	if (Auth::attempt(['email' => $email, 'password' => $password, 'active' => 1]))
+	{
+		// The user is active, not suspended, and exists.
+	}
 
 #### 判断用户是否已验证
 

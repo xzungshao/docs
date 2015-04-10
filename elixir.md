@@ -35,7 +35,7 @@ Laravel Elixir 提供了简洁流畅的 API，让你能够为你的 Laravel 应�
 
 最后的步骤就是安装 Elixir！伴随着新安装的 Laravel，你会发现根目录有个名为 `package.json` 的文件。想像它就如同你的 `composer.json` 文件，只是它定义的是 Node 的依赖，而不是 PHP。你可以使用以下的命令进行安装依赖的动作：
 
-    npm install
+	npm install
 
 <a name="usage"></a>
 ## 使用方式
@@ -46,7 +46,7 @@ Laravel Elixir 提供了简洁流畅的 API，让你能够为你的 Laravel 应�
 
 ```javascript
 elixir(function(mix) {
-    mix.less("app.less");
+	mix.less("app.less");
 });
 ```
 
@@ -56,10 +56,19 @@ elixir(function(mix) {
 
 ```javascript
 elixir(function(mix) {
-    mix.less([
-        'app.less',
-        'something-else.less'
-    ]);
+	mix.less([
+		'app.less',
+		'something-else.less'
+	]);
+});
+```
+
+#### Compile Sass
+
+```javascript
+elixir(function(mix) {
+	mix.sass("app.sass");
+>>>>>>> upstream/5.0
 });
 ```
 
@@ -71,7 +80,7 @@ elixir(function(mix) {
 });
 ```
 
-在上述例子中，Elixir 会假设你的 Sass 文件保存在 `resources/assets/sass` 里。`sass` 方法只能被调用一次，如果你想编译多个 Sass 文件，可以向 `sass` 方法传入一个数组。
+在上述例子中，Elixir 会假设你的 Sass 文件保存在 `resources/assets/sass` 里。
 
 默认情况下， Elixir 会使用 LibSass 作为编译引擎。 在某些情况下, 使用 Ruby 版本的 Sass 编译可能更有优势，虽然运行不是很快但是有更多的特性。假设你已经安装了 Ruby 和 Sass gem (`gem install sass`), 你可以使用 Ruby 模式，比如像这样：
 
@@ -97,7 +106,7 @@ Source maps 默认情况下是开启的。因此, 每当一个文件被编译，
 
 ```javascript
 elixir(function(mix) {
-    mix.coffee();
+	mix.coffee();
 });
 ```
 
@@ -116,7 +125,7 @@ elixir(function(mix) {
 
 ```javascript
 elixir(function(mix) {
-    mix.phpUnit();
+	mix.phpUnit();
 });
 ```
 
@@ -124,7 +133,7 @@ elixir(function(mix) {
 
 ```javascript
 elixir(function(mix) {
-    mix.phpSpec();
+	mix.phpSpec();
 });
 ```
 
@@ -132,10 +141,10 @@ elixir(function(mix) {
 
 ```javascript
 elixir(function(mix) {
-    mix.styles([
-        "normalize.css",
-        "main.css"
-    ]);
+	mix.styles([
+		"normalize.css",
+		"main.css"
+	]);
 });
 ```
 
@@ -145,10 +154,10 @@ elixir(function(mix) {
 
 ```javascript
 elixir(function(mix) {
-    mix.styles([
-        "normalize.css",
-        "main.css"
-    ], 'public/build/css/everything.css');
+	mix.styles([
+		"normalize.css",
+		"main.css"
+	], 'public/build/css/everything.css');
 });
 ```
 
@@ -156,10 +165,10 @@ elixir(function(mix) {
 
 ```javascript
 elixir(function(mix) {
-    mix.styles([
-        "normalize.css",
-        "main.css"
-    ], 'public/build/css/everything.css', 'public/css');
+	mix.styles([
+		"normalize.css",
+		"main.css"
+	], 'public/build/css/everything.css', 'public/css');
 });
 ```
 
@@ -169,7 +178,7 @@ elixir(function(mix) {
 
 ```javascript
 elixir(function(mix) {
-    mix.stylesIn("public/css");
+	mix.stylesIn("public/css");
 });
 ```
 
@@ -177,10 +186,10 @@ elixir(function(mix) {
 
 ```javascript
 elixir(function(mix) {
-    mix.scripts([
-        "jquery.js",
-        "app.js"
-    ]);
+	mix.scripts([
+		"jquery.js",
+		"app.js"
+	]);
 });
 ```
 
@@ -190,7 +199,7 @@ elixir(function(mix) {
 
 ```javascript
 elixir(function(mix) {
-    mix.scriptsIn("public/js/some/directory");
+	mix.scriptsIn("public/js/some/directory");
 });
 ```
 
@@ -207,7 +216,7 @@ elixir(function(mix) {
 
 ```javascript
 elixir(function(mix) {
-    mix.version("css/all.css");
+	mix.version("css/all.css");
 });
 ```
 
@@ -238,7 +247,7 @@ elixir(function(mix) {
 
 ```javascript
 elixir(function(mix) {
-    mix.copy('vendor/foo/bar.css', 'public/css/bar.css');
+	mix.copy('vendor/foo/bar.css', 'public/css/bar.css');
 });
 ```
 
@@ -246,9 +255,21 @@ elixir(function(mix) {
 
 ```javascript
 elixir(function(mix) {
-    mix.copy('vendor/package/views', 'resources/views');
+	mix.copy('vendor/package/views', 'resources/views');
 });
 ```
+
+#### Trigger Browserify
+
+```javascript
+elixir(function(mix) {
+	mix.browserify('index.js');
+});
+```
+
+Want to require modules in the browser? Hoping to use EcmaScript 6 sooner than later? Need a built-in JSX transformer? If so, [Browserify](http://browserify.org/), along with the `browserify` Elixir task, will handle the job nicely.
+
+This task assumes that your scripts are stored in `resources/js`, though you're free to override the default.
 
 #### 方法连接
 
@@ -270,11 +291,19 @@ elixir(function(mix) {
 
 #### 执行一次所有注册的任务
 
-    gulp
+	gulp
 
 #### 监控文件变更
 
-    gulp watch
+	gulp watch
+
+#### Only Compile Scripts
+
+	gulp scripts
+
+#### Only Compile Styles
+
+	gulp styles
 
 #### 仅编译 javascript
 
@@ -286,27 +315,58 @@ elixir(function(mix) {
 
 #### 监控测试以及 PHP 类的变更
 
-    gulp tdd
+	gulp tdd
 
 > **提示：** 所有的任务都会使用开发环境进行，所以压缩功能不会被执行。如果要使用上线环境，可以使用 `gulp --production`。
 
 <a name="extensions"></a>
-## 功能扩充
+## Custom Tasks and Extensions
 
-你甚至能够建立自己的 Gulp 任务至 Elixir 里。想像一下，你想加入一个有趣的任务，使用终端机后会打印一些消息。看起来可能会如下：
+Sometimes, you'll want to hook your own Gulp tasks into Elixir. Perhaps you have a special bit of functionality that you'd like Elixir to mix and watch for you. No problem!
+
+As an example, imagine that you have a general task that simply speaks a bit of text when called.
 
 ```javascript
- var gulp = require("gulp");
- var shell = require("gulp-shell");
- var elixir = require("laravel-elixir");
+gulp.task("speak", function() {
+	var message = "Tea...Earl Grey...Hot";
 
- elixir.extend("message", function(message) {
+	gulp.src("").pipe(shell("say " + message));
+});
+```
 
-     gulp.task("say", function() {
-         gulp.src("").pipe(shell("say " + message));
-     });
+Easy enough. From the command line, you may, of course, call `gulp speak` to trigger the task. To add it to Elixir, however, use the `mix.task()` method:
 
-     return this.queueTask("say");
+```javascript
+elixir(function(mix) {
+    mix.task('speak');
+});
+```
+
+That's it! Now, each time you run Gulp, your custom "speak" task will be executed alongside any other Elixir tasks that you've mixed in. To additionally register a watcher, so that your custom tasks will be re-triggered each time one or more files are modified, you may pass a regular expression as the second argument.
+
+```javascript
+elixir(function(mix) {
+    mix.task('speak', 'app/**/*.php');
+});
+```
+
+By adding this second argument, we've instructed Elixir to re-trigger the "speak" task each time a PHP file in the "app/" directory is saved.
+
+
+For even more flexibility, you can create full Elixir extensions. Using the previous "speak" example, you may write an extension, like so:
+
+```javascript
+var gulp = require("gulp");
+var shell = require("gulp-shell");
+var elixir = require("laravel-elixir");
+
+elixir.extend("speak", function(message) {
+
+	gulp.task("speak", function() {
+		gulp.src("").pipe(shell("say " + message));
+	});
+
+	return this.queueTask("speak");
 
  });
 ```
@@ -316,10 +376,10 @@ elixir(function(mix) {
 如果你想要让你的自定义任务能被监控，只要在监控器注册就行了。
 
 ```javascript
-this.registerWatcher("message", "**/*.php");
+this.registerWatcher("speak", "app/**/*.php");
 ```
 
-这行程序的意思是指，当符合正则表达式的文件一经修改，就会触发 `message` 任务。
+这行程序的意思是指，当符合正则表达式  `app/**/*.php` 的文件一经修改，就会触发 `message` 任务。
 
 很好！接着你可以将这行程序写在 Gulpfile 的顶端，或者将它放到自定义任务的文件里。如果你选择后者，那么你必须将它加载至你的 Gulpfile，例如：
 
@@ -331,7 +391,7 @@ require("./custom-tasks")
 
 ```javascript
 elixir(function(mix) {
-    mix.message("Tea, Earl Grey, Hot");
+	mix.speak("Tea, Earl Grey, Hot");
 });
 ```
 

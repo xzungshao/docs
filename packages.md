@@ -132,7 +132,7 @@
 
 	// Publish your migrations
 	$this->publishes([
-		__DIR__.'/../database/migrations/' => base_path('/database/migrations')
+		__DIR__.'/../database/migrations/' => database_path('/migrations')
 	], 'migrations');
 
 您可以使用这些 `tag`，来分别发布这些扩展包里的文件。

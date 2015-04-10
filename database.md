@@ -50,6 +50,10 @@ Laravel 让连接数据库和执行查找变得相当容易。数据库相关配
 
 `select` 方法会返回一个 `array` 结果。
 
+You may also execute a query using named bindings:
+
+	$results = DB::select('select * from users where id = :id', ['id' => 1]);
+
 #### 执行 Insert 语法
 
 	DB::insert('insert into users (id, name) values (?, ?)', [1, 'Dayle']);
@@ -131,4 +135,4 @@ Laravel 可以在内存里访问这次请求中所有的查找语句。然而在
 
 要得到执行过的查找纪录数组，你可以使用 `getQueryLog` 方法：
 
-       $queries = DB::getQueryLog();
+	$queries = DB::getQueryLog();

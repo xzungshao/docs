@@ -75,6 +75,7 @@ Laravel 的结构生成器 (`Schema`) 提供一个与数据库无关的数据表
 `$table->increments('id');`  |  相当于 Incrementing 类型 (数据表主键)
 `$table->integer('votes');`  |  相当于 INTEGER 类型
 `$table->json('options');`  |  相当于 JSON 类型
+`$table->jsonb('options');`  |  JSONB equivalent to the table
 `$table->longText('description');`  |  相当于 LONGTEXT 类型
 `$table->mediumInteger('numbers');`  |  相当于 MEDIUMINT 类型
 `$table->mediumText('description');`  |  相当于 MEDIUMTEXT 类型
@@ -145,7 +146,7 @@ Laravel 的结构生成器 (`Schema`) 提供一个与数据库无关的数据表
 
 	Schema::table('users', function($table)
 	{
-		$table->dropColumn(array('votes', 'avatar', 'location'));
+		$table->dropColumn(['votes', 'avatar', 'location']);
 	});
 
 <a name="checking-existence"></a>
@@ -231,9 +232,9 @@ Laravel 也支持数据表的外键约束：
 
 要配置数据表的保存引擎，可在结构生成器配置 `engine` 属性：
 
-    Schema::create('users', function($table)
-    {
-        $table->engine = 'InnoDB';
+	Schema::create('users', function($table)
+	{
+		$table->engine = 'InnoDB';
 
-        $table->string('email');
-    });
+		$table->string('email');
+	});

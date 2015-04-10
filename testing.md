@@ -52,7 +52,7 @@ Laravel 在建立时就有考虑到单元测试。事实上，它支持立即使
 
 	$response = $this->call('GET', 'user/profile');
 
-	$response = $this->call($method, $uri, $parameters,  $cookies, $files, $server, $content);
+	$response = $this->call($method, $uri, $parameters, $cookies, $files, $server, $content);
 
 接着你可以检查 `Illuminate\Http\Response` 对象：
 
@@ -64,7 +64,7 @@ Laravel 在建立时就有考虑到单元测试。事实上，它支持立即使
 
 	$response = $this->action('GET', 'HomeController@index');
 
-	$response = $this->action('GET', 'UserController@profile', array('user' => 1));
+	$response = $this->action('GET', 'UserController@profile', ['user' => 1]);
 
 > **注意:** 当使用 `action` 方法的时候，你不需要指定完整的控制器命名空间。只需要指定 `App\Http\Controllers` 命名空间后面的类名称部分。
 
@@ -151,18 +151,18 @@ Laravel 附带几个 `assert` 方法，让测试更简单一点：
 
 #### Assert Session 有错误信息
 
-    public function testMethod()
-    {
-        $this->call('GET', '/');
+	public function testMethod()
+	{
+		$this->call('GET', '/');
 
-        $this->assertSessionHasErrors();
+		$this->assertSessionHasErrors();
 
-        // Asserting the session has errors for a given key...
-        $this->assertSessionHasErrors('name');
+		// Asserting the session has errors for a given key...
+		$this->assertSessionHasErrors('name');
 
-        // Asserting the session has errors for several keys...
-        $this->assertSessionHasErrors(array('name', 'age'));
-    }
+		// Asserting the session has errors for several keys...
+ 		$this->assertSessionHasErrors(['name', 'age']);
+	}
 
 #### Assert 旧输入内容有一些数据
 
@@ -188,7 +188,7 @@ Laravel 附带几个 `assert` 方法，让测试更简单一点：
 
 你可以使用 `be` 方法配置目前为通过身份验证的用户：
 
-	$user = new User(array('name' => 'John'));
+	$user = new User(['name' => 'John']);
 
 	$this->be($user);
 
@@ -198,11 +198,11 @@ Laravel 附带几个 `assert` 方法，让测试更简单一点：
 
 	$this->seed();
 
-	$this->seed($connection);
+	$this->seed('DatabaseSeeder');
 
 更多建立填充数据的信息可以在文档的 [迁移与数据填充](/docs/migrations#database-seeding) 部分找到。
 
 <a name="refreshing-the-application"></a>
 ## 重置应用程序
 
-你可能已经知道，你可以通过 `$this->app` 在任何测试方法中访问你的应用程序服务容器。这个服务容器会在每个测试类被重置。如果你希望在给定的方法手动强制重置应用程序，你可以从你的测试方法使用 `refreshApplication` 方法。这将会重置任何额外的绑定，例如那些从测试案例执行开始被放到 IoC 容器的 mocks。
+你可能已经知道，你可以通过 `$this->app` 在任何测试方法中访问你的([应用程序服务容器](/docs/5.0/container))。这个服务容器会在每个测试类被重置。如果你希望在给定的方法手动强制重置应用程序，你可以从你的测试方法使用 `refreshApplication` 方法。这将会重置任何额外的绑定，例如那些从测试案例执行开始被放到 IoC 容器的 mocks。

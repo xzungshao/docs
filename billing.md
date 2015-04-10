@@ -10,7 +10,7 @@
 - [取消订购](#cancelling-a-subscription)
 - [恢复订购](#resuming-a-subscription)
 - [确认订购状态](#checking-subscription-status)
-- [处理交易失败](#handling-failed-payments)
+- [处理失败订购](#handling-failed-subscriptions)
 - [处理其它 Stripe Webhooks](#handling-other-stripe-webhooks)
 - [收据](#invoices)
 
@@ -44,7 +44,7 @@ Laravel Cashier 提供语义化，流畅的接口和 [Stripe](https://stripe.com
 	use Laravel\Cashier\Billable;
 	use Laravel\Cashier\Contracts\Billable as BillableContract;
 
-	class User extends Eloquent implements BillableContract {
+	class User extends Model implements BillableContract {
 
 		use Billable;
 
@@ -54,14 +54,22 @@ Laravel Cashier 提供语义化，流畅的接口和 [Stripe](https://stripe.com
 
 #### Stripe Key
 
+<<<<<<< HEAD
 最后, 在 `services.php` 配置文件中设置你的 Stripe key：
+=======
+Finally, set your Stripe key in your `services.php` config file:
+>>>>>>> upstream/5.0
 
 	'stripe' => [
 		'model'  => 'User',
 		'secret' => env('STRIPE_API_SECRET'),
 	],
 
+<<<<<<< HEAD
 或者，也可以在初始化文件或服务注册里（如 `AppServiceProvider` ）加入 Stripe key：
+=======
+Alternatively you can store it in one of your bootstrap files or service providers, such as the `AppServiceProvider`:
+>>>>>>> upstream/5.0
 
 	User::setStripeKey('stripe-key');
 
@@ -123,6 +131,31 @@ Laravel Cashier 提供语义化，流畅的接口和 [Stripe](https://stripe.com
 
 如果付款成功, 一个完整的 Stripe 响应会从这个方法返回。
 
+<a name="single-charges"></a>
+## Single Charges
+
+If you would like to make a "one off" charge against a subscribed customer's credit card, you may use the `charge` method:
+
+	$user->charge(100);
+
+The `charge` method accepts the amount you would like to charge in the **lowest denominator of the currency**. So, for example, the example above will charge 100 cents, or $1.00, against the user's credit card.
+
+The `charge` method accepts an array as its second argument, allowing you to pass any options you wish to the underlying Stripe charge creation:
+
+	$user->charge(100, [
+		'source' => $token,
+		'receipt_email' => $user->email,
+	]);
+
+The `charge` method will return `false` if the charge fails. This typically indicates the charge was denied:
+
+	if ( ! $user->charge(100))
+	{
+		// The charge was denied...
+	}
+
+If the charge is successful, the full Stripe response will be returned from the method.
+
 <a name="no-card-up-front"></a>
 ## 免信用卡试用
 
@@ -183,7 +216,11 @@ Laravel Cashier 提供语义化，流畅的接口和 [Stripe](https://stripe.com
 <a name="checking-subscription-status"></a>
 ## 确认订购状态
 
+<<<<<<< HEAD
 要确认用户是否订购了服务，使用 `subscribed` 方法：
+=======
+To verify that a user is subscribed to your application, use the `subscribed` method:
+>>>>>>> upstream/5.0
 
 	if ($user->subscribed())
 	{
@@ -238,13 +275,13 @@ Laravel Cashier 提供语义化，流畅的接口和 [Stripe](https://stripe.com
 	}
 
 <a name="handling-failed-payments"></a>
-## 处理交易失败
+## 处理失败订阅
 
 如果顾客的信用卡过期了呢？无需担心，Cashier 包含了 Webhook 控制器，可以帮你简单的取消顾客的订单。只要在路由注册控制器：
 
 	Route::post('stripe/webhook', 'Laravel\Cashier\WebhookController@handleWebhook');
 
-这样就成了！失败的交易会经由控制器捕捉并进行处理。控制器会进行至多三次再交易尝试，都失败后才会取消顾客的订单。上面的 `stripe/webhook` URI 只是一个例子，你必须使用配置在 Stripe 里的 URI 才行。
+这样就成了！失败的交易会经由控制器捕捉并进行处理。控制器会进行至多三次再交易尝试，当 Stripe 认为三次都失败后才会取消顾客的订单。上面的 `stripe/webhook` URI 只是一个例子，你必须使用配置在 Stripe 里的 URI 才行。
 
 <a name="handling-other-stripe-webhooks"></a>
 ## 处理其它 Stripe Webhooks

@@ -45,6 +45,8 @@
 
 	$view = view('greetings', $data);
 
+When passing information in this manner, `$data` should be an array with key/value pairs. Inside your view, you can then access each value using it's corresponding key, like `{{ $key }}` (assuming `$data['$key']` exists).
+
 #### 把数据共享给所有视图
 
 有时候你可能需要共享一些数据给你的所有视图，你有很多个选择：`view` 辅助方法；`Illuminate\Contracts\View\Factory` [合约 \(contract\)](/docs/5.0/contracts)；在 [视图组件 \(view composer\)](#view-composers) 内使用通配符。

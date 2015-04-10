@@ -38,17 +38,21 @@
 
 当定义 `arguments` 时，该数组值的定义分别如下：
 
-	array($name, $mode, $description, $defaultValue)
+	[$name, $mode, $description, $defaultValue]
 
 参数 `mode` 可以是下列其中一项： `InputArgument::REQUIRED` 或 `InputArgument::OPTIONAL`。
 
 当定义 `options` 时，该数组值的定义分别如下：
 
-	array($name, $shortcut, $mode, $description, $defaultValue)
+	[$name, $shortcut, $mode, $description, $defaultValue]
 
 对选项而言，参数 `mode` 可以是下列其中一项：`InputOption::VALUE_REQUIRED`, `InputOption::VALUE_OPTIONAL`, `InputOption::VALUE_IS_ARRAY`, `InputOption::VALUE_NONE`。
 
 模式为 `VALUE_IS_ARRAY` 表示调用命令时可以多次使用此选项来传入多个值：
+
+	InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY
+	
+Would then allow for this command:
 
 	php artisan foo --option=bar --option=baz
 
@@ -122,4 +126,4 @@
 
 #### 注册一个 Artisan 命令
 
-一旦你的自定义命令撰写完成后，你需要将它注册于 Artisan 它才能被使用。这通常位于 `app/Console/Kernel.php` 这个文件中。在此文件的 `commands` 属性，你会找到一份命令的清单。若要注册你的自定义命令，很简单的你只要将它加入清单中。当 Artisan 启动时，被列于此属性中的所有命令都将被 [service container](/docs/5.0/container) 解析，并且被注册于 Artisan 。
+一旦你的自定义命令撰写完成后，你需要将它注册于 Artisan 它才能被使用。这通常位于 `app/Console/Kernel.php` 这个文件中。在此文件的 `commands` 属性，你会找到一份命令的清单。若要注册你的自定义命令，很简单的你只要将它加入清单中。当 Artisan 启动时，被列于此属性中的所有命令都将被 [服务容器](/docs/5.0/container) 解析，并且被注册于 Artisan 。

@@ -18,7 +18,7 @@ Laravel 服务容器是管理类依赖的强力工具。依赖注入是比较专
 	<?php namespace App\Handlers\Commands;
 
 	use App\User;
-	use App\Commands\PurchasePodcast;
+	use App\Commands\PurchasePodcastCommand;
 	use Illuminate\Contracts\Mail\Mailer;
 
 	class PurchasePodcastHandler {

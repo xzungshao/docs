@@ -151,5 +151,5 @@ Command bus 不仅仅作为当下请求的同步作业，也可以作为 Laravel
 		return DB::transaction(function() use ($command, $next)
 		{
 			return $next($command);
-		}
+		});
 	}]);

@@ -6,6 +6,8 @@
 - [缓存标签](#cache-tags)
 - [缓存事件](#cache-events)
 - [数据库缓存](#database-cache)
+- [Memcached 缓存](#memcached-cache)
+- [Redis 缓存](#redis-cache)
 
 <a name="configuration"></a>
 ## 配置
@@ -118,7 +120,7 @@ Laravel 为各种不同的缓存系统提供一致的 API 。缓存配置文件�
 
 	Cache::tags('people', 'authors')->put('John', $john, $minutes);
 
-	Cache::tags(array('people', 'artists'))->put('Anne', $anne, $minutes);
+	Cache::tags(['people', 'artists'])->put('Anne', $anne, $minutes);
 
 您可以结合使用各种缓存保存方法与标签，包含 `remember`, `forever`, 和 `rememberForever` 。您也可以从已标记的缓存中访问对象，以及使用其他缓存方法如 `increment` 和 `decrement` 。
 
@@ -128,7 +130,7 @@ Laravel 为各种不同的缓存系统提供一致的 API 。缓存配置文件�
 
 	$anne = Cache::tags('people', 'artists')->get('Anne');
 
-	$john = Cache::tags(array('people', 'authors'))->get('John');
+	$john = Cache::tags(['people', 'authors'])->get('John');
 
 您可以更新所有已标记的对象，使用指定名称或名称列表。例如，以下例子将会移除带有 `people` 或 `authors` 或者两者皆有的所有缓存标签，所以「Anne」和「John」皆会从缓存中被移除:
 
@@ -170,3 +172,25 @@ Laravel 为各种不同的缓存系统提供一致的 API 。缓存配置文件�
 		$table->text('value');
 		$table->integer('expiration');
 	});
+
+<a name="memcached-cache"></a>
+#### Memcached Cache
+
+Using the Memcached cache requires the [Memcached PECL package](http://pecl.php.net/package/memcached) to be installed.
+
+The default [configuration](#configuration) uses TCP/IP based on [Memcached::addServer](http://php.net/manual/en/memcached.addserver.php):
+
+	'memcached' => array(
+		array('host' => '127.0.0.1', 'port' => 11211, 'weight' => 100),
+	),
+
+You may also set the `host` option to a UNIX socket path. If you do this, the `port` option should be set to `0`:
+
+	'memcached' => array(
+		array('host' => '/var/run/memcached/memcached.sock', 'port' => 0, 'weight' => 100),
+	),
+
+<a name="redis-cache"></a>
+#### Redis Cache
+
+See [Redis Configuration](/docs/redis#configuration)

@@ -30,9 +30,9 @@ Laravel 的 `Lang` facade 提供方便的方法来取得多种语言的字串，
 
 	<?php
 
-	return array(
+	return [
 		'welcome' => 'Welcome to our application'
-	);
+	];
 
 #### 在执行时变换默认语言
 
@@ -69,7 +69,7 @@ Laravel 的 `Lang` facade 提供方便的方法来取得多种语言的字串，
 
 接着，传递替代用的第二个参数给 `Lang::get` 方法：
 
-	echo Lang::get('messages.welcome', array('name' => 'Dayle'));
+	echo Lang::get('messages.welcome', ['name' => 'Dayle']);
 
 #### 判断语言文件是否有指定的句子
 
@@ -91,7 +91,7 @@ Laravel 的 `Lang` facade 提供方便的方法来取得多种语言的字串，
 
 你也可以提供一个地区参数来指定语言。举个例，如果你想要使用俄语 (ru)：
 
-	echo Lang::choice('товар|товара|товаров', $count, array(), 'ru');
+	echo Lang::choice('товар|товара|товаров', $count, [], 'ru');
 
 因为 Laravel 的翻译器由 Symfony 翻译组件提供，你也可以很容易地建立更明确的复数规则：
 

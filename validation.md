@@ -18,8 +18,8 @@ Laravel 通过 `Validation` 类让您可以简单、方便的验证数据正确�
 #### 基本验证例子
 
 	$validator = Validator::make(
-		array('name' => 'Dayle'),
-		array('name' => 'required|min:5')
+		['name' => 'Dayle'],
+		['name' => 'required|min:5']
 	);
 
 上文中传递给 `make` 这个方法的第一个参数用来设定所需要被验证的数据名称，第二个参数设定该数据可被接受的规则。
@@ -29,24 +29,24 @@ Laravel 通过 `Validation` 类让您可以简单、方便的验证数据正确�
 多个验证规则可以使用"|"符号分隔，或是单一数组作为单独的元素分隔。
 
 	$validator = Validator::make(
-		array('name' => 'Dayle'),
-		array('name' => array('required', 'min:5'))
+		['name' => 'Dayle'],
+		['name' => ['required', 'min:5']]
 	);
 
 #### 验证多个字段
 
-    $validator = Validator::make(
-        array(
-            'name' => 'Dayle',
-            'password' => 'lamepassword',
-            'email' => 'email@example.com'
-        ),
-        array(
-            'name' => 'required',
-            'password' => 'required|min:8',
-            'email' => 'required|email|unique:users'
-        )
-    );
+	$validator = Validator::make(
+		[
+			'name' => 'Dayle',
+			'password' => 'lamepassword',
+			'email' => 'email@example.com'
+		],
+		[
+			'name' => 'required',
+			'password' => 'required|min:8',
+			'email' => 'required|email|unique:users'
+		]
+	);
 
 当一个 `Validator` 实例被建立后，`fails`（或 `passes`） 这两个方法就可以在验证时使用，如下：
 
@@ -224,7 +224,7 @@ Laravel 通过 `Validation` 类让您可以简单、方便的验证数据正确�
 
 ### 自定义闪存后的错误信息格式
 
-如果你想要自定义验证失败后已经闪存至 session 的错误消息格式，可以通过覆盖基类请求类(`App\Http\Requests\Request`)的 `formatValidationErrors`。不要忘记在文件顶部引入 `Illuminate\Validation\Validator` 类。
+如果你想要自定义验证失败后已经闪存至 session 的错误消息格式，可以通过覆盖基类请求类(`App\Http\Requests\Request`)的 `formatErrors`。不要忘记在文件顶部引入 `Illuminate\Validation\Validator` 类：
 
 	/**
 	 * {@inheritdoc}
@@ -289,7 +289,7 @@ Laravel 通过 `Validation` 类让您可以简单、方便的验证数据正确�
 
 	Route::post('register', function()
 	{
-		$rules = array(...);
+		$rules = [...];
 
 		$validator = Validator::make(Input::all(), $rules);
 
@@ -578,6 +578,20 @@ Laravel 通过 `Validation` 类让您可以简单、方便的验证数据正确�
 
 字段值在给定的数据库中需为唯一值。如果 `column（字段）` 选项没有指定，将会使用字段名称。
 
+Occasionally, you may need to set a custom connection for database queries made by the Validator. As seen above, setting `unique:users` as a validation rule will use the default database connection to query the database. To override this, do the following:
+
+	$verifier = App::make('validation.presence');
+
+	$verifier->setConnection('connectionName');
+
+	$validator = Validator::make($input, [
+		'name' => 'required',
+		'password' => 'required|min:8',
+		'email' => 'required|email|unique:users',
+	]);
+
+	$validator->setPresenceVerifier($verifier);
+
 #### 唯一(Unique)规则的基本用法
 
 	'email' => 'unique:users'
@@ -610,9 +624,9 @@ Laravel 通过 `Validation` 类让您可以简单、方便的验证数据正确�
 
 某些情况下，您可能 **只想** 当字段有值时，才进行验证。这时只要增加 `sometimes` 条件进条件列表中，就可以快速达成：
 
-	$v = Validator::make($data, array(
+	$v = Validator::make($data, [
 		'email' => 'sometimes|required|email',
-	));
+	]);
 
 在上述例子中，`email` 字段只会在当其在 `$data` 数组中有值的情况下才会被验证。
 
@@ -620,10 +634,10 @@ Laravel 通过 `Validation` 类让您可以简单、方便的验证数据正确�
 
 有时，您可以希望给指定字段在其他字段长度有超过 100 时才验证是否为必填。或者您希望有两个字段，当其中一字段有值时，另一字段将会有一个默认值。增加这样的验证条件并不复杂。首先，利用您尚未更动的 _静态规则_ 创建一个 `Validator` 实例：
 
-	$v = Validator::make($data, array(
+	$v = Validator::make($data, [
 		'email' => 'required|email',
 		'games' => 'required|numeric',
-	));
+	]);
 
 假设我们的网页应用程序是专为游戏收藏家所设计。如果游戏收藏家收藏超过一百款游戏，我们希望他们说明为什么他们拥有这么多游戏。如，可能他们经营一家二手游戏商店，或是他们可能只是享受收集的乐趣。有条件的加入此需求，我们可以在 `Validator` 实例中使用 `sometimes` 方法。
 
@@ -634,7 +648,7 @@ Laravel 通过 `Validation` 类让您可以简单、方便的验证数据正确�
 
 传递至 `sometimes` 方法的第一个参数是我们要条件式认证的字段名称。第二个参数是我们想加入验证规则。 闭包（Closure） 作为第三个参数传入，如果返回值为 true 那该规则就会被加入。这个方法可以轻而易举的建立复杂的条件式验证。您也可以一次对多个字段增加条件式验证：
 
-	$v->sometimes(array('reason', 'cost'), 'required', function($input)
+	$v->sometimes(['reason', 'cost'], 'required', function($input)
 	{
 		return $input->games >= 100;
 	});
@@ -651,9 +665,9 @@ Laravel 通过 `Validation` 类让您可以简单、方便的验证数据正确�
 
 #### 传递自定义消息进验证器
 
-	$messages = array(
+	$messages = [
 		'required' => 'The :attribute field is required.',
-	);
+	];
 
 	$validator = Validator::make($input, $rules, $messages);
 
@@ -661,31 +675,31 @@ Laravel 通过 `Validation` 类让您可以简单、方便的验证数据正确�
 
 #### 其他的验证占位符
 
-	$messages = array(
+	$messages = [
 		'same'    => 'The :attribute and :other must match.',
 		'size'    => 'The :attribute must be exactly :size.',
 		'between' => 'The :attribute must be between :min - :max.',
 		'in'      => 'The :attribute must be one of the following types: :values',
-	);
+	];
 
 #### 为特定属性赋予一个自定义信息
 
 有时您只想为一个特定字段指定一个自定义错误信息：
 
-	$messages = array(
+	$messages = [
 		'email.required' => 'We need to know your e-mail address!',
-	);
+	];
 
 <a name="localization"></a>
 #### 在语言包文件中指定自定义消息
 
 某些状况下，您可能希望在语言包文件中设定您的自定义消息，而非直接将他们传递给 `Validator`。要达到这个目的，将您的信息增加至 `resources/lang/xx/validation.php` 文件的 `custom` 数组中。
 
-	'custom' => array(
-		'email' => array(
+	'custom' => [
+		'email' => [
 			'required' => 'We need to know your e-mail address!',
-		),
-	),
+		],
+	],
 
 <a name="custom-validation-rules"></a>
 ## 自定义验证规则

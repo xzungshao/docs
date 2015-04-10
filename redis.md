@@ -54,7 +54,7 @@
 
 注意，传入命令的参数仅只是传递到魔术方法里。当然，你不一定要使用魔术方法，你也可以使用 `command` 方法传递命令到服务器：
 
-	$values = $redis->command('lrange', array(5, 10));
+	$values = $redis->command('lrange', [5, 10]);
 
 若你只想对默认服务器下命令，可以使用 `Redis` 类的静态魔术方法：
 

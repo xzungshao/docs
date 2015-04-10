@@ -68,7 +68,7 @@ Laravel 队列组件提供一个统一的 API 集成了许多不同的队列服�
 
 如果你需要发送一样的数据去几个不同的队列工作，你可以使用 `Queue::bulk` 方法：
 
-    Queue::bulk(array(new SendEmail($message), new AnotherCommand));
+	Queue::bulk([new SendEmail($message), new AnotherCommand]);
 
 #### 延迟执行一个工作
 

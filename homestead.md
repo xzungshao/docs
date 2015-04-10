@@ -60,7 +60,7 @@ Homestead 目前是构建且测试于 Vagrant 1.7 版本。
 
 ### 安装 Homestead
 
-#### 手动通过 Git 安装（本地端没有 PHP）
+#### 选择 1 - 手动通过 Git 安装（本地端没有 PHP）
 
 如果你不希望在你的本机上安装 PHP ，你可以简单地通过手动复制资源库的方式来安装 Homestead。将资源库复制至你的 "home" 目录中的 `Homestead` 文件夹，如此一来 Homestead 封装包将能提供主机服务给你所有的 Laravel（及 PHP）应用:
 
@@ -72,13 +72,15 @@ Homestead 目前是构建且测试于 Vagrant 1.7 版本。
 
 此 `Homestead.yaml` 文件，将会被放置在你的 `~/.homestead` 目录中。
 
-#### 通过 Composer + PHP 工具
+#### 选择 2 - 通过 Composer + PHP 工具
 
 一旦封装包已经安装进你的 Vagrant 安装程序，你就可以准备通过 Composer `global` 命令来安装 Homestead CLI 工具：
 
 	composer global require "laravel/homestead=~2.0"
 
 请务必确认 `homestead` 有被放置在目录 `~/.composer/vendor/bin` 之中，如此一来你才能在终端机中顺利执行 `homestead` 命令。
+
+	PATH=~/.composer/vendor/bin:$PATH
 
 一旦你安装完 Homestead CLI 工具，即可执行 `init` 命令来创建 `Homestead.yaml` 配置文件:
 
@@ -173,9 +175,11 @@ Vagrant 会将虚拟机开机，并且自动配置你的共享目录和 Nginx �
 
 在 Homestead 环境上架且运行后，你可能会需要为 Laravel 应用程序增加更多的 Nginx 站点。你可以在单一个 Homestead 环境中运行非常多 Laravel 安装程序。有两种方式可以达成：第一种，在 `Homestead.yaml` 文件中增加站点然后执行 `homestead provision` 或者 `vagrant provision`。
 
+> **Note:** This process is destructive. When running the `provision` command, your existing databases will be destroyed and recreated.
+
 另外，也可以使用存放在 Homestead 环境中的 `serve` 命令文件。要使用 `serve` 命令文件，请先 SSH 进入 Homestead 环境中，并执行下列命令：
 
-	serve domain.app /home/vagrant/Code/path/to/public/directory
+	serve domain.app /home/vagrant/Code/path/to/public/directory 80
 
 > **附注：** 在执行 `serve` 命令过后，别忘记将新的站点加进本机的 `hosts` 文件中。
 
@@ -205,10 +209,10 @@ Vagrant 会将虚拟机开机，并且自动配置你的共享目录和 Nginx �
 
 [Blackfire Profiler](https://blackfire.io) 是由 SensioLabs 创建的一个分析工具，它会自动的收集代码执行期间的相关数据，比如 RAM, CPU time, 和 disk I/O. 如果你使用 Homestead ，那么使用这个分析工具会变得非常简单。
 
-blackfire 所需的包已经安装在 Homestead box 中，你只需要在 `Homestead.yaml` 文件中设置 Server ID 和 token ：
+blackfire 所需的包已经安装在 Homestead box 中，你只需要在 `Homestead.yaml` 文件中设置 **Server** ID 和 token ：
 
 	blackfire:
-	    - id: your-id
-	      token: your-token
+	    - id: your-server-id
+	      token: your-server-token
 
 当你设定完 Blackfire 的凭证信息，使用 `homestead provision` 或者 `vagrant provision` 令配置生效。当然，你也需要通过阅读[Blackfire 文档](https://blackfire.io/getting-started) 来学习如何在你的浏览器中安装 Blackfire 扩展。

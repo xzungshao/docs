@@ -21,18 +21,18 @@ Laravel 也包含了 Mailgun 及 Mandrill HTTP API 的驱动。这些 API 通常
 
 要使用 Mailgun 驱动，请将 `config/mail.php` 配置文件中的 `driver` 选项配置为 `mailgun`。接下来，若 `config/service.php` 配置文件还不存在于您的应用中，请建立此文件，并确认其包含下列选项：
 
-	'mailgun' => array(
+	'mailgun' => [
 		'domain' => 'your-mailgun-domain',
 		'secret' => 'your-mailgun-key',
-	),
+	],
 
 #### Mandrill 驱动
 
 要使用 Mandrill 驱动，将 `config/mail.php` 配置文件中的 `driver` 选项配置为 `mandrill`。接下来，若 `config/service.php` 配置文件还不存在于您的应用中，请建立此文件，并确认其包含下列选项：
 
-	'mandrill' => array(
+	'mandrill' => [
 		'secret' => 'your-mandrill-key',
-	),
+	],
 
 ### 日志驱动
 
@@ -43,7 +43,7 @@ Laravel 也包含了 Mailgun 及 Mandrill HTTP API 的驱动。这些 API 通常
 
 您可使用 `Mail::send` 方法来发送电子邮件消息：
 
-	Mail::send('emails.welcome', array('key' => 'value'), function($message)
+	Mail::send('emails.welcome', ['key' => 'value'], function($message)
 	{
 		$message->to('foo@example.com', 'John Smith')->subject('Welcome!');
 	});
@@ -54,11 +54,11 @@ Laravel 也包含了 Mailgun 及 Mandrill HTTP API 的驱动。这些 API 通常
 
 除了 HTML 视图外，您也可以指定使用纯文本视图：
 
-	Mail::send(array('html.view', 'text.view'), $data, $callback);
+	Mail::send(['html.view', 'text.view'], $data, $callback);
 
 或者，您可使用 `html` 或 `text` 作为键值来指定单一类型的视图：
 
-	Mail::send(array('text' => 'view'), $data, $callback);
+	Mail::send(['text' => 'view'], $data, $callback);
 
 您也可以在邮件消息中指定其他选项，例如副本收件者或附件：
 
@@ -73,7 +73,7 @@ Laravel 也包含了 Mailgun 及 Mandrill HTTP API 的驱动。这些 API 通常
 
 要附加文件至 message 时，可以指定 MIME 的类型、显示名称：
 
-	$message->attach($pathToFile, array('as' => $display, 'mime' => $mime));
+	$message->attach($pathToFile, ['as' => $display], 'mime' => $mime));
 
 若您只需发送一个简单的字串而非完整的视图，可使用 `raw` 方法：
 
@@ -141,3 +141,4 @@ Laravel 也包含了 Mailgun 及 Mandrill HTTP API 的驱动。这些 API 通常
 当开发发送电子邮件的应用程序时，我们通常希望不要真的从本地端或开发环境发送邮件。您可以使用 `Mail::pretend` 方法或将 `config/mail.php` 配置文件中的 `pretend` 选项配置为 `true`。在 `pretend`  模式下，消息会改而写入应用程序的日志文件，而不会真的发送给收件者。
 
 若您想要实际阅览测试的邮件，可考虑使用如 [MailTrap](https://mailtrap.io) 的服务。
+

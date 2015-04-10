@@ -14,7 +14,6 @@
 
    $compiledPath = __DIR__.'/../vendor/compiled.php';
 
-
 <a name="upgrade-5.0"></a>
 ## 从 4.2 升级到 5.0
 
@@ -210,6 +209,10 @@ use Authenticatable, CanResetPassword;
 
 请将所有的 `$paginator->links()` 用 `$paginator->render()` 取代。
 
+Replace any calls to `$paginator->getFrom()` and `$paginator->getTo()` with `$paginator->firstItem()` and `$paginator->lastItem()` respectively.
+
+Remove the "get" prefix from calls to `$paginator->getPerPage()`, `$paginator->getCurrentPage()`, `$paginator->getLastPage()` and `$paginator->getTotal()` (e.g. `$paginator->perPage()`).
+
 ### Beanstalk 队列
 
 Laravel 5.0 使用 `"pda/pheanstalk": "~3.0"` 取代原本的 `"pda/pheanstalk": "~2.1"`。
@@ -275,7 +278,7 @@ Laravel 4.2 需要 PHP 5.4.0 以上。
 
 如果你使用 Iron.io queue 驱动，你将需要增加一个新的 `encrypt` 选项到你的 queue 设置文件中：
 
-    'encrypt' => true
+	'encrypt' => true
 
 <a name="upgrade-4.1.29"></a>
 ## 从 4.1.x 升级到 4.1.29

@@ -96,25 +96,39 @@
 #### 使用 Where Between
 
 	$users = DB::table('users')
-	                    ->whereBetween('votes', array(1, 100))->get();
+	                    ->whereBetween('votes', [1, 100])->get();
 
 #### 使用 Where Not Between
 
 	$users = DB::table('users')
-	                    ->whereNotBetween('votes', array(1, 100))->get();
+	                    ->whereNotBetween('votes', [1, 100])->get();
 
 #### 使用 Where In 与数组
 
 	$users = DB::table('users')
-	                    ->whereIn('id', array(1, 2, 3))->get();
+	                    ->whereIn('id', [1, 2, 3])->get();
 
 	$users = DB::table('users')
-	                    ->whereNotIn('id', array(1, 2, 3))->get();
+	                    ->whereNotIn('id', [1, 2, 3])->get();
 
 #### 使用 Where Null 找有未配置的值的数据
 
 	$users = DB::table('users')
 	                    ->whereNull('updated_at')->get();
+
+#### Dynamic Where Clauses
+
+You may even use "dynamic" where statements to fluently build where statements using magic methods:
+
+	$admin = DB::table('users')->whereId(1)->first();
+
+	$john = DB::table('users')
+	                    ->whereIdAndEmail(2, 'john@doe.com')
+	                    ->first();
+
+	$jane = DB::table('users')
+	                    ->whereNameOrAge('Jane', 22)
+	                    ->first();
 
 #### 排序(Order By)、分群(Group By) 及 Having
 
@@ -240,7 +254,7 @@
 #### 添加数据进数据表
 
 	DB::table('users')->insert(
-		array('email' => 'john@example.com', 'votes' => 0)
+		['email' => 'john@example.com', 'votes' => 0]
 	);
 
 #### 添加自动递增 (Auto-Incrementing) ID 的数据至数据表
@@ -248,17 +262,17 @@
 如果数据表有自动递增的ID，可以使用 `insertGetId` 添加数据并返回该 ID：
 
 	$id = DB::table('users')->insertGetId(
-		array('email' => 'john@example.com', 'votes' => 0)
+		['email' => 'john@example.com', 'votes' => 0]
 	);
 
 > **注意:** 当使用 PostgreSQL 时，insertGetId 方法会预期自动增加的字段是以「id」为命名。
 
 #### 添加多个数据进数据表
 
-	DB::table('users')->insert(array(
-		array('email' => 'taylor@example.com', 'votes' => 0),
-		array('email' => 'dayle@example.com', 'votes' => 0),
-	));
+	DB::table('users')->insert([
+		['email' => 'taylor@example.com', 'votes' => 0],
+		['email' => 'dayle@example.com', 'votes' => 0]
+	]);
 
 <a name="updates"></a>
 ## 更新
@@ -267,7 +281,7 @@
 
 	DB::table('users')
 	            ->where('id', 1)
-	            ->update(array('votes' => 1));
+	            ->update(['votes' => 1]);
 
 #### 自增或自减一个字段的值
 
@@ -281,7 +295,7 @@
 
 也能够同时指定其他要更新的字段：
 
-	DB::table('users')->increment('votes', 1, array('name' => 'John'));
+	DB::table('users')->increment('votes', 1, ['name' => 'John']);
 
 <a name="deletes"></a>
 ## 删除

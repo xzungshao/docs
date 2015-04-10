@@ -14,7 +14,7 @@
 
 如果给定的键不在数组中，`array_add` 函数会把给定的键值对加到数组中。
 
-	$array = array('foo' => 'bar');
+	$array = ['foo' => 'bar'];
 
 	$array = array_add($array, 'key', 'value');
 
@@ -22,7 +22,7 @@
 
 `array_divide` 函数返回两个数组，一个包含原本数组的键，另一个包含原本数组的值。
 
-	$array = array('foo' => 'bar');
+	$array = ['foo' => 'bar'];
 
 	list($keys, $values) = array_divide($array);
 
@@ -30,36 +30,36 @@
 
 `array_dot` 函数把多维数组扁平化成一维数组，并用「点」符号表示深度。
 
-	$array = array('foo' => array('bar' => 'baz'));
+	$array = ['foo' => ['bar' => 'baz']];
 
 	$array = array_dot($array);
 
-	// array('foo.bar' => 'baz');
+	// ['foo.bar' => 'baz'];
 
 ### array_except
 
 `array_except` 函数从数组移除给定的键值对。
 
-	$array = array_except($array, array('keys', 'to', 'remove'));
+	$array = array_except($array, ['keys', 'to', 'remove']);
 
 ### array_fetch
 
 `array_fetch` 函数返回包含被选择的嵌套元素的扁平化数组。
 
-	$array = array(
-		array('developer' => array('name' => 'Taylor')),
-		array('developer' => array('name' => 'Dayle')),
-	);
+	$array = [
+		['developer' => ['name' => 'Taylor']],
+		['developer' => ['name' => 'Dayle']]
+	];
 
 	$array = array_fetch($array, 'developer.name');
 
-	// array('Taylor', 'Dayle');
+	// ['Taylor', 'Dayle'];
 
 ### array_first
 
 `array_first` 函数返回数组中第一个通过给定的测试为真的元素。
 
-	$array = array(100, 200, 300);
+	$array = [100, 200, 300];
 
 	$value = array_first($array, function($key, $value)
 	{
@@ -74,7 +74,7 @@
 
 `array_last` 函数返回数组中最后一个通过给定的测试为真的元素。
 
-	$array = array(350, 400, 500, 300, 200, 100);
+	$array = [350, 400, 500, 300, 200, 100];
 
 	$value = array_last($array, function($key, $value)
 	{
@@ -91,17 +91,17 @@
 
 `array_flatten` 函数将会把多维数组扁平化成一维。
 
-	$array = array('name' => 'Joe', 'languages' => array('PHP', 'Ruby'));
+	$array = ['name' => 'Joe', 'languages' => ['PHP', 'Ruby']];
 
 	$array = array_flatten($array);
 
-	// array('Joe', 'PHP', 'Ruby');
+	// ['Joe', 'PHP', 'Ruby'];
 
 ### array_forget
 
 `array_forget` 函数将会用「点」符号从深度嵌套数组移除给定的键值对。
 
-	$array = array('names' => array('joe' => array('programmer')));
+	$array = ['names' => ['joe' => ['programmer']]];
 
 	array_forget($array, 'names.joe');
 
@@ -109,7 +109,7 @@
 
 `array_get` 函数将会使用「点」符号从深度嵌套数组取回给定的值。
 
-	$array = array('names' => array('joe' => array('programmer')));
+	$array = ['names' => ['joe' => ['programmer']]];
 
 	$value = array_get($array, 'names.joe');
 
@@ -121,25 +121,25 @@
 
 `array_only` 函数将会只从数组返回给定的键值对。
 
-	$array = array('name' => 'Joe', 'age' => 27, 'votes' => 1);
+	$array = ['name' => 'Joe', 'age' => 27, 'votes' => 1];
 
-	$array = array_only($array, array('name', 'votes'));
+	$array = array_only($array, ['name', 'votes']);
 
 ### array_pluck
 
 `array_pluck` 函数将会从数组拉出给定键值对的清单。
 
-	$array = array(array('name' => 'Taylor'), array('name' => 'Dayle'));
+	$array = [['name' => 'Taylor'], ['name' => 'Dayle']];
 
 	$array = array_pluck($array, 'name');
 
-	// array('Taylor', 'Dayle');
+	// ['Taylor', 'Dayle'];
 
 ### array_pull
 
 `array_pull` 函数将会从数组返回给定的键值对，并移除它。
 
-	$array = array('name' => 'Taylor', 'age' => 27);
+	$array = ['name' => 'Taylor', 'age' => 27];
 
 	$name = array_pull($array, 'name');
 
@@ -147,7 +147,7 @@
 
 `array_set` 函数将会使用「点」符号在深度嵌套数组中指定值。
 
-	$array = array('names' => array('programmer' => 'Joe'));
+	$array = ['names' => ['programmer' => 'Joe']];
 
 	array_set($array, 'names.editor', 'Taylor');
 
@@ -155,10 +155,10 @@
 
 `array_sort` 函数通过给定闭包的结果来排序数组。
 
-	$array = array(
-		array('name' => 'Jill'),
-		array('name' => 'Barry'),
-	);
+	$array = [
+		['name' => 'Jill'],
+		['name' => 'Barry']
+	];
 
 	$array = array_values(array_sort($array, function($value)
 	{
@@ -169,7 +169,7 @@
 
 使用给定的闭包过滤数组。
 
-	$array = array(100, '200', 300, '400', 500);
+	$array = [100, '200', 300, '400', 500];
 
 	$array = array_where($array, function($key, $value)
 	{
@@ -180,7 +180,7 @@
 
 ### head
 
-返回数组中第一个元素。对 PHP 5.3.x 的方法链很有用。
+返回数组中第一个元素
 
 	$first = head($this->returnsArray('foo'));
 
@@ -247,6 +247,45 @@
 ### resource
 
 注册一个 RESTful 的资源路由。
+
+	resource('foo', 'FooController');
+
+<a name="routing"></a>
+## Routing
+
+### get
+
+Register a new GET route with the router.
+
+	get('/', function() { return 'Hello World'; });
+
+### post
+
+Register a new POST route with the router.
+
+	post('foo/bar', 'FooController@action');
+
+### put
+
+Register a new PUT route with the router.
+
+	put('foo/bar', 'FooController@action');
+
+### patch
+
+Register a new PATCH route with the router.
+
+	patch('foo/bar', 'FooController@action');
+
+### delete
+
+Register a new DELETE route with the router.
+
+	delete('foo/bar', 'FooController@action');
+	
+### resource
+
+Register a new RESTful resource route with the router.
 
 	resource('foo', 'FooController');
 
@@ -402,19 +441,19 @@
 
 产生给定资源的 HTTPS HTML 链接。
 
-	echo secure_asset('foo/bar.zip', $title, $attributes = array());
+	echo secure_asset('foo/bar.zip', $title, $attributes = []);
 
 ### secure_url
 
 产生给定路径的 HTTPS 完整网址。
 
-	echo secure_url('foo/bar', $parameters = array());
+	echo secure_url('foo/bar', $parameters = []);
 
 ### url
 
 产生给定路径的完整网址。
 
-	echo url('foo/bar', $parameters = array(), $secure = null);
+	echo url('foo/bar', $parameters = [], $secure = null);
 
 <a name="miscellaneous"></a>
 ## 其他
@@ -463,6 +502,6 @@
 
 ### with
 
-返回给定对象。对 PHP 5.3.x 的构造器方法链很有用。
+返回给定对象。
 
 	$value = with(new Foo)->doWork();

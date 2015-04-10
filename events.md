@@ -140,4 +140,3 @@ Laravel 里的 `EventServiceProvider` 提供了一个方便的地方注册所有
 你也可以使用 [服务容器](/docs/5.0/container) 自动解析订阅者。简单地传递订阅者的名字给 `subscribe` 方法就可以做到：
 
 	Event::subscribe('UserEventHandler');
-

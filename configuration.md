@@ -37,7 +37,7 @@ Laravel 几乎不需配置就可以马上使用。你可以自由的开始开发
 <a name="permissions"></a>
 ### 权限
 
-Laravel 框架有一个目录需要额外权限：`storage` 目录必须让服务器有写入权限。
+Laravel 框架某些目录需要额外权限：`storage` 以及 `vendor` 目录必须让服务器有写入权限。
 
 <a name="accessing-configuration-values"></a>
 ## 取得配置值
@@ -135,12 +135,14 @@ Laravel 框架通过 `public/.htaccess` 文件来让网址中不需要 `index.ph
 	RewriteCond %{REQUEST_FILENAME} !-f
 	RewriteRule ^ index.php [L]
 
+If your web host doesn't allow the `FollowSymlinks` option, try replacing it with `Options +SymLinksIfOwnerMatch`.
+
 ### Nginx
 
 若使用 Nginx ，可以在你的网站配置中增加下面的配置，以开启「优雅链接」：
 
-    location / {
-        try_files $uri $uri/ /index.php?$query_string;
-    }
+	location / {
+		try_files $uri $uri/ /index.php?$query_string;
+	}
 
 当然，如果你使用 [Homestead](/docs/5.0/homestead) 的话，优雅链接会自动的帮你配置完成。
