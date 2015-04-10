@@ -56,11 +56,11 @@ Laravel 有很棒的文件系统抽象层，是基于 Frank de Jonge 的 [Flysys
 
 	Storage::put('file.jpg', $contents);
 
-#### 附加内容到文件结尾
+#### 加入内容到文件开头
 
 	Storage::prepend('file.log', 'Prepended Text');
 
-#### 加入内容到文件开头
+#### 附加内容到文件结尾
 
 	Storage::append('file.log', 'Appended Text');
 
