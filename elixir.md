@@ -63,20 +63,11 @@ elixir(function(mix) {
 });
 ```
 
-#### Compile Sass
-
-```javascript
-elixir(function(mix) {
-	mix.sass("app.sass");
->>>>>>> upstream/5.0
-});
-```
-
 #### 编译 Sass
 
 ```javascript
 elixir(function(mix) {
-    mix.sass("app.scss");
+	mix.sass("app.sass");
 });
 ```
 
