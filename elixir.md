@@ -288,14 +288,6 @@ elixir(function(mix) {
 
 	gulp watch
 
-#### Only Compile Scripts
-
-	gulp scripts
-
-#### Only Compile Styles
-
-	gulp styles
-
 #### 仅编译 javascript
 
     gulp scripts
