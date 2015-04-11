@@ -128,7 +128,6 @@ Laravel 的文件系统默认已经集成了不少驱动。不过，文件系统
 	use League\Flysystem\Filesystem;
 	use Dropbox\Client as DropboxClient;
 	use League\Flysystem\Dropbox\DropboxAdapter;
-
 	use Illuminate\Support\ServiceProvider;
 
 	class DropboxFilesystemServiceProvider extends ServiceProvider {
