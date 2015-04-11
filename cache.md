@@ -174,23 +174,23 @@ Laravel 为各种不同的缓存系统提供一致的 API 。缓存配置文件�
 	});
 
 <a name="memcached-cache"></a>
-#### Memcached Cache
+#### Memcached 缓存
 
-Using the Memcached cache requires the [Memcached PECL package](http://pecl.php.net/package/memcached) to be installed.
+使用 Memcached 缓存需要安装 [Memcached PECL package](http://pecl.php.net/package/memcached) 。
 
-The default [configuration](#configuration) uses TCP/IP based on [Memcached::addServer](http://php.net/manual/en/memcached.addserver.php):
+默认 [配置](#configuration) 使用 TCP/IP 协议，基于 [Memcached::addServer](http://php.net/manual/en/memcached.addserver.php)：
 
 	'memcached' => array(
 		array('host' => '127.0.0.1', 'port' => 11211, 'weight' => 100),
 	),
 
-You may also set the `host` option to a UNIX socket path. If you do this, the `port` option should be set to `0`:
+你也可以设置 `host` 选项配置一个 UNIX socket 路径，如果你这样做，`port` 选项应该设置为 `0`：
 
 	'memcached' => array(
 		array('host' => '/var/run/memcached/memcached.sock', 'port' => 0, 'weight' => 100),
 	),
 
 <a name="redis-cache"></a>
-#### Redis Cache
+#### Redis 缓存
 
-See [Redis Configuration](/docs/redis#configuration)
+查看 [Redis 配置](/docs/redis#configuration)
