@@ -158,7 +158,6 @@ Laravel 让你能轻易地定义单一路由来处理控制器中的每一项行
 
 #### 由资源控制器处理的行为
 
-<<<<<<< HEAD
 动词      | 路径                        | 行为         | 路由名称
 ----------|-----------------------------|--------------|---------------------
 GET       | /photo                   | 索引         | photo.index
@@ -168,17 +167,6 @@ GET       | /photo/{photo}        | 显示         | photo.show
 GET       | /photo/{photo}/edit   | 编辑         | photo.edit
 PUT/PATCH | /photo/{photo}        | 更新         | photo.update
 DELETE    | /photo/{photo}        | 删除         | photo.destroy
-=======
-Verb      | Path                  | Action       | Route Name
-----------|-----------------------|--------------|---------------------
-GET       | /photo                | index        | photo.index
-GET       | /photo/create         | create       | photo.create
-POST      | /photo                | store        | photo.store
-GET       | /photo/{photo}        | show         | photo.show
-GET       | /photo/{photo}/edit   | edit         | photo.edit
-PUT/PATCH | /photo/{photo}        | update       | photo.update
-DELETE    | /photo/{photo}        | destroy      | photo.destroy
->>>>>>> upstream/5.0
 
 #### 自定义资源路由
 
