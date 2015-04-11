@@ -37,13 +37,12 @@ Laravel 也包含了 Mailgun 和 Mandrill 服务的 HTTP API 的驱动方式。�
 
  `Mail::send` 方法是用来发送电子邮件：
 
-	Mail::send('emails.welcome', $data, function($message)
+	Mail::send('emails.welcome', array('key' => 'value'), function($message)
 	{
 		$message->to('foo@example.com', 'John Smith')->subject('Welcome!');
 	});
 
 `send` 方法的第一个参数为邮件内容的视图名称，第二个参数 `$data` 为传递至视图的变量，而第三个参数为一个闭包让您可以指定更多发送电子邮件的信息选项。
-
 
 > **注意:** 变量默认被传递进邮件的视图中，且允许内嵌键值数组。所以最好避免传递名为 `message` 的变量到您的视图中造成冲突。
 
@@ -103,7 +102,7 @@ Laravel 也包含了 Mailgun 和 Mandrill 服务的 HTTP API 的驱动方式。�
 
 #### 加入一个邮件到队列中
 
-发送电子邮件会大幅的延长您应用程序的反应时间，许多开发者选择让电子邮件放进队列中，并在后台(非即时)发送。Laravel 使用内建的 [unified queue API](/docs/queues) 让您可以方便的将要发送的电子邮件加入到队列之中，只要使用 `Mail` 类的 `queue` 方法：
+发送电子邮件会大幅的延长您应用程序的反应时间，许多开发者选择让电子邮件放进队列中，并在后台(非即时)发送。Laravel 使用内建的 [unified queue API](/docs/4.2/queues) 让您可以方便的将要发送的电子邮件加入到队列之中，只要使用 `Mail` 类的 `queue` 方法：
 
 	Mail::queue('emails.welcome', $data, function($message)
 	{

@@ -48,7 +48,7 @@
 
 #### 添加 CSRF Token 到表单
 
-Laravel 提供简易的方法，让您可以保护您的应用程序不受到 CSRF (跨网站请求伪造) 攻击。首先 Laravel 会自动在用户的 session 中放置随机的 token，别担心这些会自动完成。这个 CSRF 参数会用隐藏字段的方式自动加到您的表单中，您也可以使用 `token` 的方法去产生这个隐藏的 CSRF token 字段：
+Laravel 提供简易的方法，让您可以保护您的应用程序不受到 CSRF (跨网站请求伪造) 攻击。首先 Laravel 会自动在用户的 session 中放置随机的 token，如果你使用 `Form::open` 方法并使用 `POST`，`PUT` 或者 `DELETE`，这个 CSRF 参数会用隐藏字段的方式自动加到您的表单中，您也可以使用 `token` 的方法去产生这个隐藏的 CSRF token 字段：
 
 	echo Form::token();
 
@@ -129,6 +129,13 @@ Laravel 提供简易的方法，让您可以保护您的应用程序不受到 CS
 
 	echo Form::radio('name', 'value', true);
 
+<a name="number"></a>
+## Number
+
+#### Generating A Number Input
+
+	echo Form::number('name', 'value');
+
 <a name="file-input"></a>
 ## 文件输入
 
@@ -195,4 +202,4 @@ Laravel 提供简易的方法，让您可以保护您的应用程序不受到 CS
 <a name="generating-urls"></a>
 ##产生 URL
 
-更多产生 URL 的信息，请参阅文件[辅助方法](/docs/helpers#urls)。
+更多产生 URL 的信息，请参阅文件[辅助方法](/docs/4.2/helpers#urls)。

@@ -217,20 +217,6 @@
 	                     ->groupBy('status')
 	                     ->get();
 
-#### 对字段递增或递减数值
-
-	DB::table('users')->increment('votes');
-
-	DB::table('users')->increment('votes', 5);
-
-	DB::table('users')->decrement('votes');
-
-	DB::table('users')->decrement('votes', 5);
-
-您也可以同时更新其他字段
-
-	DB::table('users')->increment('votes', 1, array('name' => 'John'));
-
 <a name="inserts"></a>
 ## 新增
 
@@ -265,6 +251,20 @@
 	DB::table('users')
 	            ->where('id', 1)
 	            ->update(array('votes' => 1));
+
+#### 对字段递增或递减数值
+
+	DB::table('users')->increment('votes');
+
+	DB::table('users')->increment('votes', 5);
+
+	DB::table('users')->decrement('votes');
+
+	DB::table('users')->decrement('votes', 5);
+
+您也可以同时更新其他字段
+
+	DB::table('users')->increment('votes', 1, array('name' => 'John'));
 
 <a name="deletes"></a>
 ## 删除
@@ -308,12 +308,12 @@
 <a name="caching-queries"></a>
 ## 缓存查询结果
 
-使用 `remember` 方法，您可以轻松的缓存查询结果：
+使用 `remember` 或者 `rememberForever` 方法，您可以轻松的缓存查询结果：
 
 	$users = DB::table('users')->remember(10)->get();
 
 这个例子中，查询结果将会缓存 10 分钟。当结果被缓存时，查询语句将不会被执行，而会从应用程序指定的缓存驱动器中载入缓存的结果。
 
-如果您正在使用的是 [支持标签的缓存驱动器](/docs/cache#cache-tags)，您也可以为缓存增加标签：
+如果您正在使用的是 [支持标签的缓存驱动器](/docs/4.2/cache#cache-tags)，您也可以为缓存增加标签：
 
 	$users = DB::table('users')->cacheTags(array('people', 'authors'))->remember(10)->get();

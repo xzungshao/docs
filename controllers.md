@@ -2,15 +2,14 @@
 
 - [基本控制器](#basic-controllers)
 - [控制器过滤器(Controller filters)](#controller-filters)
-- [RESTful 控制器](#restful-controllers)
-- [资源控制器](#resource-controllers)
+- [隐式控制器](#implicit-controllers)
+- [RESTful 资源控制器](#restful-resource-controllers)
 - [处理遗漏的方法](#handling-missing-methods)
 
 <a name="basic-controllers"></a>
 ## 基本 Controllers
 
-除了在 `routes.php` 文件中定义所有路由层逻辑外，您可能也想利用控制器来整合这些行为。控制器可以利用更先进的框架特性的优势，如自动的[依赖注入](/docs/ioc)整合相关的路由逻辑到同一个类中。
-
+除了在 `routes.php` 文件中定义所有路由层逻辑外，您可能也想利用控制器来整合这些行为。控制器可以利用更先进的框架特性的优势，如自动的[依赖注入](/docs/4.2/ioc)整合相关的路由逻辑到同一个类中。
 
 控制器一般存放在 `app/controllers` 目录下，这个目录已默认注册在 `composer.json` 的 `classmap` 中。然而，控制器可以放在任何目录或是子目录中。路由定义与控制器类存放在哪个位置并无关系。所以，只要 Composer 知道如何自动载入控制器类，您就可以把控制器放在任何您想要的地方。
 
@@ -58,7 +57,7 @@
 <a name="controller-filters"></a>
 ## 控制器过滤器
 
-[过滤器(Filter)](/docs/routing#route-filters) 在控制器路由中定义方式，如同"一般"的路由一样。
+[过滤器(Filter)](/docs/4.2/routing#route-filters) 在控制器路由中定义方式，如同"一般"的路由一样。
 
 	Route::get('profile', array('before' => 'auth',
 				'uses' => 'UserController@showProfile'));
@@ -121,10 +120,10 @@
 
 	}
 
-<a name="restful-controllers"></a>
-## RESTful 控制器
+<a name="implicit-controllers"></a>
+## 隐式控制器
 
-Laravel 让您可以简单的经由定义一个路由规则来处理控制器里的所有遵照 REST 命名规范的行为。首先，使用 `Route::controller` 方法定义路由：
+Laravel 让您可以简单的经由定义一个路由规则来处理控制器里的行为。首先，使用 `Route::controller` 方法定义路由：
 
 	Route::controller('users', 'UserController');
 
@@ -141,7 +140,7 @@ Laravel 让您可以简单的经由定义一个路由规则来处理控制器里
 		{
 			//
 		}
-		
+
 		public function anyLogin()
 		{
 			//
@@ -155,9 +154,8 @@ Laravel 让您可以简单的经由定义一个路由规则来处理控制器里
 
 	public function getAdminProfile() {}
 
-<a name="resource-controllers"></a>
-## 资源控制器
-
+<a name="restful-resource-controllers"></a>
+## RESTful 资源控制器
 
 资源控制器可以简单的建立跟资源相关的 RESTful 控制器。例如，您可能想要建立控制器来管理应用程序里储存的照片。通过 Artisan 命令行工具里的 `controller:make` 以及使用 `Route::resource` 方法，可以很快的创建控制器。
 
@@ -223,13 +221,13 @@ DELETE    | /resource/{resource}        | destroy      | resource.destroy
 
 如果您需要增加额外的 route 规则到默认的 resource controller，您应该在定义`Route::resource`之前定义这些规则：
 
-	Route::get('photos/popular');
+	Route::get('photos/popular', 'PhotoController@method');
 	Route::resource('photos', 'PhotoController');
 
 <a name="handling-missing-methods"></a>
 ## 对应缺失的方法
 
-可以定义一个 catch-all 方法，当 controller 找不到对应的方法时就会被调用，这个方法名称为`missingMethod`, 会传入请求的方法和参数数组：
+当使用 `Route::controller` 时，可以定义一个 catch-all 方法，当 controller 找不到对应的方法时就会被调用，这个方法名称为`missingMethod`, 会传入请求的方法和参数数组：
 
 #### 定义一个 Catch-All 方法
 
@@ -237,3 +235,5 @@ DELETE    | /resource/{resource}        | destroy      | resource.destroy
 	{
 		//
 	}
+
+If you are using resource controllers, you should define a `__call` magic method on the controller to handle any missing methods.

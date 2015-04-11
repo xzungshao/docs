@@ -101,7 +101,7 @@ Laravel 的 `Lang` 类提供方便的方法来取得多种语言的字串，让�
 <a name="validation"></a>
 ## 验证
 
-要验证本地化的错误和信息，可以看一下 <a href="/docs/validation#localization">验证的文件</a>.
+要验证本地化的错误和信息，可以看一下 <a href="/docs/4.2/validation#localization">验证的文件</a>.
 
 <a name="overriding-package-language-files"></a>
 ## 重写扩展包的语言文件

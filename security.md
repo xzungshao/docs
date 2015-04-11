@@ -56,7 +56,7 @@ Laravel 的 `Hash` 类提供了安全的 Bcrypt 哈希演算法：
 
 需提醒的是 `email`并不是一个必要的字段，在这里仅用于示范。您可以使用数据库里任何类似于「用户名称」的字段做为帐号的唯一标识。若用户尚未登入的话，认证筛选器会使用 `Redirect::intended` 方法重定向跳转用户至指定的 URL。我们可指定一个备用 URI ，当预定重定向跳转位置不存在时使用。
 
-当 `attempt` 方法被调用时，`auth.attempt` [事件](/docs/events) 将会被触发。假如认证成功的话，则 `auth.login` 事件会接着被触发。
+当 `attempt` 方法被调用时，`auth.attempt` [事件](/docs/4.2/events) 将会被触发。假如认证成功的话，则 `auth.login` 事件会接着被触发。
 
 #### 判定用户是否已登入
 
@@ -236,7 +236,7 @@ HTTP 简易认证提供了一个快速的方式来认证用户而不用特定设
 
 	php artisan auth:reminders-controller
 
-产生出来的控制器已经具备 `getRemind` 方法来显示您的忘记密码表单。您所需要做就是建立一个 `password.remind` [视图](/docs/responses#views)。这个视图需要具备一个 `email` 字段的表单，且这个表单应该要 POST 到 `RemindersController@postRemind` 动作。
+产生出来的控制器已经具备 `getRemind` 方法来显示您的忘记密码表单。您所需要做就是建立一个 `password.remind` [视图](/docs/4.2/responses#views)。这个视图需要具备一个 `email` 字段的表单，且这个表单应该要 POST 到 `RemindersController@postRemind` 动作。
 
 一个简单的 `password.remind` 表单视图应该看起来像这样：
 
@@ -266,7 +266,7 @@ HTTP 简易认证提供了一个快速的方式来认证用户而不用特定设
 		<input type="submit" value="Reset Password">
 	</form>
 
-最后，`postReset` 方法则是专职处理重设过后的密码。在这个控制器方法里，Closure 传递 `Password::reset` 方法并且设定 `User` 内的 `password` 属性后调用 `save` 方法。当然，这个 Closure 会假定您的 `User` 模型是一个 [Eloquent 模型](/docs/eloquent) 。当然，您可以自由地修改这个 Closure 内容来符合您的应用程序数据库储存方式。
+最后，`postReset` 方法则是专职处理重设过后的密码。在这个控制器方法里，Closure 传递 `Password::reset` 方法并且设定 `User` 内的 `password` 属性后调用 `save` 方法。当然，这个 Closure 会假定您的 `User` 模型是一个 [Eloquent 模型](/docs/4.2/eloquent) 。当然，您可以自由地修改这个 Closure 内容来符合您的应用程序数据库储存方式。
 
 假如密码成功的重设，则用户会被重定向跳转至您的应用程序根目录。同样的，您可以自由的更改重定向跳转的 URL；假如密码重设失败的话，用户会被重定向跳转至重设密码表单页，而且会有 `error` 信息被暂存在 session 内。
 
@@ -307,4 +307,4 @@ Laravel 通过 mcrypt PHP 扩展来提供 AES 强度的加密算法：
 <a name="authentication-drivers"></a>
 ## 认证驱动
 
-Laravel 默认提供 `database` 及 `eloquent` 两种认证驱动。假如您需要更多有关增加额外认证驱动的详细信息，请参考 [认证扩充文件](/docs/extending#authentication)
+Laravel 默认提供 `database` 及 `eloquent` 两种认证驱动。假如您需要更多有关增加额外认证驱动的详细信息，请参考 [认证扩充文件](/docs/4.2/extending#authentication)

@@ -112,6 +112,8 @@
 
 	$value = array_get($array, 'names.joe');
 
+	$value = array_get($array, 'names.john', 'default');
+
 > **备注:** 想要把 `array_get` 用在对象上？ 请使用 `object_get`。
 
 ### array_only

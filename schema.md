@@ -169,9 +169,10 @@ Laravel 的 `结构生成器` 提供一个数据库无关的操作数据库表�
 
 Laravel 也支持数据库表的外键约束:
 
+	$table->integer('user_id')->unsigned();
 	$table->foreign('user_id')->references('id')->on('users');
 
-例子中，我们关注字段 `user_id` 参照到 `users` 数据库表的 `id` 字段。
+例子中，我们关注字段 `user_id` 参照到 `users` 数据库表的 `id` 字段。首先需要确保已经建立对应的外键。
 
 您也可以指定选择在 "on delete" 和 "on update" 进行约束动作:
 

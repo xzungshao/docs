@@ -123,7 +123,7 @@ Laravel Cashier 提供语义化，流畅的接口和 [Stripe](https://stripe.com
 	// Add five to the subscription's current quantity...
 	$user->subscription()->increment(5);
 
-	$user->subscription->decrement();
+	$user->subscription()->decrement();
 
 	// Subtract five to the subscription's current quantity...
 	$user->subscription()->decrement(5);

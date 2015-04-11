@@ -88,7 +88,7 @@ Laravel 建立的 cookie 会加密并且加上认证记号，意味着如果cook
 
 	return Redirect::to('form')->withInput(Input::except('password'));
 
-> **提示：** 您可以使用 [Session](/docs/session) 类将不同请求数据存成其他一次性 Session。
+> **提示：** 您可以使用 [Session](/docs/4.2/session) 类将不同请求数据存成其他一次性 Session。
 
 #### 取得旧输入数据
 

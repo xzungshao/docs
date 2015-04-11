@@ -163,7 +163,7 @@
 		$view->with('count', User::count());
 	});
 
-如使用类作为组件，提供了可以从 [IoC 容器](/docs/ioc)自动解析组件的好处，您可以像这样做：
+如使用类作为组件，提供了可以从 [IoC 容器](/docs/4.2/ioc)自动解析组件的好处，您可以像这样做：
 
 	View::composer('profile', 'ProfileComposer');
 
@@ -185,6 +185,7 @@
 	View::composers(array(
 		'AdminComposer' => array('admin.index', 'admin.profile'),
 		'UserComposer' => 'user',
+		'ProductComposer@create' => 'product'
 	));
 
 > **提示：** 组件类没有一定要放在什么地方，您可以将它们放在任何地方，只要可以使用 `composer.json` 自动载入即可。

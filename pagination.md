@@ -24,7 +24,7 @@
 
 #### 对 Eloquent 模型分页
 
-您也可以对 [Eloquent](/docs/eloquent) 模型分页：
+您也可以对 [Eloquent](/docs/4.2/eloquent) 模型分页：
 
 	$allUsers = User::paginate(15);
 
@@ -121,10 +121,10 @@
 
         public function getDisabledTextWrapper($text)
         {
-            return '<li class="unavailable">'.$text.'</li>';
+            return '<li class="unavailable"><a href="">'.$text.'</a></li>';
         }
 
-        public function getPageLinkWrapper($url, $page)
+        public function getPageLinkWrapper($url, $page, $rel = null)
         {
             return '<li><a href="'.$url.'">'.$page.'</a></li>';
         }

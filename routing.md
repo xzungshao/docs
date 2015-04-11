@@ -129,6 +129,8 @@
 
 路由筛选器能便捷的给指定的路由提供访问限制，这对于您的站点需要认证的情况下非常有用。在 Laravel 框架中包含了数个筛选器，如 `auth`, `auth.basic`, `guest` 和 `csrf` 筛选器。他们都放在 `app/filters.php` 中。
 
+> **注意：** 路由筛选器在应用环境为 `testing` 下是无效的。
+
 #### 定义一个路由筛选器
 
 	Route::filter('old', function()
@@ -204,7 +206,7 @@
 
 #### 筛选器类
 
-进阶的筛选，您可以使用类来取代闭包。因为所有的类都可以通过 [IoC Container](/docs/ioc) 来实例化, 你可以利用依赖注入来获取更高的可测试性.
+进阶的筛选，您可以使用类来取代闭包。因为所有的类都可以通过 [IoC Container](/docs/4.2/ioc) 来实例化, 你可以利用依赖注入来获取更高的可测试性.
 
 #### 注册基于类的筛选器
 
@@ -349,11 +351,11 @@ Laravel 路由一样可以处理通配的子域名，并且从域名中传递您
 
 第二种，您可以抛出一个 `Symfony\Component\HttpKernel\Exception\NotFoundHttpException` 实体。
 
-有关如何处理 404 异常状况和自定义回应的详细信息，可以参考 [错误](/docs/errors#handling-404-errors) 章节内的说明。
+有关如何处理 404 异常状况和自定义回应的详细信息，可以参考 [错误](/docs/4.2/errors#handling-404-errors) 章节内的说明。
 
 <a name="routing-to-controllers"></a>
 ## 控制器路由
 
-Laravel 允许您不止可以路由至 Closures，也可以路由至控制器类，甚至可以路由至 [资源控制器](/docs/controllers#resource-controllers)。
+Laravel 允许您不止可以路由至 Closures，也可以路由至控制器类，甚至可以路由至 [资源控制器](/docs/4.2/controllers#resource-controllers)。
 
-更多详细信息可参考 [控制器](/docs/controllers) 一节内的说明。
+更多详细信息可参考 [控制器](/docs/4.2/controllers) 一节内的说明。

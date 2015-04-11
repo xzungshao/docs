@@ -12,7 +12,7 @@
 
 ### PHP 所需最低版本为 5.4
 
-Laravel 4.2 需要 PHP 5.4 或者更高的版本。此 PHP 的更新版本让我们可以使用 PHP 的新特性：`traits` 来为如[Laravel Cashier](/docs/billing) 来提供更具表达力的接口。PHP 5.4 相比 PHP 5.3 ，在性能、速度、执行力效率上都有显著的提高。
+Laravel 4.2 需要 PHP 5.4 或者更高的版本。此 PHP 的更新版本让我们可以使用 PHP 的新特性：`traits` 来为如[Laravel Cashier](/docs/4.2/billing) 来提供更具表达力的接口。PHP 5.4 相比 PHP 5.3 ，在性能、速度、执行力效率上都有显著的提高。
 
 ### Laravel Forge
 
@@ -24,11 +24,11 @@ Larvel Forge是一个 Web 应用程序，它提供了一个简单的接口去建
 
 ### Laravel Homestead
 
-Laravel Homestead 是一个为开发强壮的 Laravel 和 PHP 应用程序的所提供的官方 Vagrant 环境，是一个离线的，预先打好包的`Vagrant box`。绝大多数的 `box` 依赖软件在发布前已经部署处理完成，这让`box`可以极快的被启用。Homestead 包含 Nginx 1.6, PHP 5.5.12, MySQL, Postres, Redis, Memcached, Beanstalk, Node, Gulp, Grunt 和 Bower。Homestead 包含一个简单的 `Homestead.yaml` 配置文件，让您在单一个封装包中能管理多个 Laravel 应用程序。
+Laravel Homestead 是一个为开发强壮的 Laravel 和 PHP 应用程序的所提供的官方 Vagrant 环境，是一个离线的，预先打好包的`Vagrant box`。绝大多数的 `box` 依赖软件在发布前已经部署处理完成，这让`box`可以极快的被启用。Homestead 包含 Nginx 1.6, PHP 5.6, MySQL, Postres, Redis, Memcached, Beanstalk, Node, Gulp, Grunt 和 Bower。Homestead 包含一个简单的 `Homestead.yaml` 配置文件，让您在单一个封装包中能管理多个 Laravel 应用程序。
 
 默认的 Laravel 4.2 安装中包含的 `app/config/local/database.php` 配置文件使用 Homestead 的数据库作为默认。让 Laravel 初始化安装与设定更为方便。
 
-官方文件已经更新并包含在 [Homestead 文件](/docs/homestead)中。
+官方文件已经更新并包含在 [Homestead 文件](/docs/4.2/homestead)中。
 
 ### Laravel Cashier
 
@@ -38,7 +38,7 @@ Laravel Cashier是一个简单、具有表现力的资源库，用来管理 Stri
 
 Artisan `queue:work` 命令现在支持 `--daemon` 参数让 worker 可以以"常驻软件"启用。代表 worker 可以持续的处理队列工作不需要重启框架。这让一个复杂的应用程序部署过程中，使得 CPU 的使用有显著的降低。
 
-更多关于 Queue Workers 常驻软件信息请阅读 [queue 文件](/docs/queues#daemon-queue-worker)。
+更多关于 Queue Workers 常驻软件信息请阅读 [queue 文件](/docs/4.2/queues#daemon-queue-worker)。
 
 ### Mail API Drivers
 
@@ -49,7 +49,7 @@ Laravel 4.2 为 `Mail` 函数采用了新的 Mailgun 和 Mandrill API 驱动。�
 对于软删除和全作用域更简洁的方案
 PHP 5.4 的 `traits` 提供了一个更加简洁的软删除架构和全局作用域, 这些新架构为框架提供了更有扩展性的功能, 并且让框架更加简洁.
 
-更多关于软删除的文档请见: [Eloquent documentation](/docs/eloquent#soft-deleting).
+更多关于软删除的文档请见: [Eloquent documentation](/docs/4.2/eloquent#soft-deleting).
 
 ### 更为方便的 认证(auth) & Remindable Traits
 
@@ -72,9 +72,9 @@ PHP 5.4 的 `traits` 提供了一个更加简洁的软删除架构和全局作�
 
 ### 新的 SSH 组件
 
-一个全新的 `SSH` 组件在此发行版本中登场。此功能让您可以轻易的 SSH 至远程服务器并执行命令。更多信息，可以参阅 [SSH 组件文件](/docs/ssh)。
+一个全新的 `SSH` 组件在此发行版本中登场。此功能让您可以轻易的 SSH 至远程服务器并执行命令。更多信息，可以参阅 [SSH 组件文件](/docs/4.2/ssh)。
 
-新的 `php artisan tail` 命令就是使用这个新的 SSH 组件。更多的信息，请参阅 `tail` [命令集文件](http://laravel.com/docs/ssh#tailing-remote-logs)。
+新的 `php artisan tail` 命令就是使用这个新的 SSH 组件。更多的信息，请参阅 `tail` [命令集文件](http://laravel.com/docs/4.2/ssh#tailing-remote-logs)。
 
 ### Boris In Tinker
 
@@ -82,13 +82,13 @@ PHP 5.4 的 `traits` 提供了一个更加简洁的软删除架构和全局作�
 
 ### Eloquent 强化
 
-Eloquent 新增了新的 `hasManyThrough` 关系链。想要了解更多，请参见 [Eloquent 文件](/docs/eloquent#has-many-through)。
+Eloquent 新增了新的 `hasManyThrough` 关系链。想要了解更多，请参见 [Eloquent 文件](/docs/4.2/eloquent#has-many-through)。
 
-一个新的 `whereHas` 方法也同时登场，他将允许[检索基于关系模型的约束](/docs/eloquent#querying-relations)。
+一个新的 `whereHas` 方法也同时登场，他将允许[检索基于关系模型的约束](/docs/4.2/eloquent#querying-relations)。
 
 ### 数据库读写分离
 
-Query Builder 和 Eloquent 目前通过数据库层，已经可以自动做到读写分离。更多的信息，请参考[文件](/docs/database#read-write-connections)。
+Query Builder 和 Eloquent 目前通过数据库层，已经可以自动做到读写分离。更多的信息，请参考[文件](/docs/4.2/database#read-write-connections)。
 
 ### 队列优先级
 
@@ -96,15 +96,15 @@ Query Builder 和 Eloquent 目前通过数据库层，已经可以自动做到�
 
 ### 失败队列工作处理
 
-现在队列将会自动处理失败的工作，只要在 `queue:listen` 后加上 `--tries` 即可。更多的失败工作处理可以参见 [队列文件](/docs/queues#failed-jobs)。
+现在队列将会自动处理失败的工作，只要在 `queue:listen` 后加上 `--tries` 即可。更多的失败工作处理可以参见 [队列文件](/docs/4.2/queues#failed-jobs)。
 
 ### 缓存标签
 
-缓存“区块”已经被“标签”取代。缓存标签允许您将多个“标签”指向同一个缓存对象，而且可以清空所有被指定某个标签的所有对象。更多使用缓存标签信息请见[缓存文件](/docs/cache#cache-tags)。
+缓存“区块”已经被“标签”取代。缓存标签允许您将多个“标签”指向同一个缓存对象，而且可以清空所有被指定某个标签的所有对象。更多使用缓存标签信息请见[缓存文件](/docs/4.2/cache#cache-tags)。
 
 ### 更具弹性的密码提醒
 
-密码提醒引擎已经可以提供更强大的开发弹性，如：认证密码，显示状态信息等等。使用强化的密码提醒引擎，更多的信息[请参阅文件](/docs/security#password-reminders-and-reset)。
+密码提醒引擎已经可以提供更强大的开发弹性，如：认证密码，显示状态信息等等。使用强化的密码提醒引擎，更多的信息[请参阅文件](/docs/4.2/security#password-reminders-and-reset)。
 
 ### 强化路由引擎
 

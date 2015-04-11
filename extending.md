@@ -85,7 +85,7 @@ Laravel 有几个 `Manager` 类用来管理建立基于驱动的组件。 这些
 
 ### 在哪里扩展 Session
 
-Session 需要用与其他扩展如 Cache 和 Auth 不同地方式扩展。 因为 sessions 在请求生命周期的非常早期就被启用，注册扩展在 `start` 文件将会太晚。 作为替代，将会需要[服务提供者](/docs/ioc#service-providers) 。 您应该放置您的 session 扩展代码在您的服务提供者的 `register` 方法，并且提供者应该被放置在 `providers` 设定数组里、默认的 `Illuminate\Session\SessionServiceProvider` **下面**。
+Session 需要用与其他扩展如 Cache 和 Auth 不同地方式扩展。 因为 sessions 在请求生命周期的非常早期就被启用，注册扩展在 `start` 文件将会太晚。 作为替代，将会需要[服务提供者](/docs/4.2/ioc#service-providers) 。 您应该放置您的 session 扩展代码在您的服务提供者的 `register` 方法，并且提供者应该被放置在 `providers` 设定数组里、默认的 `Illuminate\Session\SessionServiceProvider` **下面**。
 
 ### 实现 Session 扩展
 

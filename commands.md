@@ -126,13 +126,13 @@
 
 #### 在 IoC Container 内注册命令
 
-如果您的自定义命令是在应用程序 [IoC container](/docs/ioc) 内注册，您需要使用 `Artisan::resolve` 方法让 Artisan 可以使用：
+如果您的自定义命令是在应用程序 [IoC container](/docs/4.2/ioc) 内注册，您需要使用 `Artisan::resolve` 方法让 Artisan 可以使用：
 
 	Artisan::resolve('binding.name');
 
 #### 在 Service Provider 内注册命令
 
-如果您需要从 service provider 注册命令，您应该在 provider 的  `boot` 方法内调用 `commands` 方法，传入 IoC container 绑定此命令：
+如果您需要从 service provider 注册命令，您应该在 provider 的  `boot` 方法内调用 `commands` 方法，传入 [IoC container](/docs/4.2/ioc) 绑定此命令：
 
 	public function boot()
 	{

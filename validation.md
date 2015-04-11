@@ -245,6 +245,11 @@ Laravel 通过 `Validation` 类让您可以简单、方便的验证数据正确�
 字段值需介于指定的 _min_ 和 _max_ 值之间。字串、数值或是文件都是用同样的方式来进行验证。
 
 
+<a name="rule-boolean"></a>
+#### boolean
+
+The field under validation must be able to be cast as a boolean. Accepted input are `true`, `false`, `1`, `0`, `"1"` and `"0"`.
+
 <a name="rule-confirmed"></a>
 #### confirmed
 
@@ -331,7 +336,7 @@ Laravel 通过 `Validation` 类让您可以简单、方便的验证数据正确�
 <a name="rule-max"></a>
 #### max:_value_
 
-字段值需小于等于 _value_。字串、数字和文件则是判断 `size` 大小。
+字段值需小于等于 _value_。字串、数字和文件则和 [`size`](#rule-size) 规则一致。
 
 <a name="rule-mimes"></a>
 #### mimes:_foo_,_bar_,...
@@ -345,7 +350,7 @@ Laravel 通过 `Validation` 类让您可以简单、方便的验证数据正确�
 <a name="rule-min"></a>
 #### min:_value_
 
-字段值需大于等于 _value_。字串、数字和文件则是判断 `size` 大小。
+字段值需大于等于 _value_。字串、数字和文件则和 [`size`](#rule-size) 规则一致。
 
 <a name="rule-not-in"></a>
 #### not_in:_foo_,_bar_,...
@@ -370,7 +375,7 @@ Laravel 通过 `Validation` 类让您可以简单、方便的验证数据正确�
 字段值为必填。
 
 <a name="rule-required-if"></a>
-#### required\_if:_field_,_value_
+#### required_if:_field_,_value_,...
 
 字段值在 _field_ 字段值为 _value_ 时为必填。
 
@@ -408,6 +413,11 @@ Laravel 通过 `Validation` 类让您可以简单、方便的验证数据正确�
 #### string:_value_
 
 字段值必须是一个字符串类型。
+
+<a name="rule-string"></a>
+#### string:_value_
+
+The field under validation must be a string type.
 
 <a name="rule-timezone"></a>
 #### timezone

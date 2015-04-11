@@ -73,6 +73,8 @@ Laravel 队列组件提供了一个统一的队列服务API，队列允许您将
 
 在这个例子中，我们使用 [Carbon](https://github.com/briannesbitt/Carbon) 日期函数库来指定我们希望队列工作希望延迟的时间，另外您也可传送一个整数来设定您希望延迟的秒数。
 
+> **注意：** The Amazon SQS 服务有 900s 的延迟限制 (15 分钟)。
+
 #### 删除一个处理中的工作
 
 当您已经开始处理完成一个队列工作，它就必需在队列中删除，我们可以通过 `Job` 实例中的 `delete` 方法来完成这件事：
@@ -184,18 +186,21 @@ Laravel 内含一个 Artisan 命令，它将推送到队列的工作拉来下执
 
 	php artisan queue:work connection --daemon --sleep=3 --tries=3
 
-
 如您所见 `queue:work` 命令支持 `queue:listen` 大多相同的选项参数，您也可使用 `php artisan help queue:work` 命令来观看全部可用的选项参数。
 
 ### 布署常驻队列处理器
 
-最简单的布署一个应用程序使用常驻队列处理器的方式就是将应用程序在开始布署时使用维护模式，您可以使用 `php artisan down` 命令来完成这件事情，当这个应用程序在维护模式，Laravel 将不会运行队列上的任何新工作，但会持续的处理已存在的工作，当过了一段时间足够您所有的正在执行的工作都已处理完以后(通常不会很久，大约 30-60 秒即可)，您可以停止处理器及继续处理您的布署工作。
+最简单的布署一个应用程序使用常驻队列处理器的方式就是将应用程序在开始布署时使用维护模式，您可以使用 `php artisan down` 命令来完成这件事情，当这个应用程序在维护模式，Laravel 将不会运行队列上的任何新工作，但会持续的处理已存在的工作。
 
-假如您使用 Supervisor 或 Laravel Forge，那您通常就会使用下面的命令来停止处理器：
+最简单的重启工作的方法是在你的部署脚本中加上如下一行：
 
 	php artisan queue:restart
 
-当这些队列都处理完且您更新完您的服务器上的代码，您应该重启常驻队列处理器，假如您使用 Supervisor，通常会使用上面的命令.
+> **Note:** This command relies on the cache system to schedule the restart. By default, APCu does not work for CLI commands. If you are using APCu, add `apc.enable_cli=1` to your APCu configuration.
+
+### Coding For Daemon Queue Workers
+
+Daemon queue workers do not restart the framework before processing each job. Therefore, you should be careful to free any heavy resources before your job finishes. For example, if you are doing image manipulation with the GD library, you should free the memory with `imagedestroy` when you are done.
 
 <a name="push-queues"></a>
 ## 推送队列

@@ -22,7 +22,9 @@ Laravel 的 `Event` 类提供一个简单的观察者实现，允许您在应用
 
 #### 触发事件
 
-	$event = Event::fire('auth.login', array($user));
+	$response = Event::fire('auth.login', array($user));
+
+The `fire` method returns an array of responses that you can use to control what happens next in your application.
 
 #### 订阅有优先顺序的事件
 
@@ -47,7 +49,7 @@ Laravel 的 `Event` 类提供一个简单的观察者实现，允许您在应用
 
 现在您知道怎么注册事件了，但是您或许会想知道要在 _哪里_ 注册它们。 不要担心，这是一个常见的问题。 不幸地，这是一个很难回答的问题，因为您几乎可以在任何地方注册事件！ 但是，这里有一些提示。 一样的，您可以在您的其中一个 `start` 文件注册事件，就像其他大部份的启动代码，例如： `app/start/global.php`。
 
-如果您的 `start` 文件变得越来越拥挤，您可以建立一个分离的 `app/events.php` 文件，并从 `start` 文件引入它。 这是个简单的解决方案，它保持您的事件注册与剩余的启动代码干净地分离。 如果您喜欢基于类的方法，您可以在 [服务提供者](/docs/ioc#service-providers) 注册您的事件。 因为这些方法中没有一个是绝对正确的方案，基于您的应用程序大小选择一个让您感到舒服的方法。
+如果您的 `start` 文件变得越来越拥挤，您可以建立一个分离的 `app/events.php` 文件，并从 `start` 文件引入它。 这是个简单的解决方案，它保持您的事件注册与剩余的启动代码干净地分离。 如果您喜欢基于类的方法，您可以在 [服务提供者](/docs/4.2/ioc#service-providers) 注册您的事件。 因为这些方法中没有一个是绝对正确的方案，基于您的应用程序大小选择一个让您感到舒服的方法。
 
 <a name="wildcard-listeners"></a>
 ## 通配符监听者
@@ -76,7 +78,7 @@ Laravel 的 `Event` 类提供一个简单的观察者实现，允许您在应用
 <a name="using-classes-as-listeners"></a>
 ## 使用类作为监听者
 
-在一些案例中，您或许会希望使用类取代闭包来处理事件。 类事件监听者将会被 [Laravel IoC container](/docs/ioc) 处理，提供依赖注入的全部功能给您的监听者。
+在一些案例中，您或许会希望使用类取代闭包来处理事件。 类事件监听者将会被 [Laravel IoC container](/docs/4.2/ioc) 处理，提供依赖注入的全部功能给您的监听者。
 
 #### 注册类监听者
 
@@ -162,7 +164,6 @@ Laravel 的 `Event` 类提供一个简单的观察者实现，允许您在应用
 
 	Event::subscribe($subscriber);
 
-您也可以使用 [Laravel IoC container](/docs/ioc) 去处理您的订阅者。 简单地传递订阅者的名字给 `subscribe` 方法就可以做到：
+您也可以使用 [Laravel IoC container](/docs/4.2/ioc) 去处理您的订阅者。 简单地传递订阅者的名字给 `subscribe` 方法就可以做到：
 
 	Event::subscribe('UserEventHandler');
-

@@ -208,9 +208,9 @@ Laravel 附带几个 `assert` 方法，能让测试更简单一点:
 
 	$this->seed();
 
-	$this->seed($connection);
+	$this->seed('DatabaseSeeder');
 
-更多建立填充数据的信息可以在文件的 [迁移与数据填充](/docs/migrations#database-seeding) 部分找到。
+更多建立填充数据的信息可以在文件的 [迁移与数据填充](/docs/4.2/migrations#database-seeding) 部分找到。
 
 <a name="refreshing-the-application"></a>
 ## 重置应用程序

@@ -260,4 +260,4 @@ Laravel Envoy 提供了简洁，轻量的语法能让您对远程服务器执行
 
 如果您的 Envoy 安装在 `/usr/local/bin`，您可能需要加上 `sudo`：
 
-	sudo envoy self-update
+	composer global update

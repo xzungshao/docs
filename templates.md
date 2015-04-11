@@ -68,7 +68,7 @@ Blade 是 Laravel 所提供的一个简单却又非常强大的模板引擎。Bl
 
 有时候，如您不确定这个区块内容有没有被定义，您可能会想要传一个默认的内容给 `@yield`。您可以使用第二个参数传入一个默认值给 `@yield`：
 
-	@yield('section', 'Default Content');
+	@yield('section', 'Default Content')
 
 <a name="other-blade-control-structures"></a>
 ## 其他 Blade 控制语法结构
@@ -161,7 +161,7 @@ Blade 是 Laravel 所提供的一个简单却又非常强大的模板引擎。Bl
 
 	@lang('language.line')
 
-	@choice('language.line', 1);
+	@choice('language.line', 1)
 
 #### 注释
 

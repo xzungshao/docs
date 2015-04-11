@@ -150,7 +150,7 @@ The `Illuminate\Auth\UserInterface` also received the three new methods describe
 
 ### 更新密码提醒
 
-密码提醒功能已经大幅修正拥有更大的弹性。您可以执行 Artisan 命令 `php artisan auth:reminders-controller` 来检查新的存根控制器。您也可以浏览 [更新文档](/docs/security#password-reminders-and-reset) 然后相应的更新您的应用程序。
+密码提醒功能已经大幅修正拥有更大的弹性。您可以执行 Artisan 命令 `php artisan auth:reminders-controller` 来检查新的存根控制器。您也可以浏览 [更新文档](/docs/4.2/security#password-reminders-and-reset) 然后相应的更新您的应用程序。
 
 更新您的 `app/lang/en/reminders.php` 语系文件来符合[这个新版文件](https://github.com/laravel/laravel/blob/master/app/lang/en/reminders.php)。
 

@@ -87,7 +87,7 @@
 <a name="provider-configuration"></a>
 ### 供应商设定
 
-当使用环境设定时，您会想要"附加"环境[服务供应商](/docs/ioc#service-providers) 到您主要的 `app` 配置文件中。然而，如果您这样做，您会发现环境 `app` 供应商将会覆蓋掉您主要 `app` 配置文件的供应商。如果要附加供应商，在您的环境 `app` 配置文件中使用 `append_config` helper 方法：
+当使用环境设定时，您会想要"附加"环境[服务供应商](/docs/4.2/ioc#service-providers) 到您主要的 `app` 配置文件中。然而，如果您这样做，您会发现环境 `app` 供应商将会覆蓋掉您主要 `app` 配置文件的供应商。如果要附加供应商，在您的环境 `app` 配置文件中使用 `append_config` helper 方法：
 
 	'providers' => append_config(array(
 		'LocalOnlyServiceProvider',
@@ -98,7 +98,7 @@
 
 对于一个"实际"的应用程序，不把敏感的设定放在您的配置文件中, 是明智的抉择。如数据库密码, Stripe API Key 和 `加密金钥` 都应该尽可能地不要存在配置文件中。所以，该放在哪里？很庆幸的，Laravel 提供了一个非常简单的方式：使用 "点开头" 的仿环境变量文件来保存这种类型的设定。
 
-首先，[设定您的应用程序](/docs/configuration#environment-configuration)来识别您的机器是否在 `local` 环境中。然后创建一个 `.env.local.php` 文件在您的项目最上层目录中（一般而言与 `composer.json` 文件同目录)。`.env.local.php` 将会回传一个键值组的数组，类似于一般的 Laravel 配置文件：
+首先，[设定您的应用程序](/docs/4.2/configuration#environment-configuration)来识别您的机器是否在 `local` 环境中。然后创建一个 `.env.local.php` 文件在您的项目最上层目录中（一般而言与 `composer.json` 文件同目录)。`.env.local.php` 将会回传一个键值组的数组，类似于一般的 Laravel 配置文件：
 
 	<?php
 
@@ -117,7 +117,7 @@
 
 现在，您可以在正式环境中，创建一个包含正式环境敏感设定值的 `.env.php` 于您项目的最上层目录。如同 `.env.local.php`，正式环境的 `.env.php` 也不应该在版本控制系统中。
 
-> **附注:** 您可以为每个有支持的环境创建所属的配置文件。例如，`development` 环境下，如果 `.env.development.php` 文件若存在将会自动读取进来。
+> **附注:** 您可以为每个有支持的环境创建所属的配置文件。例如，`development` 环境下，如果 `.env.development.php` 文件若存在将会自动读取进来。然而， `production` 环境会始终使用 `.env.php` 文件。
 
 <a name="maintenance-mode"></a>
 ## 维护模式
@@ -143,4 +143,4 @@
 
 ### 维护模式与队列
 
-当应用程序处于维护模式中，将不会处理任何[队列工作](/docs/queues)。所有的队列工作将会在应用程序离开维护模式后继续被进行。
+当应用程序处于维护模式中，将不会处理任何[队列工作](/docs/4.2/queues)。所有的队列工作将会在应用程序离开维护模式后继续被进行。

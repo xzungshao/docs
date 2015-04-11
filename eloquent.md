@@ -58,7 +58,7 @@ Laravel 的 Eloquent ORM 提供了漂亮、简洁的 ActiveRecord 实现来和�
 
 	var_dump($user->name);
 
-> **提示：** 所有[查询构造器](/docs/queries)里的方法，查询 Eloquent 模型时也可以使用。
+> **提示：** 所有[查询构造器](/docs/4.2/queries)里的方法，查询 Eloquent 模型时也可以使用。
 
 #### 根据主键取出一条数据或抛出异常
 
@@ -876,6 +876,14 @@ Eloquent 可以经由动态属性取得关联对象。 Eloquent 会自动进行�
 
 	$user->roles()->detach(1);
 
+`attach` 和 `detach` 方法都可以使用 ID 数组作为参数：
+
+	$user = User::find(1);
+
+	$user->roles()->detach([1, 2, 3]);
+
+	$user->roles()->attach([1 => ['attribute1' => 'value1'], 2, 3]);
+
 #### 使用 Sync 方法同时附加一个以上多对多关联
 
 您也可以使用 `sync` 方法附加关联模型。 `sync` 方法会把根据 ID 数组把关联存到枢纽表。附加完关联后，枢纽表里的模型只会关联到 ID 数组里的 id ：
@@ -1214,4 +1222,4 @@ Eloquent 模型有静态的 `boot` 方法，可以使用它方便的注册事件
 
 	protected $appends = array('is_admin');
 
-把属性加到 `appends` 数组之后，在模型数据转换成数组或 JSON 格式时就会有对应的值。
+把属性加到 `appends` 数组之后，在模型数据转换成数组或 JSON 格式时就会有对应的值。在 `appends` 数组中的值会遵循 `visible` 和 `hidden` 的设定。
