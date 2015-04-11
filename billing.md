@@ -54,22 +54,14 @@ Laravel Cashier 提供语义化，流畅的接口和 [Stripe](https://stripe.com
 
 #### Stripe Key
 
-<<<<<<< HEAD
 最后, 在 `services.php` 配置文件中设置你的 Stripe key：
-=======
-Finally, set your Stripe key in your `services.php` config file:
->>>>>>> upstream/5.0
 
 	'stripe' => [
 		'model'  => 'User',
 		'secret' => env('STRIPE_API_SECRET'),
 	],
 
-<<<<<<< HEAD
-或者，也可以在初始化文件或服务注册里（如 `AppServiceProvider` ）加入 Stripe key：
-=======
-Alternatively you can store it in one of your bootstrap files or service providers, such as the `AppServiceProvider`:
->>>>>>> upstream/5.0
+或者，也可以在初始化文件 (bootstrap) 或服务提供者中（如 `AppServiceProvider` ）加入 Stripe key：
 
 	User::setStripeKey('stripe-key');
 
@@ -216,11 +208,7 @@ If the charge is successful, the full Stripe response will be returned from the 
 <a name="checking-subscription-status"></a>
 ## 确认订购状态
 
-<<<<<<< HEAD
-要确认用户是否订购了服务，使用 `subscribed` 方法：
-=======
-To verify that a user is subscribed to your application, use the `subscribed` method:
->>>>>>> upstream/5.0
+要确认用户是否订购了你的应用，使用 `subscribed` 方法：
 
 	if ($user->subscribed())
 	{
