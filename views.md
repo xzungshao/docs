@@ -45,7 +45,7 @@
 
 	$view = view('greetings', $data);
 
-When passing information in this manner, `$data` should be an array with key/value pairs. Inside your view, you can then access each value using it's corresponding key, like `{{ $key }}` (assuming `$data['$key']` exists).
+如果你使用上面的方法来进行数据传参, `$data` 必须是 键/值 对应的数组数据, 这样在视图里面, 你可以使用对应的键来获取值, 如: `{{ $key }}` 会取得  `$data['$key']` 对应的数据. 
 
 #### 把数据共享给所有视图
 
