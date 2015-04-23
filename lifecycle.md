@@ -18,7 +18,7 @@
 
 #### 首要之事
 
-`public/index.php` 这个文件是对 Laravel 应用程序所有请求的进入点。所有的请求都通过您网页服务器（Apache / Ngix）的配置导向这个文件。 `index.php` 这个文件并没有太多的代码。更确切地说，它只是个起始点，用来加载框架其他的部分。
+`public/index.php` 这个文件是对 Laravel 应用程序所有请求的进入点。所有的请求都通过您网页服务器（Apache / Nginx）的配置导向这个文件。 `index.php` 这个文件并没有太多的代码。更确切地说，它只是个起始点，用来加载框架其他的部分。
 
 `index.php` 加载由 Composer 产生的自动加载器定义，并接收由 `bootstrap/app.php` 文件所产生的 Laravel 应用程序实例。Laravel 自身的第一个动作就是创建一个应用程序 / [服务容器](/docs/5.0/container)的实例。
 
