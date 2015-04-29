@@ -19,9 +19,9 @@ Facades 提供一个静态接口给在应用程序的 [服务容器](/docs/5.0/c
 <a name="explanation"></a>
 ## 解释
 
-在 Laravel 应用程序的环境中，facade 是个提供从容器访问对象的类。`Facade` 类是让这个机制可以运作的原因。Laravel 的 facades 和你建立的任何自定义 facades，将会继承基本的 `Facade` 类。
+在 Laravel 应用程序的环境中，facade 是个提供从容器访问对象的类。`Facade` 类是让这个机制可以运作的原因。Laravel 的 facades 和你建立的任何自定义 facades，将会继承基类 `Facade`。
 
-你的 facade 类只需要去实现一个方法：`getFacadeAccessor`。`getFacadeAccessor` 方法的工作是定义要从容器解析什么。基本的 `Facade` 类利用 `__callStatic()` 魔术方法来从你的 facade 调用到解析出来的对象。
+你的 facade 类只需要去实现一个方法：`getFacadeAccessor`。`getFacadeAccessor` 方法的工作是定义要从容器解析什么。基类 `Facade` 利用 `__callStatic()` 魔术方法来从你的 facade 调用到解析出来的对象。
 
 所以当你对 facade 调用，例如 `Cache::get`，Laravel 从服务容器解析缓存管理类出来，并对该类调用 `get` 方法。用专业口吻来说，Laravel Facades 是使用 Laravel 服务容器作为服务定位器的便捷语法。
 
@@ -45,7 +45,7 @@ Facades 提供一个静态接口给在应用程序的 [服务容器](/docs/5.0/c
 
 	}
 
-Cache 类继承基本的 `Facade` 类并定义一个 `getFacadeAccessor()` 方法。记住，这个方法的工作是返回服务容器绑定的名称。
+Cache 类继承基类 `Facade` 并定义一个 `getFacadeAccessor()` 方法。记住，这个方法的工作是返回服务容器绑定的名称。
 
 当用户在 `Cache` 的 facade 上参考任何的静态方法，Laravel 会从服务容器解析被绑定的 `cache` ，并对该对象执行被请求的方法 (在这个例子中， `get`)。
 
