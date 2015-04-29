@@ -203,6 +203,10 @@
 
 取得应用程序安装根目录的完整路径。
 
+### config_path
+
+Get the fully qualitifed path to the `config` directory.
+
 ### public_path
 
 取得 `public` 文件夹的完整路径。

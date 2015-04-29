@@ -102,11 +102,12 @@ HTTP 请求在实际碰触到应用程序之前，最好是可以层层通过许
 
 有些时候中间件需要在 HTTP 响应已被发送到用户端之后才执行，例如，Laravel 内置的 「session」 中间件，保存 session 数据是在响应已被发送到用户端 _之后_ 才执行。为了做到这一点，你需要定义中间件为「可终止的」。
 
+	use Closure;
 	use Illuminate\Contracts\Routing\TerminableMiddleware;
 
 	class StartSession implements TerminableMiddleware {
 
-		public function handle($request, $next)
+		public function handle($request, Closure $next)
 		{
 			return $next($request);
 		}

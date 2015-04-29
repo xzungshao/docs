@@ -170,3 +170,7 @@ In this example, the `foo` command will be run every minute if it is not already
 #### 在预定工作执行之后 Ping 一个给定的 URL
 
 	$schedule->command('foo')->thenPing($url);
+
+Using the `thenPing($url)` feature requires the Guzzle HTTP library. You can add Guzzle 5 to your project by adding the following line to your `composer.json` file:
+
+	"guzzlehttp/guzzle": "~5.0"

@@ -34,7 +34,6 @@ Homestead 目前是构建且测试于 Vagrant 1.7 版本。
 - Memcached
 - Beanstalkd
 - [Laravel Envoy](/docs/5.0/envoy)
-- Fabric + HipChat Extension
 - [Blackfire Profiler](#blackfire-profiler)
 
 <a name="installation-and-setup"></a>
@@ -60,35 +59,15 @@ Homestead 目前是构建且测试于 Vagrant 1.7 版本。
 
 ### 安装 Homestead
 
-#### 选择 1 - 手动通过 Git 安装（本地端没有 PHP）
-
-如果你不希望在你的本机上安装 PHP ，你可以简单地通过手动复制资源库的方式来安装 Homestead。将资源库复制至你的 "home" 目录中的 `Homestead` 文件夹，如此一来 Homestead 封装包将能提供主机服务给你所有的 Laravel（及 PHP）应用:
+你可以简单地通过手动复制资源库的方式来安装 Homestead。将资源库复制至你的 "home" 目录中的 `Homestead` 文件夹，如此一来 Homestead 封装包将能提供主机服务给你所有的 Laravel（及 PHP）应用:
 
 	git clone https://github.com/laravel/homestead.git Homestead
 
-一旦你安装完 Homestead CLI 工具，即可执行 `bash init.sh` 命令来创建 `Homestead.yaml` 配置文件:
+一旦你克隆完 Homestead 仓库，从 Homestead 目录中执行 `bash init.sh` 命令来创建 `Homestead.yaml` 配置文件:
 
 	bash init.sh
 
 此 `Homestead.yaml` 文件，将会被放置在你的 `~/.homestead` 目录中。
-
-#### 选择 2 - 通过 Composer + PHP 工具
-
-一旦封装包已经安装进你的 Vagrant 安装程序，你就可以准备通过 Composer `global` 命令来安装 Homestead CLI 工具：
-
-	composer global require "laravel/homestead=~2.0"
-
-请务必确认 `homestead` 有被放置在目录 `~/.composer/vendor/bin` 之中，如此一来你才能在终端机中顺利执行 `homestead` 命令。
-
-	PATH=~/.composer/vendor/bin:$PATH
-
-一旦你安装完 Homestead CLI 工具，即可执行 `init` 命令来创建 `Homestead.yaml` 配置文件:
-
-	homestead init
-
-此 `Homestead.yaml` 将会被放置在你的 `~/.homestead` 文件夹中。如果你是使用 Mac 或 Linux，你可以直接在终端机执行 `homestead edit` 命令来编辑 `Homestead.yaml` :
-
-	homestead edit
 
 ### 配置你的 Provider
 
@@ -130,13 +109,15 @@ Homestead 目前是构建且测试于 Vagrant 1.7 版本。
 	      to: /home/vagrant/Code/Laravel/public
 	      hhvm: true
 
+Each site will be accessible by HTTP via port 8000 and HTTPS via port 44300.
+
 ### Bash Aliases
 
 如果要增加 Bash aliases 到你的 Homestead 封装包中，只要将内容添加到 `~/.homestead` 目录最上层的 `aliases` 文件中即可。
 
 ### 启动 Vagrant 封装包
 
-当你根据你的喜好编辑完 `Homestead.yaml` 后，在终端机里进入你的 Homestead 文件夹并执行 `homestead up` 命令。
+当你根据你的喜好编辑完 `Homestead.yaml` 后，在终端机里进入你的 Homestead 文件夹并执行 `vagrant up` 命令。
 
 Vagrant 会将虚拟机开机，并且自动配置你的共享目录和 Nginx 站点。如果要移除虚拟机，可以使用 `vagrant destroy --force` 命令。
 
@@ -157,11 +138,13 @@ Vagrant 会将虚拟机开机，并且自动配置你的共享目录和 Nginx �
 
 要通过 SSH 连接上您的 Homestead 环境，在终端机里进入你的 Homestead 目录并执行  `vagrant ssh` 命令。
 
-因为你可能会经常需要通过 SSH 进入你的 Homestead 虚拟机，可以考虑在你的主要机器上创建一个"别名":
+因为你可能会经常需要通过 SSH 进入你的 Homestead 虚拟机，可以考虑在你的主要机器上创建一个"别名" 用来快速 SSH 进入 Homestead 虚拟机:
 
 	alias vm="ssh vagrant@127.0.0.1 -p 2222"
 
 一旦你创建了这个别名，无论你在主要机器的哪个目录，都可以简单地使用 "vm" 命令来通过 SSH 进入你的 Homestead 虚拟机。
+
+你也可以在 Homestead 目录使用 `vagrant ssh` 命令。
 
 ### 连接数据库
 
@@ -173,7 +156,7 @@ Vagrant 会将虚拟机开机，并且自动配置你的共享目录和 Nginx �
 
 ### 增加更多的站点
 
-在 Homestead 环境上架且运行后，你可能会需要为 Laravel 应用程序增加更多的 Nginx 站点。你可以在单一个 Homestead 环境中运行非常多 Laravel 安装程序。有两种方式可以达成：第一种，在 `Homestead.yaml` 文件中增加站点然后执行 `homestead provision` 或者 `vagrant provision`。
+在 Homestead 环境上架且运行后，你可能会需要为 Laravel 应用程序增加更多的 Nginx 站点。你可以在单一个 Homestead 环境中运行非常多 Laravel 安装程序。有两种方式可以达成：第一种，在 `Homestead.yaml` 文件中增加站点然后在 Homestead 目录中执行 `vagrant provision`。
 
 > **Note:** 这个操作是具有破坏性的，当执行 `provision` 命令，你现有的数据库会被摧毁并重新创建。
 
@@ -190,6 +173,7 @@ Vagrant 会将虚拟机开机，并且自动配置你的共享目录和 Nginx �
 
 - **SSH:** 2222 &rarr; Forwards To 22
 - **HTTP:** 8000 &rarr; Forwards To 80
+- **HTTPS:** 44300 &rarr; Forwards To 443
 - **MySQL:** 33060 &rarr; Forwards To 3306
 - **Postgres:** 54320 &rarr; Forwards To 5432
 
@@ -214,5 +198,7 @@ blackfire 所需的包已经安装在 Homestead box 中，你只需要在 `Homes
 	blackfire:
 	    - id: your-server-id
 	      token: your-server-token
+	      client-id: your-client-id
+	      client-token: your-client-token
 
-当你设定完 Blackfire 的凭证信息，使用 `homestead provision` 或者 `vagrant provision` 令配置生效。当然，你也需要通过阅读[Blackfire 文档](https://blackfire.io/getting-started) 来学习如何在你的浏览器中安装 Blackfire 扩展。
+当你设定完 Blackfire 的凭证信息，使用 `vagrant provision` 令配置生效。当然，你也需要通过阅读[Blackfire 文档](https://blackfire.io/getting-started) 来学习如何在你的浏览器中安装 Blackfire 扩展。

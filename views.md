@@ -105,7 +105,7 @@
 			View::composer('profile', 'App\Http\ViewComposers\ProfileComposer');
 
 			// 使用闭包来指定视图组件
-			View::composer('dashboard', function()
+			View::composer('dashboard', function($view)
 			{
 
 			});
@@ -176,7 +176,7 @@
 
 `View` 的 `composer` 方法可以接受 `*` 作为通配符，所以你可以对所有视图附加 `composer` 如下：
 
-	View::composer('*', function()
+	View::composer('*', function($view)
 	{
 		//
 	});

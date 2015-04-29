@@ -122,6 +122,8 @@ HTML 表单没有支持 `PUT` 、`PATCH` 或 `DELETE` 请求。所以当定义 `
 		return 'User '.$id;
 	});
 
+> **注意：** 路由参数不能包含 `-` 字符。使用下划线替代 (`_`)。
+
 #### 可选择的路由参数
 
 	Route::get('user/{name?}', function($name = null)
@@ -228,9 +230,9 @@ Shared attributes are specified in an array format as the first parameter to the
 <a name="route-group-middleware"></a>
 ### Middleware
 
-Middleware is applied to all routes within the group by defining the list of middleware with the `middleware` parameter on the group attribute array. Middleware will be executed in the order you define this array:
+Middleware are applied to all routes within the group by defining the list of middleware with the `middleware` parameter on the group attribute array. Middleware will be executed in the order you define this array:
 
-	Route::group(['middleware' => 'foo|bar'], function()
+	Route::group(['middleware' => ['foo', 'bar']], function()
 	{
 		Route::get('/', function()
 		{

@@ -336,15 +336,15 @@ Laravel 4.1.26 采用了针对「记得我」cookies 的安全性更新。在此
 
 ### 文件置换
 
-将你的 `public/index.php` 置换成 [这个 repository 的干净版本](https://github.com/laravel/laravel/blob/master/public/index.php)。
+将你的 `public/index.php` 置换成 [这个 repository 的干净版本](https://github.com/laravel/laravel/blob/v4.1.0/public/index.php)。
 
-同样的，将你的 `artisan` 置换成 [这个 repository 的干净版本](https://github.com/laravel/laravel/blob/master/artisan)。
+同样的，将你的 `artisan` 置换成 [这个 repository 的干净版本](https://github.com/laravel/laravel/blob/v4.1.0/artisan)。
 
 ### 添加设置文件及选项
 
-更新你在设置文件 `app/config/app.php` 里的 `aliases` 和 `providers` 数组。而更新的选项值可以在 [这个文件](https://github.com/laravel/laravel/blob/master/app/config/app.php) 中找到。请确定将你后来加入自定和组件所需的 providers / aliases 加回数组中。
+更新你在设置文件 `app/config/app.php` 里的 `aliases` 和 `providers` 数组。而更新的选项值可以在 [这个文件](https://github.com/laravel/laravel/blob/v4.1.0/app/config/app.php) 中找到。请确定将你后来加入自定和组件所需的 providers / aliases 加回数组中。
 
-从 [这个 repository](https://github.com/laravel/laravel/blob/master/app/config/remote.php) 增加 `app/config/remote.php` 文件。
+从 [这个 repository](https://github.com/laravel/laravel/blob/v4.1.0/app/config/remote.php) 增加 `app/config/remote.php` 文件。
 
 在你的 `app/config/session.php` 增加新的选项 `expire_on_close`。而默认值为 `false`。
 
@@ -364,7 +364,7 @@ Laravel 4.1.26 采用了针对「记得我」cookies 的安全性更新。在此
 
 密码提醒功能已经大幅修正拥有更大的弹性。你可以执行 Artisan 指令 `php artisan auth:reminders-controller` 来检查新的存根控制器。你也可以浏览 [更新文件](/docs/security#password-reminders-and-reset) 然后相应的更新你的应用程序。
 
-更新你的 `app/lang/en/reminders.php` 语系文件来符合 [这个新版文件](https://github.com/laravel/laravel/blob/master/app/lang/en/reminders.php)。
+更新你的 `app/lang/en/reminders.php` 语系文件来符合 [这个新版文件](https://github.com/laravel/laravel/blob/v4.1.0/app/lang/en/reminders.php)。
 
 ### 更新环境侦测
 
@@ -380,7 +380,7 @@ Laravel 目前只会产生单一的日志文件：`app/storage/logs/laravel.log`
 
 在你的 `bootstrap/start.php` 文件中，移除调用 `$app->redirectIfTrailingSlash()`。这个方法已不再需要了，因为之后将会改以框架内的 `.htaccess` 来处理。
 
-然后，用 [新版](https://github.com/laravel/laravel/blob/master/public/.htaccess) 替换掉你 Apache 中的 `.htaccess` 文件，来处理结尾的斜线问题。
+然后，用 [新版](https://github.com/laravel/laravel/blob/v4.1.0/public/.htaccess) 替换掉你 Apache 中的 `.htaccess` 文件，来处理结尾的斜线问题。
 
 ### 取得目前路由
 

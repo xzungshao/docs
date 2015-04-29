@@ -20,7 +20,7 @@
 
 	php artisan make:console FooCommand
 
-上面的命令将会协助你自动创建一个类，并保存为文件 `app/Console/FooCommand.php`。
+上面的命令将会协助你自动创建一个类，并保存为文件 `app/Console/Commands/FooCommand.php`。
 
 在创建自定义命令时，加上 `--command` 这个选项，将可以指定之后在终端机使用此自定义命令时，所要输入的自定义命令名称：
 
@@ -126,4 +126,10 @@ Would then allow for this command:
 
 #### 注册一个 Artisan 命令
 
-一旦你的自定义命令撰写完成后，你需要将它注册于 Artisan 它才能被使用。这通常位于 `app/Console/Kernel.php` 这个文件中。在此文件的 `commands` 属性，你会找到一份命令的清单。若要注册你的自定义命令，很简单的你只要将它加入清单中。当 Artisan 启动时，被列于此属性中的所有命令都将被 [服务容器](/docs/5.0/container) 解析，并且被注册于 Artisan 。
+一旦你的自定义命令撰写完成后，你需要将它注册于 Artisan 它才能被使用。这通常位于 `app/Console/Kernel.php` 这个文件中。在此文件的 `commands` 属性，你会找到一份命令的清单。若要注册你的自定义命令，很简单的你只要将它加入清单中。
+
+	protected $commands = [
+		'App\Console\Commands\FooCommand'
+	];
+
+当 Artisan 启动时，被列于此属性中的所有命令都将被 [服务容器](/docs/5.0/container) 解析，并且被注册于 Artisan 。

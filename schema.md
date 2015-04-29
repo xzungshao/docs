@@ -104,6 +104,8 @@ Laravel 的结构生成器 (`Schema`) 提供一个与数据库无关的数据表
 <a name="changing-columns"></a>
 ## 修改字段
 
+**注意：** 当修改一个字段前，确保已经将 `doctrine/dbal` 这个依赖添加至你的 `composer.json` 文件中。
+
 有时候您需要修改一个存在的字段，例如：您可能想增加保存文本字段的长度。通过 `change` 方法让这件事情变得非常容易！假设我们想要将字段 `name` 的长度从 25 增加到 50 的时候：
 
 	Schema::table('users', function($table)

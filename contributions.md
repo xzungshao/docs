@@ -50,7 +50,7 @@ Laravel 框架的源代码托管在 Github， 以下列出了每个 Laravel 相�
 <a name="security-vulnerabilities"></a>
 ## 安全缺陷
 
-如果你在 Laravel 中发现安全缺陷，烦请以电子邮件的方式发送给 Taylor Otwell <a href="mailto:taylorotwell@gmail.com">taylorotwell@gmail.com</a>。所有的安全缺陷都将会被及时的处理掉。
+如果你在 Laravel 中发现安全缺陷，烦请以电子邮件的方式发送给 Taylor Otwell <a href="mailto:taylor@laravel.com">taylor@laravel.com</a>。所有的安全缺陷都将会被及时的处理掉。
 
 <a name="coding-style"></a>
 ## 代码风格

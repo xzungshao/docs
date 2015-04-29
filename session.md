@@ -17,6 +17,8 @@ session 的配置文件配置在 `config/session.php` 中，请务必看一下 s
 
 > **注意：** 如果你需要加密所有的 session 数据，就将选项 `encrypt` 配置为 `true` 。
 
+> **注意：** 当你使用 `cookie` 作为 session 驱动时， 你**永远**不应该从 HTTP Kernel 中移除 `EncryptCookie` 中间件。如果你移除了这个中间件，你的应用容易遭受远程代码攻击。
+
 #### 保留键值
 
 Laravel 框架在内部有使用 `flash` 作为 session 的键值，所以应该避免 session 使用此名称。

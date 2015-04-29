@@ -216,7 +216,9 @@ Laravel 内含一个 Artisan 命令，它将推送到队列的工作拉来下执
 
 接下来，你可以使用 `queue:subscribe` Artisan 命令注册一个 URL，这将会接收新的推送队列工作：
 
-    php artisan queue:subscribe queue_name http://foo.com/queue/receive
+	php artisan queue:subscribe queue_name queue/receive
+
+	php artisan queue:subscribe queue_name http://foo.com/queue/receive
 
 现在当你登录你的 Iron 管理后台，你将会看到你新的推送队列，以及订阅的 URL，你可以订阅许多的 URLs 给你希望的队列，接下来建立一个 route 给你的 `queue/receive` 及从 `Queue::marshal` 方法回传回应：
 
