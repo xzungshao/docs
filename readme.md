@@ -3,7 +3,7 @@
 这是 Laravel5 文档的中文仓库，由 `laravel-china` 发起并维护这个项目。  
 您可在 [laravel-china.org](http://laravel-china.org) 查看在线文档，或是在 [这里](https://phphub.org/topics/507) 下载离线版本。
 
-目前翻译到原文档的 Commit 进度： [b437868](https://github.com/laravel/docs/commit/b437868620fe067e415aefcd90c8934f5dc2623f)
+目前翻译到原文档的 Commit 进度： [#ddb0082](https://github.com/laravel/docs/commit/ddb0082d61cc120f5fdd9ffee99a247549ba5f04)
 
 如果您在阅读的过程中发现问题，欢迎提交 issue 或 pull request。
 
