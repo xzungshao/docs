@@ -13,7 +13,7 @@ Laravel 基于热门的 [SwiftMailer](http://swiftmailer.org) 函数库之上，
 
 ### API 驱动
 
-Laravel 也包含了 Mailgun 及 Mandrill HTTP API 的驱动。这些 API 通常比 SMTP  服务器更简单快速。这两套驱动都需要在应用程序中安装 Guzzle 4 HTTP 函数库。您可在 `composer.josn` 中加入下列代码， 以便在应用中加入 Guzzle 4：
+Laravel 也包含了 Mailgun 及 Mandrill HTTP API 的驱动。这些 API 通常比 SMTP  服务器更简单快速。这两套驱动都需要在应用程序中安装 Guzzle 4 HTTP 函数库。您可在 `composer.josn` 中加入下列代码， 以便在应用中加入 Guzzle：
 
 	"guzzlehttp/guzzle": "~5.0"
 
