@@ -31,7 +31,7 @@ Laravel 框架的源代码托管在 Github， 以下列出了每个 Laravel 相�
 <a name="core-development-discussion"></a>
 ## 核心开发讨论区
 
-讨论区在 (Freenode) 上的 \#laravel-dev IRC 频道， 讨论内容包括缺陷，新特性和计划实施的已有特性. Laravel 项目维护者 Taylor Otwell 通常会在周一至周五的美国芝加哥时间 8am-5am 上线 (UTC-06:00 or America/Chicago)， 当然其它时间他也会偶尔出现。
+讨论区在 (Freenode) 上的 \#laravel-dev IRC 频道， 讨论内容包括缺陷，新特性和计划实施的已有特性. Laravel 项目维护者 Taylor Otwell 通常会在周一至周五的美国芝加哥时间 8am-5pm 上线 (UTC-06:00 or America/Chicago)， 当然其它时间他也会偶尔出现。
 
 \#laravel-dev IRC 频道是对所有人开放的，欢迎任何有兴趣的朋友参与进来讨论或哪怕只是围观!
 
