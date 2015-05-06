@@ -3,7 +3,7 @@
 - [介绍](#introduction)
 - [用法](#usage)
 - [在命令行接口以外的地方调用命令](#calling-commands-outside-of-cli)
-- [调用 Artisan 命令](#scheduling-artisan-commands)
+- [定时调用 Artisan 命令](#scheduling-artisan-commands)
 
 <a name="introduction"></a>
 ## 介绍
