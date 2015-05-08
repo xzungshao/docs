@@ -124,31 +124,6 @@ Laravel Cashier 提供语义化，流畅的接口和 [Stripe](https://stripe.com
 
 如果付款成功, 一个完整的 Stripe 响应会从这个方法返回。
 
-<a name="single-charges"></a>
-## Single Charges
-
-If you would like to make a "one off" charge against a subscribed customer's credit card, you may use the `charge` method:
-
-	$user->charge(100);
-
-The `charge` method accepts the amount you would like to charge in the **lowest denominator of the currency**. So, for example, the example above will charge 100 cents, or $1.00, against the user's credit card.
-
-The `charge` method accepts an array as its second argument, allowing you to pass any options you wish to the underlying Stripe charge creation:
-
-	$user->charge(100, [
-		'source' => $token,
-		'receipt_email' => $user->email,
-	]);
-
-The `charge` method will return `false` if the charge fails. This typically indicates the charge was denied:
-
-	if ( ! $user->charge(100))
-	{
-		// The charge was denied...
-	}
-
-If the charge is successful, the full Stripe response will be returned from the method.
-
 <a name="no-card-up-front"></a>
 ## 免信用卡试用
 
