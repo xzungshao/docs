@@ -68,11 +68,11 @@ Laravel 会自动在每一位用户的 session 中放置随机的 `token` ，这
 
 	<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
 
-当然也可以在 Blade [模板引擎](/docs/5.0/templates)使用：
+当然也可以在 Blade [模板引擎](/docs/{{version}}/templates)使用：
 
 	<input type="hidden" name="_token" value="{{ csrf_token() }}">
 
-您不需要手动验证在 POST、PUT、DELETE 请求的 CSRF token。 `VerifyCsrfToken` [HTTP  中间件](/docs/5.0/middleware)将保存在 session 中的请求输入的 token 配对来验证 token 。
+您不需要手动验证在 POST、PUT、DELETE 请求的 CSRF token。 `VerifyCsrfToken` [HTTP  中间件](/docs/{{version}}/middleware)将保存在 session 中的请求输入的 token 配对来验证 token 。
 
 #### X-CSRF-TOKEN
 
@@ -363,8 +363,8 @@ Laravel 模型绑定提供方便的方式将模型实体注入到您的路由中
 
 	abort(404);
 
-`abort` 辅助函数只是简单抛出带有特定状态代码的 `Symfony\Component\HttpFoundation\Exception\HttpException` 。
+`abort` 辅助函数只是简单抛出带有特定状态代码的 `Symfony\Component\HttpKernel\Exception\HttpException` 。
 
 第二，您可以手动抛出 `Symfony\Component\HttpKernel\Exception\NotFoundHttpException` 的实体。
 
-有关如何处理 404 异常状况和自定响应的更多信息，可以参考[错误](/docs/5.0/errors#http-exceptions)章节内的文档。
+有关如何处理 404 异常状况和自定响应的更多信息，可以参考[错误](/docs/{{version}}/errors#http-exceptions)章节内的文档。

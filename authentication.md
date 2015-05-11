@@ -58,7 +58,7 @@ Laravel 已经预设了两个认证相关的控制器。 `AuthController` 处理
 
 	}
 
-`attempt` 方法可以接受由键值对组成的数组作为第一个参数。`password` 的值会先进行 [哈希](/docs/5.0/hashing)。数组中的其他
+`attempt` 方法可以接受由键值对组成的数组作为第一个参数。`password` 的值会先进行 [哈希](/docs/{{version}}/hashing)。数组中的其他
 值会被用来查询数据表里的用户。所以，在上面的示例中，会根据 `email` 列的值找出用户。如果找到该用户，会比对数据库中存储的哈希过的密码以及数组中的哈希过后的 `password`值。假设两个哈希后的密码相同，会重新为用户启动认证通过的 session。
 
 如果认证成功， `attempt` 将会返回 `true`。否则则返回 `false`。
@@ -141,7 +141,7 @@ Laravel 已经预设了两个认证相关的控制器。 `AuthController` 处理
 
 #### 认证事件
 
-当 `attempt` 方法被调用时，`auth.attempt` [事件](/docs/5.0/events) 会被触发。假设用户尝试认证成功并且登陆了，`auth.login` 事件会被触发。
+当 `attempt` 方法被调用时，`auth.attempt` [事件](/docs/{{version}}/events) 会被触发。假设用户尝试认证成功并且登陆了，`auth.login` 事件会被触发。
 
 <a name="retrieving-the-authenticated-user"></a>
 ## 取得经过认证的用户
@@ -195,7 +195,7 @@ Laravel 已经预设了两个认证相关的控制器。 `AuthController` 处理
 
 	}
 
-第三，你可以使用 `Illuminate\Contracts\Auth\Authenticatable` contract 类型提示。这个类型提示可以用在控制器的构造方法，控制器的其他方法，或是其他可以通过[服务容器](/docs/5.0/container) 解析的类的构造方法：
+第三，你可以使用 `Illuminate\Contracts\Auth\Authenticatable` contract 类型提示。这个类型提示可以用在控制器的构造方法，控制器的其他方法，或是其他可以通过[服务容器](/docs/{{version}}/container) 解析的类的构造方法：
 
 	<?php namespace App\Http\Controllers;
 
@@ -219,7 +219,7 @@ Laravel 已经预设了两个认证相关的控制器。 `AuthController` 处理
 <a name="protecting-routes"></a>
 ## 保护路由
 
-[路由中间件](/docs/5.0/middleware) 只允许通过认证的用户访问指定的路由。Laravel 默认提供了 `auth` 中间件，放在 `app\Http\Middleware\Authenticate.php`。 你需要做的只是将其加到一个路由定义中：
+[路由中间件](/docs/{{version}}/middleware) 只允许通过认证的用户访问指定的路由。Laravel 默认提供了 `auth` 中间件，放在 `app\Http\Middleware\Authenticate.php`。 你需要做的只是将其加到一个路由定义中：
 
 	// With A Route Closure...
 
@@ -248,7 +248,7 @@ HTTP 基本认证提供了一个快速的方式来认证用户而不用特定设
 
 #### 设定无状态的 HTTP 基本过滤器
 
-你可能想要使用 HTTP 基本认证，但不会在 session 里设置用户身份的 cookie，这在 API 认证时特別有用。如果要這樣做，[定义一个中间件](/docs/5.0/middleware)并调用 `onceBasic` 方法：
+你可能想要使用 HTTP 基本认证，但不会在 session 里设置用户身份的 cookie，这在 API 认证时特別有用。如果要這樣做，[定义一个中间件](/docs/{{version}}/middleware)并调用 `onceBasic` 方法：
 
 	public function handle($request, Closure $next)
 	{
@@ -294,7 +294,7 @@ Laravel 还包含了 `Auth\PasswordController` 其中包含重设用户密码的
 
 	"laravel/socialite": "~2.0"
 
-接下來，在你的 `config/app.php` 配置文件中注册 `Laravel\Socialite\SocialiteServiceProvider`。也可以注册 [facade](/docs/5.0/facades)：
+接下來，在你的 `config/app.php` 配置文件中注册 `Laravel\Socialite\SocialiteServiceProvider`。也可以注册 [facade](/docs/{{version}}/facades)：
 
 	'Socialize' => 'Laravel\Socialite\Facades\Socialite',
 

@@ -61,7 +61,7 @@ Laravel 服务容器是管理类依赖的强力工具。依赖注入是比较专
 
 ### 绑定
 
-几乎你所有服务容器将与已注册的[服务提供者](/docs/5.0/providers)绑定，这些例子都在情境(context)使用容器做说明，如果应用程序其它地方需要容器实例，如工厂(factory)，能以类型提示 `Illuminate\Contracts\Container\Container` 注入一个容器实例。另外，你可以使用 `App` facade 访问容器。
+几乎你所有服务容器将与已注册的[服务提供者](/docs/{{version}}/providers)绑定，这些例子都在情境(context)使用容器做说明，如果应用程序其它地方需要容器实例，如工厂(factory)，能以类型提示 `Illuminate\Contracts\Container\Container` 注入一个容器实例。另外，你可以使用 `App` facade 访问容器。
 
 #### 注册基本解析器
 
@@ -298,7 +298,7 @@ Laravel 提供了几个机会来使用服务容器以提高应用程序的灵活
 
 	}
 
-在这个例子中，`OrderRepository` 类将被自动注入到控制器中。这意味着在进行 [单元测试](/docs/5.0/testing) 时，我们可以绑定一个假的 `OrderRepository` 到容器中来代替我们对数据库的真实操作，避免对真实数据库的影响。
+在这个例子中，`OrderRepository` 类将被自动注入到控制器中。这意味着在进行 [单元测试](/docs/{{version}}/testing) 时，我们可以绑定一个假的 `OrderRepository` 到容器中来代替我们对数据库的真实操作，避免对真实数据库的影响。
 
 #### 使用容器的其他几个例子
 

@@ -31,7 +31,7 @@ Laravel 5.0 在默认的项目上引进了新的应用程序架构。新的架�
 
 所有 Laravel 主要组件实现所用的接口都放在 `illuminate/contracts` 项目下。这个项目没有其他的外部依赖。这些方便、集成的接口，可以让你用来让依赖注入变得低耦合，将可以简单作为 Laravel Facades 的替代选项。
 
-更多关于 contracts 的信息，参考[完整文档](/docs/5.0/contracts)。
+更多关于 contracts 的信息，参考[完整文档](/docs/{{version}}/contracts)。
 
 ### 路由缓存
 
@@ -41,11 +41,11 @@ Laravel 5.0 在默认的项目上引进了新的应用程序架构。新的架�
 
 除了像 Laravel 4 风格的路由「过滤器（ filters ）」，Laravel 5 现在也支持 HTTP 中间件，而原本的认证和 CSRF 「过滤器」已经改写成中间件。中间件提供了单一、一致的接口取代了各种过滤器，让你在请求进到应用程序前，可以方便地检查甚至拒绝请求。
 
-更多关于中间件的信息，参考[完整文档](/docs/5.0/middleware)。
+更多关于中间件的信息，参考[完整文档](/docs/{{version}}/middleware)。
 
 ### 控制器方法依赖注入
 
-除了之前有的控制器依赖注入，你现在可以在控制器方法使用类型提示（ type-hint ）进行依赖注入。[服务容器](/docs/5.0/container)会自动注入依赖，即使路由包含了其他参数也不成问题：
+除了之前有的控制器依赖注入，你现在可以在控制器方法使用类型提示（ type-hint ）进行依赖注入。[服务容器](/docs/{{version}}/container)会自动注入依赖，即使路由包含了其他参数也不成问题：
 
     public function createPost(Request $request, PostRepository $posts)
     {
@@ -86,7 +86,7 @@ Laravel 5.0 在默认的项目上引进了新的应用程序架构。新的架�
 
     }
 
-更多关于使用事件的信息，参考[完整文档](/docs/5.0/events)。
+更多关于使用事件的信息，参考[完整文档](/docs/{{version}}/events)。
 
 ### 命令（ Commands ）、队列（ Queueing ）
 
@@ -127,7 +127,7 @@ Laravel 的基底控制器使用了新的 `DispatchesCommands` trait，让你可
 
     $this->dispatch(new PurchasePodcastCommand($user, $podcast));
 
-当然，你也可以将命令视为同步执行（而不会被放到队列里）的任务。事实上，使用命令是个好方式，让你可以封装应用程序需要执行的复杂任务。更多相关的信息，参考 [command bus](/docs/5.0/bus) 文档。
+当然，你也可以将命令视为同步执行（而不会被放到队列里）的任务。事实上，使用命令是个好方式，让你可以封装应用程序需要执行的复杂任务。更多相关的信息，参考 [command bus](/docs/{{version}}/bus) 文档。
 
 ### 数据库队列
 
@@ -143,7 +143,7 @@ Laravel 的基底控制器使用了新的 `DispatchesCommands` trait，让你可
 
     $schedule->command('artisan:command')->dailyAt('15:00');
 
-当然，快参考[完整文档](/docs/5.0/artisan#scheduling-artisan-commands)学习所有调用相关知识。
+当然，快参考[完整文档](/docs/{{version}}/artisan#scheduling-artisan-commands)学习所有调用相关知识。
 
 ### Tinker、Psysh
 
@@ -153,13 +153,13 @@ Laravel 的基底控制器使用了新的 `DispatchesCommands` trait，让你可
 
 ### DotEnv
 
-比起一堆令人困惑的、嵌套的环境配置文件目录，Laravel 5 现在使用了 Vance Lucas 的 [DotEnv](https://github.com/vlucas/phpdotenv)。这个套件提供了超级简单的方式管理配置文件，并且让 Laravel 5 环境检测变得轻松。更多的细节，参考完整的[配置文件文档](/docs/5.0/configuration#environment-configuration)。
+比起一堆令人困惑的、嵌套的环境配置文件目录，Laravel 5 现在使用了 Vance Lucas 的 [DotEnv](https://github.com/vlucas/phpdotenv)。这个套件提供了超级简单的方式管理配置文件，并且让 Laravel 5 环境检测变得轻松。更多的细节，参考完整的[配置文件文档](/docs/{{version}}/configuration#environment-configuration)。
 
 ### Laravel Elixir
 
 Jeffrey Way 的 Laravel Elixir 提供了一个流畅、语义化的接口，可以编译以及合并 assets。如果你曾经在学习 Grunt 或 Gulp 被吓到，不必再害怕了。Elixir 让使用 Gulp 编译 Less、Sass 及 CoffeeScript 变得简单。它甚至可以帮你执行测试！
 
-更多关于 Elixir 的信息，参考[完整文档](/docs/5.0/elixir)。
+更多关于 Elixir 的信息，参考[完整文档](/docs/{{version}}/elixir)。
 
 ### Laravel Socialite
 
@@ -175,7 +175,7 @@ Laravel Socialite 是个可选的，Laravel 5.0 以上兼容的套件，提供�
         $user = Socialize::with('twitter')->user();
     }
 
-不用再花上数小时撰写 OAuth 的认证流程。数分钟就可开始！查看[完整文档](/docs/5.0/authentication#social-authentication) 里有所有的细节。
+不用再花上数小时撰写 OAuth 的认证流程。数分钟就可开始！查看[完整文档](/docs/{{version}}/authentication#social-authentication) 里有所有的细节。
 
 ### Flysystem 集成
 
@@ -184,7 +184,7 @@ Laravel 现在包含了强大的 [Flysystem](https://github.com/thephpleague/fly
 
     Storage::put('file.txt', 'contents');
 
-更多关于 Laravel 文件系统集成，参考[完整文档](/docs/5.0/filesystem)。
+更多关于 Laravel 文件系统集成，参考[完整文档](/docs/{{version}}/filesystem)。
 
 ### Form Requests
 
@@ -216,7 +216,7 @@ Laravel 5.0 使用了 **form requests**，是继承了 `Illuminate\Foundation\Ht
         var_dump($request->input());
     }
 
-当 Laravel 的服务容器辨别出要注入的类别是个 `FormRequest` 实例，请求会被**自动验证**。意味着，当你的控制器动作被调用了，你可以安全的假设 HTTP 的请求输入己经被验证过，根据你在 form request 类别里自定的规则。甚至，若这个请求验证不通过，一个 HTTP 重定向（可以自定），会自动发出，错误消息可以被闪存到 session 或是转换成 JSON 返回。**表单验证就是如此的简单。**更多关于 `FormRequest` 验证，参考[文档](/docs/5.0/validation#form-request-validation)。
+当 Laravel 的服务容器辨别出要注入的类别是个 `FormRequest` 实例，请求会被**自动验证**。意味着，当你的控制器动作被调用了，你可以安全的假设 HTTP 的请求输入己经被验证过，根据你在 form request 类别里自定的规则。甚至，若这个请求验证不通过，一个 HTTP 重定向（可以自定），会自动发出，错误消息可以被闪存到 session 或是转换成 JSON 返回。**表单验证就是如此的简单。**更多关于 `FormRequest` 验证，参考[文档](/docs/{{version}}/validation#form-request-validation)。
 
 ### 简易控制器请求验证
 
@@ -232,7 +232,7 @@ Laravel 5 基类控制器包含一个 `ValidatesRequests` trait。这个 trait �
 
 如果验证失败，会抛出异常并且返回对应的 HTTP 回应到浏览器。验证错误信息会被闪存到 session！而如果请求是 AJAX 请求，Laravel 会自动返回 JSON 格式的验证错误信息。
 
-更多关于这个新方法的信息，参考[这个文档](/docs/5.0/validation#controller-validation)。
+更多关于这个新方法的信息，参考[这个文档](/docs/{{version}}/validation#controller-validation)。
 
 ### 新的 Generators
 

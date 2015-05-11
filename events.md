@@ -71,7 +71,7 @@ Laravel 里的 `EventServiceProvider` 提供了一个方便的地方注册所有
 <a name="queued-event-handlers"></a>
 ## 事件处理队列
 
-需要把事件处理程序放到 [队列](/docs/5.0/queues) 吗？这不能变得再更简单了。当你产生处理程序，简单地使用 `--queued` 旗标：
+需要把事件处理程序放到 [队列](/docs/{{version}}/queues) 吗？这不能变得再更简单了。当你产生处理程序，简单地使用 `--queued` 旗标：
 
 	php artisan handler:event SendPurchaseConfirmation --event=PodcastWasPurchased --queued
 
@@ -118,7 +118,7 @@ Laravel 里的 `EventServiceProvider` 提供了一个方便的地方注册所有
 		 * 注册监听器给订阅者。
 		 *
 		 * @param  Illuminate\Events\Dispatcher  $events
-		 * @return array
+		 * @return void
 		 */
 		public function subscribe($events)
 		{
@@ -137,6 +137,6 @@ Laravel 里的 `EventServiceProvider` 提供了一个方便的地方注册所有
 
 	Event::subscribe($subscriber);
 
-你也可以使用 [服务容器](/docs/5.0/container) 自动解析订阅者。简单地传递订阅者的名字给 `subscribe` 方法就可以做到：
+你也可以使用 [服务容器](/docs/{{version}}/container) 自动解析订阅者。简单地传递订阅者的名字给 `subscribe` 方法就可以做到：
 
 	Event::subscribe('UserEventHandler');

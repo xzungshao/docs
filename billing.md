@@ -7,6 +7,7 @@
 - [免信用卡试用](#no-card-up-front)
 - [订购转换](#swapping-subscriptions)
 - [订购数量](#subscription-quantity)
+- [订购税额](#subscription-tax)
 - [取消订购](#cancelling-a-subscription)
 - [恢复订购](#resuming-a-subscription)
 - [确认订购状态](#checking-subscription-status)
@@ -163,6 +164,18 @@ Laravel Cashier 提供语义化，流畅的接口和 [Stripe](https://stripe.com
 	// Subtract five to the subscription's current quantity...
 	$user->subscription()->decrement(5);
 
+<a name="subscription-tax"></a>
+## Subscription Tax
+
+With Cashier, it's easy to override the `tax_percent` value sent to Stripe. To specify the tax percentage a user pays on a subscription, implement the `getTaxPercent` method on your model, and return a numeric value between 0 and 100, with no more than 2 decimal places.
+
+	public function getTaxPercent()
+	{
+		return 20;
+	}
+
+This enables you to apply a tax rate on a model-by-model basis, which may be helpful for a user base that spans multiple countries.
+
 <a name="cancelling-a-subscription"></a>
 ## 取消订购
 
@@ -191,7 +204,7 @@ Laravel Cashier 提供语义化，流畅的接口和 [Stripe](https://stripe.com
 		//
 	}
 
-`subscribed` 方法很适合用在 [路由中间件](/docs/5.0/middleware):
+`subscribed` 方法很适合用在 [路由中间件](/docs/{{version}}/middleware):
 
 	public function handle($request, Closure $next)
 	{

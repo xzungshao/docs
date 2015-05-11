@@ -205,7 +205,7 @@
 
 ### config_path
 
-Get the fully qualitifed path to the `config` directory.
+Get the fully qualified path to the `config` directory.
 
 ### public_path
 

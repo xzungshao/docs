@@ -51,7 +51,7 @@
 模式为 `VALUE_IS_ARRAY` 表示调用命令时可以多次使用此选项来传入多个值：
 
 	InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY
-	
+
 Would then allow for this command:
 
 	php artisan foo --option=bar --option=baz
@@ -132,4 +132,4 @@ Would then allow for this command:
 		'App\Console\Commands\FooCommand'
 	];
 
-当 Artisan 启动时，被列于此属性中的所有命令都将被 [服务容器](/docs/5.0/container) 解析，并且被注册于 Artisan 。
+当 Artisan 启动时，被列于此属性中的所有命令都将被 [服务容器](/docs/{{version}}/container) 解析，并且被注册于 Artisan 。

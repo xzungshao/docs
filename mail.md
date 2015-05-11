@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 邮件
 
 - [配置](#configuration)
@@ -114,7 +115,7 @@ Laravel 也包含了 Mailgun 及 Mandrill HTTP API 的驱动。这些 API 通常
 
 #### 将邮件消息加入队列
 
-发送电子邮件消息会大幅延长应用程序的响应时间，因此许多开发者选择将邮件消息加入队列并于后台发送。 Laravel  使用内置 [统一的 queue API](/docs/5.0/queues) ，让您轻松地完成此工作。要将邮件消息加入队列，只要使用 `Mail` 类的 `queue` 方法：
+发送电子邮件消息会大幅延长应用程序的响应时间，因此许多开发者选择将邮件消息加入队列并于后台发送。 Laravel  使用内置 [统一的 queue API](/docs/{{version}}/queues) ，让您轻松地完成此工作。要将邮件消息加入队列，只要使用 `Mail` 类的 `queue` 方法：
 
 	Mail::queue('emails.welcome', $data, function($message)
 	{

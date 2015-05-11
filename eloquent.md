@@ -132,7 +132,7 @@ Doing this will let you catch the exception so you can log and display an error 
 
 	$user = User::on('connection-name')->find(1);
 
-如果您在使用 [读取 / 写入连接](/docs/5.0/database#read-write-connections), 您可以通过如下命令来强制查询使用 `写入` 连接：
+如果您在使用 [读取 / 写入连接](/docs/{{version}}/database#read-write-connections), 您可以通过如下命令来强制查询使用 `写入` 连接：
 
 	$user = User::onWriteConnection()->find(1);
 

@@ -20,7 +20,7 @@
 
 `public/index.php` 这个文件是对 Laravel 应用程序所有请求的进入点。所有的请求都通过您网页服务器（Apache / Nginx）的配置导向这个文件。 `index.php` 这个文件并没有太多的代码。更确切地说，它只是个起始点，用来加载框架其他的部分。
 
-`index.php` 加载由 Composer 产生的自动加载器定义，并接收由 `bootstrap/app.php` 文件所产生的 Laravel 应用程序实例。Laravel 自身的第一个动作就是创建一个应用程序 / [服务容器](/docs/5.0/container)的实例。
+`index.php` 加载由 Composer 产生的自动加载器定义，并接收由 `bootstrap/app.php` 文件所产生的 Laravel 应用程序实例。Laravel 自身的第一个动作就是创建一个应用程序 / [服务容器](/docs/{{version}}/container)的实例。
 
 #### HTTP / 终端核心
 
@@ -28,7 +28,7 @@
 
 HTTP 核心扩展了 `Illuminate\Foundation\Http\Kernel` 类，它定义了一个 `bootstrappers` 数组，在请求被执行前会执行。这些启动器（bootstrappers）会进行配置错误处理，日志记录，侦测应用程序环境，以及其他在请求真正被处理之前，需要完成的工作。
 
-HTTP 核心也定义了一份 HTTP [中间件](/docs/5.0/middleware)清单，所有的请求在被应用程序处理之前都必须经过它们。这些中间件有负责处理 HTTP session 的读写，决定应用程序是否处于维护模式，查验跨站请求伪造（CSRF）标记，以及其他更多的功能。
+HTTP 核心也定义了一份 HTTP [中间件](/docs/{{version}}/middleware)清单，所有的请求在被应用程序处理之前都必须经过它们。这些中间件有负责处理 HTTP session 的读写，决定应用程序是否处于维护模式，查验跨站请求伪造（CSRF）标记，以及其他更多的功能。
 
 HTTP 核心 `handle` 方法的方法签名相当简单：它接收一个 `Request` 并返回一个 `Response`。把核心想像成一个大的黑盒子，用来代表你整个的应用程序。对它输入 HTTP 请求，它将返回 HTTP 响应。
 

@@ -49,7 +49,7 @@ Artisan 是 Laravel 内置的命令行接口。它提供了一些有用的命令
 		//
 	});
 
-你甚至可以把 Artisan 命令放到队列，他们会通过 [队列工作者](/docs/5.0/queues) 在后台执行：
+你甚至可以把 Artisan 命令放到队列，他们会通过 [队列工作者](/docs/{{version}}/queues) 在后台执行：
 
 	Route::get('/foo', function()
 	{

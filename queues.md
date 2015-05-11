@@ -43,9 +43,9 @@ Laravel 队列组件提供一个统一的 API 集成了许多不同的队列服�
 
     Queue::push(new SendEmail($message));
 
-> **注意:** 在这个例子当中，我们直接使用 `Queue` Facade，然而，常见的作法是借由 [Command Bus](/docs/5.0/bus) 去分派队列命令。我们将会在这篇文章中继续使用 `Queue` Facade，不过，也要熟悉使用 command bus，因为它能够同时分派你的网站应用程序中队列与同步的命令。
+> **注意:** 在这个例子当中，我们直接使用 `Queue` Facade，然而，常见的作法是借由 [Command Bus](/docs/{{version}}/bus) 去分派队列命令。我们将会在这篇文章中继续使用 `Queue` Facade，不过，也要熟悉使用 command bus，因为它能够同时分派你的网站应用程序中队列与同步的命令。
 
-默认情况下，`make:command` Artisan 命令会产生一个 "self-handling" 的命令，意味着命令里会包含一个 `handle` 方法。这个方法将会在队列执行时被调用。你可以在 `handle` 方法使用时提示传入任何你需要的依赖，而 [服务容器](/docs/5.0/container) 会自动注入他们：
+默认情况下，`make:command` Artisan 命令会产生一个 "self-handling" 的命令，意味着命令里会包含一个 `handle` 方法。这个方法将会在队列执行时被调用。你可以在 `handle` 方法使用时提示传入任何你需要的依赖，而 [服务容器](/docs/{{version}}/container) 会自动注入他们：
 
     public function handle(UserRepository $users)
     {

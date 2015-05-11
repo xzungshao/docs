@@ -21,7 +21,7 @@
 
 推荐的升级方式是建立一个全新的 Laravel `5.0` 项目，然后复制您在 `4.2` 的文件到此新的应用程序，这将包含控制器、路由、Eloquent 模型、Artisan 命令（Asset）、资源和关于此应用程序的其他特定文件。
 
-最开始，[安装新的 Laravel 5 应用程序](/docs/5.0/installation)到新的本地目录下，我们将详细探讨迁移各部分的过程。
+最开始，[安装新的 Laravel 5 应用程序](/docs/{{version}}/installation)到新的本地目录下，我们将详细探讨迁移各部分的过程。
 
 ### Composer 依赖与组件
 
@@ -40,7 +40,7 @@
 
 此外，复制原先自定义的 `.env.php` 文件，并修改为 `.env` (本机环境的真实设置值) 和 `.env.example` (给其他团队成员的示例)。
 
-更多关于环境设置值，请见[完整文档](/docs/5.0/configuration#environment-configuration)。
+更多关于环境设置值，请见[完整文档](/docs/{{version}}/configuration#environment-configuration)。
 
 > **注意:** 在部署 Laravel 5 应用程序之前，您需要在正式主机上放置 `.env` 文件并设置适当的值。
 
@@ -72,17 +72,13 @@ Laravel 5 并没有将过滤器移除，您一样可以使用 `before` 和 `afte
 
 ### 全局 CSRF
 
-默认情况下，所有路由都会使用[CSRF 保护](/docs/5.0/routing#csrf-protection)。若想关闭他们，或是在指定在特定路由开启，请移除 `App\Http\Kernel` 中 `middleware` 数组内的这一行：
-
-    'App\Http\Middleware\VerifyCsrfToken',
+默认情况下，所有路由都会使用[CSRF 保护](/docs/{{version}}/routing#csrf-protection)。若想关闭他们，或是在指定在特定路由开启，请移除 `App\Http\Kernel` 中 `middleware` 数组内的这一行：
 
 如果您想在其他地方使用它，加入这一行到 `$routeMiddleware`:
 
     'csrf' => 'App\Http\Middleware\VerifyCsrfToken',
 
-现在，您可于路由内使用 `['middleware' => 'csrf']` 即可个别添加中间件到路由/控制器。了解更多关于中间件，请见[完整文档](/docs/5.0/middleware)。
-
-### Eloquent 模型
+现在，您可于路由内使用 `['middleware' => 'csrf']` 即可个别添加中间件到路由/控制器。了解更多关于中间件，请见[完整文档](/docs/{{version}}/middleware)。
 
 你可以建立新的 `app/Models` 目录来放置所有 Eloquent 模型。并且同样的，在 `composer.json` 将此目录添加到 `classmap` 内。
 
@@ -90,7 +86,7 @@ Laravel 5 并没有将过滤器移除，您一样可以使用 `before` 和 `afte
 
 #### Eloquent 缓存
 
-Eloquent 不再提供 `remember` 方法来缓存查询。现在你需要手动使用 `Cache::remember` 方法快速缓存。了解更多关于缓存，请见[完整文档](/docs/5.0/cache)。
+Eloquent 不再提供 `remember` 方法来缓存查询。现在你需要手动使用 `Cache::remember` 方法快速缓存。了解更多关于缓存，请见[完整文档](/docs/{{version}}/cache)。
 
 ### 会员认证模型
 
@@ -130,7 +126,7 @@ use Authenticatable, CanResetPassword;
 
 ### Cashier 的用户需要的修改
 
-[Laravel Cashier](/docs/5.0/billing) 的 trait 和接口名称已作修改。trait 请改用 `Laravel\Cashier\Billable` 取代 `BillableTrait`。接口请改用 `Laravel\Cashier\Contracts\Billable` 取代 `Larave\Cashier\BillableInterface` 。不需要修改任何方法。
+[Laravel Cashier](/docs/{{version}}/billing) 的 trait 和接口名称已作修改。trait 请改用 `Laravel\Cashier\Billable` 取代 `BillableTrait`。接口请改用 `Laravel\Cashier\Contracts\Billable` 取代 `Larave\Cashier\BillableInterface` 。不需要修改任何方法。
 
 ### Artisan 命令
 
@@ -146,7 +142,7 @@ use Authenticatable, CanResetPassword;
 
 ### 全局 IoC 绑定
 
-若您在 `start/global.php` 有绑定任何 [IoC](/docs/5.0/container)，请将它们复制到 `app/Providers/AppServiceProvider.php` 内的 `register` 方法，您可能需要引入 `App` facade。
+若您在 `start/global.php` 有绑定任何 [IoC](/docs/{{version}}/container)，请将它们复制到 `app/Providers/AppServiceProvider.php` 内的 `register` 方法，您可能需要引入 `App` facade。
 
 你可以选择将这些绑定，依照类型拆分到不同的服务提供者中。
 
@@ -188,7 +184,7 @@ use Authenticatable, CanResetPassword;
 
 ### 表单和 HTML 辅助函数
 
-如果您使用表单或 HTML 辅助函数，您将会看到以下错误 `class 'Form' not found` 或 `class 'Html' not found` 。Form 类以及 HTML 辅助函数在 Laravel 5.0 中已经废弃了；不过，这里有一些替代方法，比如基于社区驱动的，由 [Laravel Collective](http://laravelcollective.com/docs/5.0/html) 维护。
+如果您使用表单或 HTML 辅助函数，您将会看到以下错误 `class 'Form' not found` 或 `class 'Html' not found` 。Form 类以及 HTML 辅助函数在 Laravel 5.0 中已经废弃了；不过，这里有一些替代方法，比如基于社区驱动的，由 [Laravel Collective](http://laravelcollective.com/docs/{{version}}/html) 维护。
 
 比如，你可以在 `composer.json` 文件中的 `require` 区块增加 `"laravelcollective/html": "~5.0"`。
 

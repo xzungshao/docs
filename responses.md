@@ -19,7 +19,7 @@
 
 #### 建立自定义响应
 
-但是以大部分的路由及控制器所执行的动作来说，你需要返回完整的 `Illuminate\Http\Response` 实例或是一个[视图](/docs/5.0/views)。返回一个完整的 `Response` 实例时，你能够自定义响应的 HTTP 状态码以及响应头。`Response` 实例继承了 `Symfony\Component\HttpFoundation\Response` 类，它提供了很多方法来建立 HTTP 响应。
+但是以大部分的路由及控制器所执行的动作来说，你需要返回完整的 `Illuminate\Http\Response` 实例或是一个[视图](/docs/{{version}}/views)。返回一个完整的 `Response` 实例时，你能够自定义响应的 HTTP 状态码以及响应头。`Response` 实例继承了 `Symfony\Component\HttpFoundation\Response` 类，它提供了很多方法来建立 HTTP 响应。
 
 	use Illuminate\Http\Response;
 
@@ -63,7 +63,7 @@
 
 #### 返回重定向并且加上快闪数据（ Flash Data ）
 
-通常重定向至新的 URL 时会一并将[数据存进一次性 Session](/docs/5.0/session)。所以为了方便，你可以利用方法连接的方式创建一个 `RedirectResponse` 的实例**并**将数据存进一次性 Session：
+通常重定向至新的 URL 时会一并将[数据存进一次性 Session](/docs/{{version}}/session)。所以为了方便，你可以利用方法连接的方式创建一个 `RedirectResponse` 的实例**并**将数据存进一次性 Session：
 
 	return redirect('user/login')->with('message', 'Login Failed');
 
@@ -101,7 +101,7 @@
 
 #### 返回根据控制器动作的重定向
 
-既然可以产生 `RedirectResponse` 的实例并重定向至路由名称，同样的也可以重定向至[控制器动作](/docs/5.0/controllers)：
+既然可以产生 `RedirectResponse` 的实例并重定向至路由名称，同样的也可以重定向至[控制器动作](/docs/{{version}}/controllers)：
 
 	return redirect()->action('App\Http\Controllers\HomeController@index');
 
@@ -118,7 +118,7 @@
 <a name="other-responses"></a>
 ## 其他响应
 
-使用辅助方法 `response` 可以轻松的产生其他类型的响应实例。当你调用辅助方法 `response` 且不带任何参数时，将会返回 `Illuminate\Contracts\Routing\ResponseFactory` [Contract](/docs/5.0/contracts) 的实做。Contract 提供了一些有用的方法来产生响应。
+使用辅助方法 `response` 可以轻松的产生其他类型的响应实例。当你调用辅助方法 `response` 且不带任何参数时，将会返回 `Illuminate\Contracts\Routing\ResponseFactory` [Contract](/docs/{{version}}/contracts) 的实做。Contract 提供了一些有用的方法来产生响应。
 
 #### 建立 JSON 响应
 
@@ -146,7 +146,7 @@
 
 如果你想要自定义可以在很多路由和控制器重复使用的响应，你可以使用 `Illuminate\Contracts\Routing\ResponseFactory` 实做的方法 `macro`。
 
-举个例子，来自[服务提供者的](/docs/5.0/providers) `boot` 方法:
+举个例子，来自[服务提供者的](/docs/{{version}}/providers) `boot` 方法:
 
 	<?php namespace App\Providers;
 

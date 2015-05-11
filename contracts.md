@@ -137,7 +137,7 @@ Contract  |  Laravel 4.x Facade
 <a name="how-to-use-contracts"></a>
 ## 如何使用 Contracts
 
-所以，要如何实现一个 contract？实际上非常的简单。很多 Laravel 的类都是经由 [service container](/docs/5.0/container) 解析，包含控制器，事件监听，过滤器，队列任务，甚至是闭包。所以，要实现一个 contract，你可以在类的构造器使用「类型提示」解析类。例如，看下面的事件处理程序：
+所以，要如何实现一个 contract？实际上非常的简单。很多 Laravel 的类都是经由 [service container](/docs/{{version}}/container) 解析，包含控制器，事件监听，过滤器，队列任务，甚至是闭包。所以，要实现一个 contract，你可以在类的构造器使用「类型提示」解析类。例如，看下面的事件处理程序：
 
 	<?php namespace App\Handlers\Events;
 
@@ -176,4 +176,4 @@ Contract  |  Laravel 4.x Facade
 
 	}
 
-当事件监听被解析时，服务容器会经由类构造器参数的类型提示，注入适当的值。要知道怎么注册更多服务容器，参考[这个文档](/docs/5.0/container)。
+当事件监听被解析时，服务容器会经由类构造器参数的类型提示，注入适当的值。要知道怎么注册更多服务容器，参考[这个文档](/docs/{{version}}/container)。

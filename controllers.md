@@ -76,7 +76,7 @@
 <a name="controller-middleware"></a>
 ## 控制器中间件
 
-[中间件](/docs/5.0/middleware) 可在控制器路由中指定，例如：
+[中间件](/docs/{{version}}/middleware) 可在控制器路由中指定，例如：
 
 	Route::get('profile', [
 		'middleware' => 'auth',
@@ -220,7 +220,7 @@ DELETE    | /photo/{photo}        | 删除         | photo.destroy
 
 #### 构造器注入
 
-Laravel [服务容器](/docs/5.0/container) 用于解析所有的 Laravel 控制器。因此，你可以在控制器所需要的构造器中，对依赖作任何的类型限制。
+Laravel [服务容器](/docs/{{version}}/container) 用于解析所有的 Laravel 控制器。因此，你可以在控制器所需要的构造器中，对依赖作任何的类型限制。
 
 	<?php namespace App\Http\Controllers;
 
@@ -247,7 +247,7 @@ Laravel [服务容器](/docs/5.0/container) 用于解析所有的 Laravel 控制
 
 	}
 
-当然了，你也可以对任何的 [Laravel contract](/docs/5.0/contracts) 作类型限制。只要容器能解析它，你就可以对它作类型限制。
+当然了，你也可以对任何的 [Laravel contract](/docs/{{version}}/contracts) 作类型限制。只要容器能解析它，你就可以对它作类型限制。
 
 #### 方法注入
 
@@ -298,7 +298,7 @@ Laravel [服务容器](/docs/5.0/container) 用于解析所有的 Laravel 控制
 
 	}
 
-> **注意：** 方法注入和 [模型绑定](/docs/5.0/routing#route-model-binding) 是完全兼容的。容器可智能地判断那些参数和模型相关以及那些参数应该被注入。	
+> **注意：** 方法注入和 [模型绑定](/docs/{{version}}/routing#route-model-binding) 是完全兼容的。容器可智能地判断那些参数和模型相关以及那些参数应该被注入。	
 
 <a name="route-caching"></a>
 ## 路由缓存

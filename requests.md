@@ -20,7 +20,7 @@
 
 ### 通过依赖注入
 
-要通过依赖注入的方式取得 HTTP 请求的实例，你必须在控制器中的构造函数或方法对该类使用类型提示。当前请求的实例将会自动由[服务容器](/docs/5.0/master/container)注入：
+要通过依赖注入的方式取得 HTTP 请求的实例，你必须在控制器中的构造函数或方法对该类使用类型提示。当前请求的实例将会自动由[服务容器](/docs/{{version}}/container)注入：
 
 	<?php namespace App\Http\Controllers;
 
@@ -108,7 +108,7 @@ Laravel 可以让你保留这次的输入数据，直到下一次请求发送前
 
 #### 将输入数据存成一次性 Session
 
-`flash` 方法会将当前的输入数据存进 [session](/docs/5.0/session)中，所以下次用户发出请求时可以使用保存的数据：
+`flash` 方法会将当前的输入数据存进 [session](/docs/{{version}}/session)中，所以下次用户发出请求时可以使用保存的数据：
 
 	Request::flash();
 
@@ -224,6 +224,14 @@ You may also "queue" a cookie to be added to the outgoing response, even before 
 #### 取得请求 URI
 
 	$uri = Request::path();
+	
+#### 判断一个请求是否使用了 AJAX
+
+	if (Request::ajax())
+	{
+		//
+	}
+
 
 #### 取得请求方法
 

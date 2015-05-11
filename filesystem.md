@@ -29,7 +29,7 @@ Laravel 有很棒的文件系统抽象层，是基于 Frank de Jonge 的 [Flysys
 <a name="basic-usage"></a>
 ## 基本用法
 
-可以用 `Storage` facade 操作所有写在配置文件里的硬盘。或者是，你也可以将 `Illuminate\Contracts\Filesystem\Factory` 类型提示写到任何类里，经由 Laravel 的 [服务容器](/docs/5.0/container) 解析。
+可以用 `Storage` facade 操作所有写在配置文件里的硬盘。或者是，你也可以将 `Illuminate\Contracts\Filesystem\Factory` 类型提示写到任何类里，经由 Laravel 的 [服务容器](/docs/{{version}}/container) 解析。
 
 #### 取得一个特定硬盘
 

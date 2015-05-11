@@ -31,7 +31,7 @@
 
 	$collection = Collection::make([1, 2, 3]);
 
-当然，[Eloquent](/docs/5.0/eloquent) 的对象集合总是以 `Collection` 实例返回；然而，你可以在应用程序的任何地方方便的使用 `Collection` 类。
+当然，[Eloquent](/docs/{{version}}/eloquent) 的对象集合总是以 `Collection` 实例返回；然而，你可以在应用程序的任何地方方便的使用 `Collection` 类。
 
 #### 探索集合
 

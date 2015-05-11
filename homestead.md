@@ -33,7 +33,7 @@ Homestead 目前是构建且测试于 Vagrant 1.7 版本。
 - Redis
 - Memcached
 - Beanstalkd
-- [Laravel Envoy](/docs/5.0/envoy)
+- [Laravel Envoy](/docs/{{version}}/envoy)
 - [Blackfire Profiler](#blackfire-profiler)
 
 <a name="installation-and-setup"></a>
@@ -71,7 +71,7 @@ Homestead 目前是构建且测试于 Vagrant 1.7 版本。
 
 ### 配置你的 Provider
 
-在 `Homestead.yaml` 文件中的 `provider` 键表明需要使用的 Vagrant prodiver：`virtualbox` 或者 `vmware_fusion` ，你可以根据自己的喜好设定 provider 。
+在 `Homestead.yaml` 文件中的 `provider` 键表明需要使用的 Vagrant prodiver：`virtualbox` 、 `vmware_fusion` (Mac OS X)、或者 `vmware_workstation` (Windows)，你可以根据自己的喜好设定 provider 。
 
 	provider: virtualbox
 

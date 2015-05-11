@@ -21,9 +21,13 @@
 
 > **注意：** 目前 Laravel 使用 `groupBy` 来做分页操作无法有效率的执行，如果您需要使用 `groupBy` 来分页数据集，建议您手动查找数据库，并使用 `Paginator::make`。
 
+#### 手动创建分页实例
+
+有时你也许希望手动创建发呢也实例，传递一个数组作为参数。你可以根据需求创建 `Illuminate\Pagination\Paginator` 或者 `Illuminate\Pagination\LengthAwarePaginator` 实例。
+
 #### 对 Eloquent 模型分页
 
-您也可以对 [Eloquent](/docs/5.0/eloquent) 模型分页:
+您也可以对 [Eloquent](/docs/{{version}}/eloquent) 模型分页:
 
 	$allUsers = User::paginate(15);
 
@@ -41,7 +45,7 @@
 
 这就是所有建立分页系统的步骤了！您会注意到我们还没有告知 Laravel 我们目前的页面是哪一页，这个信息 Laravel 会自动帮您做好。
 
-您也可以透过以下方法获得额外的分页信息：
+您也可以通过以下方法获得额外的分页信息：
 
 - `currentPage`
 - `lastPage`

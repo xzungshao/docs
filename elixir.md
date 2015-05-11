@@ -139,7 +139,7 @@ elixir(function(mix) {
 });
 ```
 
-传递给此方法的文件路径均相对于 `resources/css` 目录。
+传递给此方法的文件路径均相对于 `resources/asssets/css` 目录。
 
 #### 合并样式文件且保存在自定义的路径
 
@@ -184,7 +184,7 @@ elixir(function(mix) {
 });
 ```
 
-同样的，传递给此方法的文件路径均相对于 `resources/js` 目录
+同样的，传递给此方法的文件路径均相对于 `resources/assets/js` 目录
 
 #### 合并指定目录里所有的脚本文件
 
@@ -260,7 +260,7 @@ elixir(function(mix) {
 
 Want to require modules in the browser? Hoping to use EcmaScript 6 sooner than later? Need a built-in JSX transformer? If so, [Browserify](http://browserify.org/), along with the `browserify` Elixir task, will handle the job nicely.
 
-This task assumes that your scripts are stored in `resources/js`, though you're free to override the default.
+This task assumes that your scripts are stored in `resources/assets/js`, though you're free to override the default.
 
 #### 方法连接
 

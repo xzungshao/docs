@@ -30,7 +30,7 @@
 
 Laravel 几乎不需配置就可以马上使用。你可以自由的开始开发！然而，你可以浏览 `config/app.php` 文件和其他的文档。你可能希望依据你的本机而做更改，文件包含数个选项如`时区`和`语言环境`。
 
-一旦 Laravel 安装完成，你应该同时 [配置本机环境](/docs/5.0/configuration#environment-configuration)。
+一旦 Laravel 安装完成，你应该同时 [配置本机环境](/docs/{{version}}/configuration#environment-configuration)。
 
 > **注意：** 你不应该在正式环境中将 `app.debug` 配置为 `true` 。绝对！千万不要！
 
@@ -83,7 +83,7 @@ Laravel 通过 [DotEnv](https://github.com/vlucas/phpdotenv) Vance Lucas 写的�
 		// The environment is either local OR staging...
 	}
 
-如果想取得应用程序的实例，可以通过[服务容器](/docs/5.0/container)的 `Illuminate\Contracts\Foundation\Application`  contract 来取得。当然，如果你想在[服务提供者](/docs/5.0/providers)中使用，应用程序实例可以通过实例变量 `$this->app` 取得。
+如果想取得应用程序的实例，可以通过[服务容器](/docs/{{version}}/container)的 `Illuminate\Contracts\Foundation\Application`  contract 来取得。当然，如果你想在[服务提供者](/docs/{{version}}/providers)中使用，应用程序实例可以通过实例变量 `$this->app` 取得。
 
 也能通过 `App` facade 或者辅助方法 `app` 取得应用程序实例：
 
@@ -117,7 +117,7 @@ Laravel 通过 [DotEnv](https://github.com/vlucas/phpdotenv) Vance Lucas 写的�
 
 ### 维护模式与队列
 
-当应用程序处于维护模式中，将不会处理任何[队列工作](/docs/5.0/queues)。所有的队列工作将会在应用程序离开维护模式后继续被进行。
+当应用程序处于维护模式中，将不会处理任何[队列工作](/docs/{{version}}/queues)。所有的队列工作将会在应用程序离开维护模式后继续被进行。
 
 <a name="pretty-urls"></a>
 ## 优雅链接
@@ -145,4 +145,4 @@ If your web host doesn't allow the `FollowSymlinks` option, try replacing it wit
 		try_files $uri $uri/ /index.php?$query_string;
 	}
 
-当然，如果你使用 [Homestead](/docs/5.0/homestead) 的话，优雅链接会自动的帮你配置完成。
+当然，如果你使用 [Homestead](/docs/{{version}}/homestead) 的话，优雅链接会自动的帮你配置完成。
