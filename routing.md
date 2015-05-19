@@ -223,14 +223,14 @@ HTML 表单没有支持 `PUT` 、`PATCH` 或 `DELETE` 请求。所以当定义 `
 <a name="route-groups"></a>
 ## 路由群组
 
-Sometimes many of your routes will share common requirements such as URL segments, middleware, namespaces, etc. Instead of specifying each of these options on every route individually, you may use a route group to apply attributes to many routes.
+有时候你的许多路由会有公用的需求，例如 URL 区段 (segments)、中间件、命名空间等等。你可以利用路由群组套用这些属性到多个路由，而不用每个路由都设置一次。
 
-Shared attributes are specified in an array format as the first parameter to the `Route::group` method.
+将共享属性作为一个数组当做 Route::group 第一个参数。
 
 <a name="route-group-middleware"></a>
 ### Middleware
 
-Middleware are applied to all routes within the group by defining the list of middleware with the `middleware` parameter on the group attribute array. Middleware will be executed in the order you define this array:
+在群组共享属性数组的 middleware 参数定义中间件列表，这些中间件就会应用到群组内的所有路由上。中间件将会按在列表内指定的顺序执行：
 
 	Route::group(['middleware' => ['foo', 'bar']], function()
 	{
@@ -295,7 +295,7 @@ Laravel 路由一样可以处理通配符的子域名，并且从域名中传递
 
 You can also utilize the `prefix` parameter to pass common parameters to your routes:
 
-#### Registering a URL parameter in a route prefix
+#### 注册一个 URL 参数到路由前缀
 
 	Route::group(['prefix' => 'accounts/{account_id}'], function()
 	{
@@ -305,7 +305,7 @@ You can also utilize the `prefix` parameter to pass common parameters to your ro
 		});
 	});
 
-You can even define parameter constraints for the named parameters in your prefix:
+你甚至可以在前缀中为已命名的参数定义限制：
 
 	Route::group([
 		'prefix' => 'accounts/{account_id}',
