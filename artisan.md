@@ -135,12 +135,13 @@ Artisan 是 Laravel 内置的命令行接口。它提供了一些有用的命令
 	$schedule->command('foo')->sundays();
 
 #### Prevent Jobs From Overlapping
+#### 防止工作重叠
 
-By default, scheduled jobs will be run even if the previous instance of the job is still running. To prevent this, you may use the `withoutOverlapping` method:
+默认情况下，即使前一个工作实例正在运行中，被调用的工作也会同时被执行。如果要避免这件事情，你可以使用 `withoutOverlapping` 方法：
 
 	$schedule->command('foo')->withoutOverlapping();
 
-In this example, the `foo` command will be run every minute if it is not already running.
+在这个例子中，`foo` 命令每分钟都会被执行，除非他正在运行中。
 
 #### 限制应该执行工作的环境
 
@@ -171,6 +172,6 @@ In this example, the `foo` command will be run every minute if it is not already
 
 	$schedule->command('foo')->thenPing($url);
 
-Using the `thenPing($url)` feature requires the Guzzle HTTP library. You can add Guzzle 5 to your project by adding the following line to your `composer.json` file:
+使用 `thenPing($url)` 功能则必须引入 Guzzle HTTP 库。你能够通过添加下面这行代码至你的 `composer.json` 文件来添加 Guzzle 5 到你的项目中：
 
 	"guzzlehttp/guzzle": "~5.0"
