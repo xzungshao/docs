@@ -205,7 +205,7 @@
 
 ### config_path
 
-Get the fully qualified path to the `config` directory.
+获取 `config` 目录的完整路径。
 
 ### public_path
 
