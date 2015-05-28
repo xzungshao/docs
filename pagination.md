@@ -53,6 +53,8 @@
 - `hasMorePages`
 - `url`
 - `nextPageUrl`
+- `firstItem`
+- `lastItem`
 - `total`
 - `count`
 

@@ -568,6 +568,11 @@ Laravel 通过 `Validation` 类让您可以简单、方便的验证数据正确�
 
 字段值的尺寸需符合给定 _value_ 值。对于字串来说，_value_ 为需符合的字串长度。对于数字来说，_value_ 为需符合的整数值。对于文件来说，_value_ 为需符合的文件大小（单位 kb)。
 
+<a name="rule-string"></a>
+#### string
+
+必须是字符串类型。
+
 <a name="rule-timezone"></a>
 #### timezone
 

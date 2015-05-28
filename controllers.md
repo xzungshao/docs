@@ -110,7 +110,7 @@ Laravel 让你能轻易地定义单一路由来处理控制器中的每一项行
 
 `Controller` 方法接受两个参数。第一个参数是控制器欲处理的 base URI，第二个是控制器的类名称。接着只要在你的控制器中加入方法，并在名称前加上它们所对应的 HTTP 请求。
 
-	class UserController extends BaseController {
+	class UserController extends Controller {
 
 		public function getIndex()
 		{
@@ -285,7 +285,7 @@ Laravel [服务容器](/docs/{{version}}/container) 用于解析所有的 Larave
 	class UserController extends Controller {
 
 		/**
-		 * 保存一个新的用户。
+		 * 更新一个特定的用户。
 		 *
 		 * @param  Request  $request
 		 * @param  int  $id

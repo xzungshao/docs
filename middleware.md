@@ -23,6 +23,8 @@ Laravel 框架已经内置一些中间件，包括维护、身份验证、CSRF �
 此命令将会 在 `app/Http/Middleware` 目录内置立一个名称为 `OldMiddleware` 的类。在这个中间件内我们只允许 `年龄` 大于 200 的才能访问路由，否则，我们会将用户重新导向 「home」 的 URI 。
 
 	<?php namespace App\Http\Middleware;
+	
+	use Closure;
 
 	class OldMiddleware {
 
@@ -53,6 +55,8 @@ HTTP 请求在实际碰触到应用程序之前，最好是可以层层通过许
 在一个请求前后指定某个中间件取决于这个中间件自身。这个中间件可以执行在请求前执行一些 **前置** 操作：
 
 	<?php namespace App\Http\Middleware;
+	
+	use Closure;
 
 	class BeforeMiddleware implements Middleware {
 
@@ -67,6 +71,8 @@ HTTP 请求在实际碰触到应用程序之前，最好是可以层层通过许
 然后，这个中间件也可以在请求后执行一些 **后置** 操作：
 
 	<?php namespace App\Http\Middleware;
+	
+	use Closure;
 
 	class AfterMiddleware implements Middleware {
 

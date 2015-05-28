@@ -151,7 +151,8 @@ Laravel 已经预设了两个认证相关的控制器。 `AuthController` 处理
 首先， 你可以从 `Auth` facade 取得用户：
 
 	<?php namespace App\Http\Controllers;
-
+	
+	use Auth;
 	use Illuminate\Routing\Controller;
 
 	class ProfileController extends Controller {
