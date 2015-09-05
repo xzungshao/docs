@@ -35,7 +35,7 @@ In this overview you will learn how to write your own service providers and regi
 
 All service providers extend the `Illuminate\Support\ServiceProvider` class. This abstract class requires that you define at least one method on your provider: `register`. Within the `register` method, you should **only bind things into the [service container](/docs/{{version}}/container)**. You should never attempt to register any event listeners, routes, or any other piece of functionality within the `register` method.
 
-所有的服务提供者都继承自'Illuminate\Support\ServiceProvider' 类。这个抽象类需要你在你的提供者（类）中至少定义一个'register'方法.在这个'register'方法内部，你应该**仅仅绑定事物到[服务容器]里(关于service container参考文档：/docs/{{version}}/container)**. 你绝对不要尝试去注册任何的事件监听器，路由，或者任何其他功能模块到 'register' 方法里面。
+所有的服务提供者都继承自'Illuminate\Support\ServiceProvider' 类。这个抽象类需要你在你的提供者（类）中至少定义一个'register'方法.在这个'register'方法内部，你应该**仅仅绑定事物到[服务容器]里(关于service container参考文档：/docs/{{version}}/container)**. 你绝对不要尝试在'register'方法里注册任何的事件监听器，路由，或者任何其他功能模块。
 
 The Artisan CLI can easily generate a new provider via the `make:provider` command:
 
