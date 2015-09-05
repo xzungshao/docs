@@ -16,26 +16,28 @@ Service providers are the central place of all Laravel application bootstrapping
 
 But, what do we mean by "bootstrapped"? In general, we mean **registering** things, including registering service container bindings, event listeners, middleware, and even routes. Service providers are the central place to configure your application.
 
-但是，我们需要做什么才算是被引导载入呢？通常，我们注册一些事情的含义，包括 服务注册容器的绑定，事件监听，中间件，乃至路由。
+但是，我们需要做什么才算是被引导载入呢？通常，我们注册一些事情的含义，包括 注册服务容器绑定，事件监听器，中间件，乃至路由。
 服务提供者是配置你的应用的中心。
+
+ps: registering service container bindings 是laravel 中的一项功能，不能简单的理解为一项操作
 
 If you open the `config/app.php` file included with Laravel, you will see a `providers` array. These are all of the service provider classes that will be loaded for your application. Of course, many of them are "deferred" providers, meaning they will not be loaded on every request, but only when the services they provide are actually needed.
 
-如果你打开laravel 自带的 ‘config/app.php’ 文件，你将一个‘provider’数组。这里所有的服务驱动类都将被加载到你的应用中去。当然
-他们中的很多是‘deferred(延期)’驱动器，意味着他们不会在每个请求中都被加载，仅仅是在他们提供的服务在被需要的时候才会被加载。
+如果你打开laravel 自带的 ‘config/app.php’文件，你将看到一个‘provider’数组。这里所有的服务驱动类都将被加载到你的应用中去。当然
+，他们中的很多是‘deferred’（服务）提供者，意味着他们不会在每个请求中都被加载，仅仅是在他们提供的服务在被需要的时候才会被加载。
 
 In this overview you will learn how to write your own service providers and register them with your Laravel application.
 
-在这篇概述性文章中，你将学习到怎样在你的laravel 应用中编写你自己的服务驱动器和服务注册器。
+在这篇概述性文章中，你将学习到怎样在你的laravel 应用中编写你自己的服务提供者并把他们注册到你的laravel 应用中。
 
 <a name="writing-service-providers / 编写服务提供者"></a>
 ## Writing Service Providers
 
 编写服务提供者
 
-All service providers extend the `Illuminate\Support\ServiceProvider` class. This abstract class requires that you define at least one method on your provider: `register`. Within the `register` method, you should **only bind things into the [service container](/docs/{{version}}/container)**. You should never attempt to register any event listeners, routes, or any other piece of functionality within the `register` method.
+All service providers extend the `Illuminate\Support\ServiceProvider` class. This abstract class requires that you define at least one method on your provider: `register`. Within the `register` method, you should **only bind things into the [service container](/docs/{{version}}/container)**. You should never attempt to register any event listeners, routes, or any other piece of functionality within the `register` method. 
 
-所有的服务提供者都继承自'Illuminate\Support\ServiceProvider' 类。这个抽象类需要你在你的提供者（类）中至少定义一个'register'方法.在这个'register'方法内部，你应该**仅仅绑定事物到[服务容器]里(关于service container参考文档：/docs/{{version}}/container)**. 你绝对不要尝试在'register'方法里注册任何的事件监听器，路由，或者任何其他功能模块。
+所有的服务提供者都继承自'Illuminate\Support\ServiceProvider'类。这个抽象类需要你在你的提供者（类）中至少定义一个'register'方法.在这个'register'方法内部，你应该**仅仅绑定事物到[服务容器]里(关于servicecontainer参考文档：/docs/{{version}}/container)**. 你绝对不要尝试在'register'方法里注册任何的事件监听器，路由，或者任何其他功能模块。
 
 The Artisan CLI can easily generate a new provider via the `make:provider` command:
 
@@ -46,15 +48,17 @@ Artisan CLI 能够很容易通过'make:provider' 命令生成一个新的提供�
 <a name="the-register-method / 注册方法"></a>
 ### The Register Method
 
-注册方法
+register 方法
 
 As mentioned previously, within the `register` method, you should only bind things into the [service container](/docs/{{version}}/container). You should never attempt to register any event listeners, routes, or any other piece of functionality within the `register` method. Otherwise, you may accidently use a service that is provided by a service provider which has not loaded yet.
 
-正如前面提到的那样，在'register' 方法中，你应该仅仅绑定服务到[服务容器](关于服务容器可参考:/docs/{{version}}/container). 你绝不应该尝试去注册任何的事件监听器，路由，或任何其他的功能到'register' 方法里。否则，你可能会意外使用到一个被服务提供者支持但并没有被加载的服务。
+正如前面提到的那样，在'register' 方法中，你应该仅仅绑定服务到[服务容器](关于服务容器可参考:/docs/{{version}}/container). 你绝不应该尝试在'register'方法里注册任何的事件监听器，路由，或任何其他的功能。否则，你可能会意外使用到一个由服务提供者提供但并没有被加载的服务。
+
+ps: 一个service provider  可以提供多种服务。
 
 Now, let's take a look at a basic service provider:
 
-现在，让我们看一看一个基础的服务提供者：
+现在，让我们看看一个基础的服务提供者：
 
     <?php
 
@@ -80,14 +84,14 @@ Now, let's take a look at a basic service provider:
 
 This service provider only defines a `register` method, and uses that method to define an implementation of `Riak\Contracts\Connection` in the service container. If you don't understand how the service container works, check out [its documentation](/docs/{{version}}/container).
 
-这个服务提供者仅仅定义了一个'register' 方法，并且使用这个方法在服务容器里定义了一个'Riak\Contracts\Connection'（接口）的实现。 如果你不理解服务容器是怎样工作的，请切换到文档这里：/docs/{{version}}/container
+这个服务提供者仅仅定义了一个'register'方法，并且使用这个方法在服务容器里定义了一个'Riak\Contracts\Connection'（接口）的实现 （即返回了一个接口的实例）。如果你不理解服务容器是怎样工作的，请切换到文档这里：/docs/{{version}}/container
 
-ps: 服务容器，应该就是ioc容器了； 是通过DI(依赖注入)实现的IOC吗？
+ps: 服务容器，应该就是ioc容器了； 是通过DI(依赖注入)实现的IOC吗？是的
 
 <a name="the-boot-method"></a>
 ### The Boot Method
 
-启动方法
+boot 方法
 
 So, what if we need to register a view composer within our service provider? This should be done within the `boot` method. **This method is called after all other service providers have been registered**, meaning you have access to all other services that have been registered by the framework:
 
