@@ -2,20 +2,26 @@
 
 - [Introduction / 简介](#introduction)
 - [Binding / 绑定（粘合）](#binding)
-    - [Binding Interfaces To Implementations](#binding-interfaces-to-implementations)
-    - [Contextual Binding](#contextual-binding)
-    - [Tagging](#tagging)
-- [Resolving](#resolving)
-- [Container Events](#container-events)
+    - [Binding Interfaces To Implementations / 绑定接口到实现 ](#binding-interfaces-to-implementations)
+    - [Contextual Binding / 上下文绑定](#contextual-binding)
+    - [Tagging / 加标记](#tagging)
+- [Resolving / 解析](#resolving)
+- [Container Events / 容器事件](#container-events)
 
 ps : ioc 容器的作用本身就似粘合剂 ， 因此这里的binding理解为粘合更形象些
 
-<a name="introduction"></a>
+<a name="introduction / 简介"></a>
 ## Introduction
+
+简介
 
 The Laravel service container is a powerful tool for managing class dependencies and performing dependency injection. Dependency injection is a fancy phrase that essentially means this: class dependencies are "injected" into the class via the constructor or, in some cases, "setter" methods.
 
+laravel 服务容器是一个用于管理类的依赖性和实现依赖注入的强大工具。依赖注入是一个华丽的用词，它本质上的意思是： 类的依赖被注入进类里，是通过构造器（一般是只构造函数），或者， 某些情况下，“setter” 方法来完成的。
+
 Let's look at a simple example:
+
+让我们来看一个简单的例子：
 
     <?php
 
@@ -56,14 +62,24 @@ Let's look at a simple example:
 
 In this example, the `PurchasePodcast` job needs to send e-mails when a podcast is purchased. So, we will **inject** a service that is able to send e-mails. Since the service is injected, we are able to easily swap it out with another implementation. We are also able to easily "mock", or create a dummy implementation of the mailer when testing our application.
 
+在这个例子中，当播客被购买时， PurchasePodcast命令处理器需要发送一封电子邮件。所以，我们将注入一个服务来提供这个能力。当这个服务被注入以后，我们就可以轻易地切换到不同的实现。当测试我们的应用程序时，我们同样也可以轻易地「模拟」，或者创建一个虚拟的发信服务实现，来帮助我们进行测试。
+
 A deep understanding of the Laravel service container is essential to building a powerful, large application, as well as for contributing to the Laravel core itself.
 
-<a name="binding"></a>
+深入理解laravel 服务构造器是很有必要的，对于去构建一个大型的功能强大的应用以及为laravel 自身做贡献。
+
+<a name="binding / 绑定"></a>
 ## Binding
+
+绑定
 
 Almost all of your service container bindings will be registered within [service providers](/docs/{{version}}/providers), so all of these examples will demonstrate using the container in that context. However, there is no need to bind classes into the container if they do not depend on any interfaces. The container does not need to be instructed how to build these objects, since it can automatically resolve such "concrete" objects using PHP's reflection services.
 
+几乎你的所有服务容器的绑定将被注册到服务提供者里（/docs/{{version}}/providers），因此，所有这些例子将表面正在用上下文中使用容器。 然后，不需要去绑定类到容器里，如果他们不依赖任何接口。容器不需要去指示怎样构建这些对象，因为它能够使用php的反射服务自动解析像“concrete”这样的对象
+
 Within a service provider, you always have access to the container via the `$this->app` instance variable. We can register a binding using the `bind` method, passing the class or interface name that we wish to register along with a `Closure` that returns an instance of the class:
+
+在一个服务提供者里，你一直有权限连接到容器，通过‘$this->app’ 实例变量。我们能够使用‘bind’方法注册一个绑定，
 
     $this->app->bind('HelpSpot\API', function ($app) {
         return new HelpSpot\API($app['HttpClient']);
