@@ -1,12 +1,14 @@
-# Service Container
+# Service Container / 服务容器
 
-- [Introduction](#introduction)
-- [Binding](#binding)
+- [Introduction / 简介](#introduction)
+- [Binding / 绑定（粘合）](#binding)
     - [Binding Interfaces To Implementations](#binding-interfaces-to-implementations)
     - [Contextual Binding](#contextual-binding)
     - [Tagging](#tagging)
 - [Resolving](#resolving)
 - [Container Events](#container-events)
+
+ps : ioc 容器的作用本身就似粘合剂 ， 因此这里的binding理解为粘合更形象些
 
 <a name="introduction"></a>
 ## Introduction
