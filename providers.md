@@ -2,7 +2,7 @@
 
 - [Introduction / 简介](#introduction)
 - [Writing Service Providers / 编写服务提供者](#writing-service-providers)
-    - [The Register Method / 注册器方法](#the-register-method)
+    - [The Register Method / 注册方法](#the-register-method)
     - [The Boot Method / 启动方法 ](#the-boot-method)
 - [Registering Providers / 注册提供者](#registering-providers)
 - [Deferred Providers / 延期提供者](#deferred-providers)
@@ -15,10 +15,10 @@ Service providers are the central place of all Laravel application bootstrapping
 
 But, what do we mean by "bootstrapped"? In general, we mean **registering** things, including registering service container bindings, event listeners, middleware, and even routes. Service providers are the central place to configure your application.
 
-但是，我们需要做什么才算是被引导载入呢？通常，我们注册一些事情的含义，包括 注册服务容器绑定，事件监听器，中间件，乃至路由。
-服务提供者是配置你的应用的中心。
+但是，我们做什么才算是被引导载入呢？通常，我们注册一些事情的含义，包括注册服务容器绑定，事件监听器，中间件，以及路由。
+服务提供者是装配你的应用的中心。
 
-ps: registering service container bindings 是laravel 中的一项功能，不能简单的理解为一项操作
+ps: registering service container bindings 是laravel 一项很重要的核心的操作。
 
 If you open the `config/app.php` file included with Laravel, you will see a `providers` array. These are all of the service provider classes that will be loaded for your application. Of course, many of them are "deferred" providers, meaning they will not be loaded on every request, but only when the services they provide are actually needed.
 
