@@ -183,6 +183,7 @@ Occasionally, you may need to resolve all of a certain "category" of binding. Fo
     $this->app->tag(['SpeedReport', 'MemoryReport'], 'reports');
 
 Once the services have been tagged, you may easily resolve them all via the `tagged` method:
+这时服务已经被标记，你能够通过'tagged'方法很容易的去解析他们所有。
 
     $this->app->bind('ReportAggregator', function ($app) {
         return new ReportAggregator($app->tagged('reports'));
