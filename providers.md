@@ -9,7 +9,6 @@
 
 <a name="introduction / 简介"></a>
 ## Introduction
-简介
 Service providers are the central place of all Laravel application bootstrapping. Your own application, as well as all of Laravel's core services are bootstrapped via service providers.
 
 服务提供者是所有laravel应用引导载入的中心。你自己的应用和所有laravel 的核心服务一样通过服务提供者被引导载入。
