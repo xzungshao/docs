@@ -44,7 +44,7 @@ You may have several questions regarding contracts. Why use interfaces at all? I
 
 First, let's review some code that is tightly coupled to a cache implementation. Consider the following:
 
-首先，我们来回顾一些代码，代码中一个缓存实现是紧耦合。思考下面：
+首先，我们来回顾一些代码，代码中一个缓存实现是紧耦合。思考以下代码：
 
     <?php
 
@@ -84,10 +84,14 @@ First, let's review some code that is tightly coupled to a cache implementation.
 
 In this class, the code is tightly coupled to a given cache implementation. It is tightly coupled because we are depending on a concrete Cache class from a package vendor. If the API of that package changes our code must change as well.
 
+在上面的类里，代码跟缓存实现之间是紧耦合。理由是它会依赖于扩展包库（ package vendor ）的特定缓存类。一旦这个扩展包的 API 更改了，我们的代码也要跟着改变。
+
 Likewise, if we want to replace our underlying cache technology (Memcached) with another technology (Redis), we again will have to modify our repository. Our repository should not have so much knowledge regarding who is providing them data or how they are providing it.
 
-**Instead of this approach, we can improve our code by depending on a simple, vendor agnostic interface:**
+同样的，如果我们想使用另一项技术（如：redis）去替换底层的缓存技术（Memcached）,我们将不得不再次修改我们的repository.我们的repository 不应该有太多关于是谁在提供他们数据或者他们是怎样提供的等细节。
 
+**Instead of this approach, we can improve our code by depending on a simple, vendor agnostic interface:**
+比起上面的做法，我们可以改用一个简单、和扩展包无关的接口来改进代码：
     <?php
 
     namespace App\Orders;
@@ -107,8 +111,12 @@ Likewise, if we want to replace our underlying cache technology (Memcached) with
             $this->cache = $cache;
         }
     }
+    
+ps： 构造函数中的Cache 类型提示 指定一个cache的contracts(接口)，而不再像上面的例子中类型提示的是一个具体的类；我们随时可以通过‘换装’将不同的Cache 的实现(memcached or redis  or other)绑定到 Cache 上，因此这里我们总可以得到一个缓存对象（or 实例），不管它是memcached 还是redis  .
 
 Now the code is not coupled to any specific vendor, or even Laravel. Since the contracts package contains no implementation and no dependencies, you may easily write an alternative implementation of any given contract, allowing you to replace your cache implementation without modifying any of your cache consuming code.
+
+现在代码不和任何指定的vendor耦合，甚至 laravel . 
 
 ### Simplicity
 
