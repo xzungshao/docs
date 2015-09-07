@@ -1,31 +1,50 @@
 # Contracts
-
-- [Introduction](#introduction)
-- [Why Contracts?](#why-contracts)
-- [Contract Reference](#contract-reference)
-- [How To Use Contracts](#how-to-use-contracts)
+合约
+- [Introduction / 简介](#introduction)
+- [Why Contracts? / 为什么合约？](#why-contracts)
+- [Contract Reference / 合约参考 ](#contract-reference)
+- [How To Use Contracts / 怎样去使用合约?](#how-to-use-contracts)
 
 <a name="introduction"></a>
 ## Introduction
 
 Laravel's Contracts are a set of interfaces that define the core services provided by the framework. For example, a `Illuminate\Contracts\Queue\Queue` contract defines the methods needed for queueing jobs, while the `Illuminate\Contracts\Mail\Mailer` contract defines the methods needed for sending e-mail.
 
+laravel 的contracts 是由框架驱动的一组定义了核心服务的接口。例如，一个`Illuminate\Contracts\Queue\Queue` 合约定义了队列任务所需要的方法，而 `Illuminate\Contracts\Mail\Mailer` 合约定义了发送邮件所有需要的方法。
+
+ps： contracts 其实就是接口。
+
 Each contract has a corresponding implementation provided by the framework. For example, Laravel provides a queue implementation with a variety of drivers, and a mailer implementation that is powered by [SwiftMailer](http://swiftmailer.org/).
+
+每个contract 都有一个由框架提供的相应实现。例如,laravel 提供了有多种驱动的队列实现 ，一个由[SwiftMailer] 提供的 mailer 实现。
 
 All of the Laravel contracts live in [their own GitHub repository](https://github.com/illuminate/contracts). This provides a quick reference point for all available contracts, as well as a single, decoupled package that may be utilized by package developers.
 
+所有的laravel  contracts  都放在他们各自的github库上，除了提供了所有可用的contracts一个快速的参考，也可以单独作为一个低耦合的扩展包让其他扩展包开发者使用。
+
 ### Contracts Vs. Facades
 
+
 Laravel's [facades](/docs/{{version}}/facades) provide a simple way of utilizing Laravel's services without needing to type-hint and resolve contracts out of the service container. However, using contracts allows you to define explicit dependencies for your classes. For most applications, using a facade is just fine. However, if you really need the extra loose coupling that contracts can provide, keep reading!
+
+laravel 的facades 提供了一种使用laravel 的服务的简单方法，这种方法不需要使用类型提示也不用对contracts做服务容器外解析。
 
 <a name="why-contracts"></a>
 ## Why Contracts?
 
+为什么是 contracts?
+
 You may have several questions regarding contracts. Why use interfaces at all? Isn't using interfaces more complicated? Let's distil the reasons for using interfaces to the following headings: loose coupling and simplicity.
+
+你可能有一些关于contracts的问题。为什么都要使用接口呢？使用接口不是更难以理解吗？下面的标题是一个使用接口的精简理由： 松散耦合和简洁
 
 ### Loose Coupling
 
+松散耦合
+
 First, let's review some code that is tightly coupled to a cache implementation. Consider the following:
+
+首先，我们来回顾一些代码，代码中一个缓存实现是紧耦合。思考下面：
 
     <?php
 
